@@ -1,3 +1,5 @@
+import { Github, Linkedin } from "lucide-react"
+
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { SidebarTrigger } from "@/components/ui/sidebar"
@@ -12,17 +14,26 @@ export function SiteHeader() {
           orientation="vertical"
           className="mx-2 data-[orientation=vertical]:h-4"
         />
-        <h1 className="text-base font-medium">Documents</h1>
         <div className="ml-auto flex items-center gap-2">
           <ThemeToggle />
-          <Button variant="ghost" asChild size="sm" className="hidden sm:flex">
+          <Button variant="ghost" size="icon" asChild>
             <a
-              href="https://github.com/shadcn-ui/ui/tree/main/apps/v4/app/(examples)/dashboard"
-              rel="noopener noreferrer"
+              href="https://github.com/brettwhite-git"
               target="_blank"
-              className="dark:text-foreground"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
             >
-              GitHub
+              <Github className="h-4 w-4" />
+            </a>
+          </Button>
+          <Button variant="ghost" size="icon" asChild>
+            <a
+              href="https://www.linkedin.com/in/bwhite90/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="h-4 w-4" />
             </a>
           </Button>
         </div>
