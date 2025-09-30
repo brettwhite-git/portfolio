@@ -28,7 +28,7 @@ A modern remake of an existing resume/portfolio website, https://github.com/bret
 - **Minimalistic**: Clean, uncluttered layouts with purposeful whitespace
 - **Modern**: Contemporary design patterns and typography
 - **Design-Forward**: Visual hierarchy, thoughtful color palettes, and micro-interactions
-- **Shadcn**: Work with shadcn components, cards, charts, themes and colors as necessary before adding other pacakages. 
+- **Shadcn**: Work with shadcn components, cards, charts, themes and colors as necessary before adding other pacakages. Cards/ charts/ divs should respect the side bar and neighbor components with equivalant spacing. 
 - **Responsive**: Mobile-first approach with seamless cross-device experiences
 - **Performance-Optimized**: Fast loading times, optimized images, and efficient code splitting
 

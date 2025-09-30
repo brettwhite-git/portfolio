@@ -18,47 +18,58 @@ import {
   SidebarHeader,
 } from "@/components/ui/sidebar"
 
+type Section = "home" | "about" | "experience" | "projects" | "analytics" | "skills" | "contact"
+
 const data = {
   navMain: [
     {
       title: "Home",
-      url: "#",
+      section: "home" as Section,
       icon: IconHome,
     },
     {
       title: "About",
-      url: "#",
+      section: "about" as Section,
       icon: IconUsers,
     },
     {
       title: "Experience",
-      url: "#",
+      section: "experience" as Section,
       icon: IconListDetails,
     },
     {
       title: "Projects",
-      url: "#",
+      section: "projects" as Section,
       icon: IconFolder,
     },
     {
+      title: "Analytics",
+      section: "analytics" as Section,
+      icon: IconChartBar,
+    },
+    {
       title: "Skills",
-      url: "#",
+      section: "skills" as Section,
       icon: IconChartBar,
     },
     {
       title: "Contact",
-      url: "#",
+      section: "contact" as Section,
       icon: IconFileDescription,
     },
   ],
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
+  onNavigate?: (section: Section) => void
+}
+
+export function AppSidebar({ onNavigate, ...props }: AppSidebarProps) {
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader className="p-0 gap-0 h-(--header-height) shrink-0" />
-      <SidebarContent>
-        <NavMain items={data.navMain} />
+      <SidebarContent className="px-2">
+        <NavMain items={data.navMain} onNavigate={onNavigate} />
       </SidebarContent>
       <SidebarFooter>
       </SidebarFooter>
