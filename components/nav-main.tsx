@@ -1,6 +1,9 @@
 "use client"
 
-import { type Icon } from "@tabler/icons-react"
+import { type Icon as TablerIcon } from "@tabler/icons-react"
+import { type LucideIcon } from "lucide-react"
+
+type IconComponent = TablerIcon | LucideIcon
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -9,7 +12,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
-type Section = "home" | "about" | "experience" | "projects" | "skills" | "contact"
+import { Section } from "@/lib/types"
 
 export function NavMain({
   items,
@@ -18,7 +21,7 @@ export function NavMain({
   items: {
     title: string
     section: Section
-    icon?: Icon
+    icon?: IconComponent
   }[]
   onNavigate?: (section: Section) => void
 }) {

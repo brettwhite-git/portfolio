@@ -1,4 +1,5 @@
-import { Github, Linkedin } from "lucide-react"
+import { Github, Linkedin, FileText } from "lucide-react"
+import { IconBrandX } from "@tabler/icons-react"
 
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
@@ -7,7 +8,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 
 export function SiteHeader() {
   return (
-    <header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
+    <header className="sticky top-0 z-50 flex h-(--header-height) shrink-0 items-center gap-2 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
       <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
         <SidebarTrigger className="-ml-1" />
         <Separator
@@ -18,12 +19,32 @@ export function SiteHeader() {
           <ThemeToggle />
           <Button variant="ghost" size="icon" asChild>
             <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Resume"
+            >
+              <FileText className="h-4 w-4" />
+            </a>
+          </Button>
+          <Button variant="ghost" size="icon" asChild>
+            <a
               href="https://github.com/brettwhite-git"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
             >
               <Github className="h-4 w-4" />
+            </a>
+          </Button>
+          <Button variant="ghost" size="icon" asChild>
+            <a
+              href="https://x.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="X (Twitter)"
+            >
+              <IconBrandX className="h-4 w-4" />
             </a>
           </Button>
           <Button variant="ghost" size="icon" asChild>

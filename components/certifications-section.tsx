@@ -129,7 +129,7 @@ export function CertificationsSection() {
     <>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
-          <h1 className="text-3xl font-bold tracking-tight">Certifications & Skills</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Certifications</h1>
           <p className="text-muted-foreground">
             Professional certifications and technical expertise
           </p>

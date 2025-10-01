@@ -8,6 +8,7 @@ import { AboutSection } from "@/components/about-section"
 import { ProjectsSection } from "@/components/projects-section"
 import { ExperienceSection } from "@/components/experience-section"
 import { AnalyticsSection } from "@/components/analytics-section"
+import { SkillsSection } from "@/components/skills-section"
 import { CertificationsSection } from "@/components/certifications-section"
 import { ContactSection } from "@/components/contact-section"
 import { SiteHeader } from "@/components/site-header"
@@ -26,7 +27,7 @@ export default function Page() {
       case "home":
         return (
           <>
-            <HomeSection />
+            <HomeSection onNavigate={setActiveSection} />
             <ServicesSection />
           </>
         )
@@ -39,13 +40,18 @@ export default function Page() {
       case "analytics":
         return <AnalyticsSection />
       case "skills":
-        return <CertificationsSection />
+        return (
+          <>
+            <SkillsSection />
+            <CertificationsSection />
+          </>
+        )
       case "contact":
         return <ContactSection />
       default:
         return (
           <>
-            <HomeSection />
+            <HomeSection onNavigate={setActiveSection} />
             <ServicesSection />
           </>
         )

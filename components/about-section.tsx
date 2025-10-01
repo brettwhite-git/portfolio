@@ -3,17 +3,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
-import {
-  IconMedal,
-  IconTrophy,
-  IconPresentation,
-  IconAward,
-  IconHeart,
-  IconUsers,
-  IconTrendingUp,
-  IconChecks,
-  IconPigMoney
-} from "@tabler/icons-react"
 
 const testimonials = [
   {
@@ -48,89 +37,64 @@ const testimonials = [
   }
 ]
 
-const careerWins = [
+const achievements = [
   {
-    icon: IconTrendingUp,
-    title: "ARR GENERATED",
     value: "$14M+",
-    subtitle: "in revenue growth"
+    label: "ARR Generated"
   },
   {
-    icon: IconChecks,
-    title: "CUSTOMER WINS",
     value: "500+",
-    subtitle: "successful implementations"
+    label: "Customer Wins"
   },
   {
-    icon: IconPigMoney,
-    title: "COST SAVINGS",
     value: "$2M+",
-    subtitle: "in procurement optimization"
-  }
-]
-
-const highlights = [
+    label: "Cost Savings"
+  },
   {
-    icon: IconMedal,
     value: "4x",
-    label: "MVP Award Winner",
-    color: "text-primary"
+    label: "MVP Award Winner"
   },
   {
-    icon: IconTrophy,
     value: "2x",
-    label: "Presidents Club",
-    color: "text-primary"
+    label: "Presidents Club"
   },
   {
-    icon: IconPresentation,
     value: "3x",
-    label: "Conference Presenter",
-    color: "text-primary"
+    label: "Conference Presenter"
   },
   {
-    icon: IconAward,
     value: "14x",
-    label: "Certifications",
-    color: "text-primary"
+    label: "Certifications"
   },
   {
-    icon: IconHeart,
     value: "60+",
-    label: "Pro Bono Hours",
-    color: "text-primary"
+    label: "Pro Bono Hours"
   },
   {
-    icon: IconUsers,
     value: "10K+",
-    label: "Users Impacted",
-    color: "text-primary"
+    label: "Users Impacted"
   }
 ]
 
 export function AboutSection() {
   return (
-    <div className="flex flex-col gap-12">
+    <div className="flex flex-col gap-6">
       {/* Header */}
       <div className="flex flex-col gap-2">
-        <h1 className="text-3xl font-bold tracking-tight">About Me</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Who Am I?</h1>
         <p className="text-muted-foreground">
-          Learn more about my background, experience, and what drives me
+          A brief introduction to my professional journey
         </p>
       </div>
 
       {/* Bio Section */}
       <Card>
-        <CardHeader>
-          <CardTitle>Who I Am</CardTitle>
-          <CardDescription>A brief introduction to my professional journey</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4 text-sm leading-relaxed">
+        <CardContent className="space-y-4 text-md leading-relaxed px-12 py-6">
           <p>
             I'm a seasoned technology professional with a passion for solving complex business challenges through innovative cloud solutions and data-driven insights. With extensive experience in enterprise software, cloud architecture, and AI/analytics, I help organizations transform their operations and achieve measurable results.
           </p>
           <p>
-            My career spans sales enablement, solution design, development, and strategic consulting across various industries. I specialize in Oracle NetSuite, cloud infrastructure, and building scalable systems that drive business growth. From generating over $14M in ARR to implementing solutions for 500+ customers, I bring a proven track record of delivering value.
+            My career spans sales enablement, solution design, development, and strategic consulting across various industries. I specialize in Oracle NetSuite, cloud infrastructure, and building scalable systems that drive business growth. From generating over $14M in ARR to helping implementing solutions for 500+ customers, I bring a proven track record of delivering value.
           </p>
           <p>
             Beyond technical expertise, I'm committed to knowledge sharing and mentorship. I've presented at industry conferences, earned 14+ certifications, and contributed 60+ hours of pro bono work to help organizations in need. I believe in building solutions that not only solve today's problems but also scale for tomorrow's opportunities.
@@ -138,52 +102,18 @@ export function AboutSection() {
         </CardContent>
       </Card>
 
-      {/* Career Wins */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-bold">Key Achievements</h2>
-        <div className="grid gap-4 md:grid-cols-3">
-          {careerWins.map((win, index) => {
-            const Icon = win.icon
-            return (
-              <Card key={index}>
-                <CardContent className="pt-6">
-                  <div className="flex items-center justify-center gap-4">
-                    <div className="rounded-lg bg-secondary p-3">
-                      <Icon className="h-6 w-6 text-primary" />
-                    </div>
-                    <div className="text-center">
-                      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">{win.title}</p>
-                      <p className="text-3xl font-bold mt-1">{win.value}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{win.subtitle}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            )
-          })}
-        </div>
-      </div>
-
-      {/* Highlights */}
+      {/* Career Highlights */}
       <div className="space-y-4">
         <h2 className="text-2xl font-bold">Career Highlights</h2>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {highlights.map((highlight, index) => {
-            const Icon = highlight.icon
-            return (
-              <Card key={index}>
-                <CardContent className="pt-6">
-                  <div className="flex items-center justify-center gap-3">
-                    <Icon className={`h-8 w-8 ${highlight.color}`} />
-                    <div className="text-center">
-                      <p className="text-2xl font-bold">{highlight.value}</p>
-                      <p className="text-sm text-muted-foreground">{highlight.label}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            )
-          })}
+        <div className="grid gap-4 md:grid-cols-3">
+          {achievements.map((achievement, index) => (
+            <Card key={index} className="bg-secondary shadow-md border-border/10">
+              <CardContent className="flex flex-col items-center justify-center p-8 text-center">
+                <div className="text-4xl font-bold mb-2">{achievement.value}</div>
+                <div className="text-sm text-muted-foreground">{achievement.label}</div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
 
@@ -193,7 +123,7 @@ export function AboutSection() {
         <div className="grid gap-6 md:grid-cols-2">
           {testimonials.map((testimonial, index) => (
             <Card key={index}>
-              <CardContent className="pt-6">
+              <CardContent className="pt-6 px-8 py-2">
                 <div className="flex flex-col gap-4">
                   <p className="text-sm leading-relaxed text-muted-foreground italic">
                     "{testimonial.text}"

@@ -86,7 +86,7 @@ export function ExperienceSection() {
         </p>
       </div>
 
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 px-10 py-6">
         {experiences.map((experience) => (
           <Card key={experience.id}>
             <CardHeader>
@@ -97,20 +97,20 @@ export function ExperienceSection() {
                     {experience.company}
                   </CardDescription>
                 </div>
-                <Badge variant="default" className="shrink-0">
+                <Badge variant="default" className="shrink-0 px-4 py-2">
                   {experience.period}
                 </Badge>
               </div>
               {experience.description && (
-                <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
+                <p className="text-md text-muted-foreground mt-3 leading-relaxed">
                   {experience.description}
                 </p>
               )}
             </CardHeader>
-            <CardContent>
+            <CardContent className="px-12 py-2">
               <ul className="space-y-2">
                 {experience.responsibilities.map((responsibility, index) => (
-                  <li key={index} className="text-sm leading-relaxed flex gap-2">
+                  <li key={index} className="text-md leading-relaxed flex gap-2">
                     <span className="text-muted-foreground shrink-0">•</span>
                     <span>{responsibility}</span>
                   </li>

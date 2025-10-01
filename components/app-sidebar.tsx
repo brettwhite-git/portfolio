@@ -9,6 +9,7 @@ import {
   IconListDetails,
   IconUsers,
 } from "@tabler/icons-react"
+import { Glasses } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
 import {
@@ -18,7 +19,7 @@ import {
   SidebarHeader,
 } from "@/components/ui/sidebar"
 
-type Section = "home" | "about" | "experience" | "projects" | "analytics" | "skills" | "contact"
+import { Section } from "@/lib/types"
 
 const data = {
   navMain: [
@@ -50,7 +51,7 @@ const data = {
     {
       title: "Skills",
       section: "skills" as Section,
-      icon: IconChartBar,
+      icon: Glasses,
     },
     {
       title: "Contact",
