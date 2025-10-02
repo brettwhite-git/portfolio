@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
+import { motion, useInView } from "framer-motion"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -123,21 +124,34 @@ const certifications: Certification[] = [
 ]
 
 export function CertificationsSection() {
+  const containerRef = useRef(null)
+  const isInView = useInView(containerRef, { once: true, amount: 0.1 })
   const [selectedCert, setSelectedCert] = useState<Certification | null>(null)
 
   return (
     <>
-      <div className="flex flex-col gap-6">
-        <div className="flex flex-col gap-2">
+      <div ref={containerRef} className="flex flex-col gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="flex flex-col gap-2"
+        >
           <h1 className="text-3xl font-bold tracking-tight">Certifications</h1>
           <p className="text-muted-foreground">
             Professional certifications and technical expertise
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {certifications.map((cert) => (
-            <Card key={cert.id} className="flex flex-col p-4 bg-card">
+          {certifications.map((cert, index) => (
+            <motion.div
+              key={cert.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.2 + (index * 0.1), ease: "easeOut" }}
+            >
+              <Card className="flex flex-col p-4 bg-card">
               <div className="flex flex-col flex-1 bg-secondary rounded-xl p-6">
                 <CardHeader className="p-0 pb-4">
                   <CardTitle className="text-xl">{cert.title}</CardTitle>
@@ -166,7 +180,8 @@ export function CertificationsSection() {
                   <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
               </CardFooter>
-            </Card>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>

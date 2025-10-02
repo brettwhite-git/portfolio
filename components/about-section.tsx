@@ -1,5 +1,7 @@
 "use client"
 
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
@@ -52,7 +54,7 @@ const achievements = [
   },
   {
     value: "4x",
-    label: "MVP Award Winner"
+    label: "Sales MVP Award"
   },
   {
     value: "2x",
@@ -77,52 +79,91 @@ const achievements = [
 ]
 
 export function AboutSection() {
+  const containerRef = useRef(null)
+  const isInView = useInView(containerRef, { once: true, amount: 0.1 })
+
   return (
-    <div className="flex flex-col gap-6">
+    <div ref={containerRef} className="flex flex-col gap-6">
       {/* Header */}
-      <div className="flex flex-col gap-2">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="flex flex-col gap-2"
+      >
         <h1 className="text-3xl font-bold tracking-tight">Who Am I?</h1>
         <p className="text-muted-foreground">
           A brief introduction to my professional journey
         </p>
-      </div>
+      </motion.div>
 
       {/* Bio Section */}
-      <Card>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+      >
+        <Card className="bg-card/50 backdrop-blur-sm bg-secondary/60 shadow-lg border-border/50 hover:bg-card/80 transition-colors">
         <CardContent className="space-y-4 text-md leading-relaxed px-12 py-6">
           <p>
-            I'm a seasoned technology professional with a passion for solving complex business challenges through innovative cloud solutions and data-driven insights. With extensive experience in enterprise software, cloud architecture, and AI/analytics, I help organizations transform their operations and achieve measurable results.
+            I'm a seasoned technology professional with a passion for solving complex business challenges through innovative cloud solutions and data-driven insights. My journey began with a BS in Industrial Distribution from Texas A&M University, where I developed a foundation in supply chain and procurement operations. Today, I'm pursuing a Master of Science in Analytics at Georgia Tech, continuously sharpening my ability to turn data into actionable business intelligence.
           </p>
           <p>
-            My career spans sales enablement, solution design, development, and strategic consulting across various industries. I specialize in Oracle NetSuite, cloud infrastructure, and building scalable systems that drive business growth. From generating over $14M in ARR to helping implementing solutions for 500+ customers, I bring a proven track record of delivering value.
+            Throughout my career, I've worked with companies both small and large across the products and e-commerce space, specializing in supply chain optimization, procurement operations, and enterprise resource planning. From managing inventory systems and vendor partnerships to architecting cloud solutions, I've seen firsthand how the right technology transforms operational complexity into competitive advantage. I specialize in Oracle NetSuite, cloud infrastructure, and building scalable systems that drive measurable business growth.
           </p>
           <p>
-            Beyond technical expertise, I'm committed to knowledge sharing and mentorship. I've presented at industry conferences, earned 14+ certifications, and contributed 60+ hours of pro bono work to help organizations in need. I believe in building solutions that not only solve today's problems but also scale for tomorrow's opportunities.
+            I'm endlessly curious about technology and driven by the pursuit of excellence. Whether it's generating over $14M in ARR, implementing solutions for 500+ customers, or earning 14+ certifications, I'm always looking for ways to build systems that actually work—not just technically sound solutions, but ones people want to use. I've presented at industry conferences, contributed 60+ hours of pro bono work, and believe that the best solutions don't just solve today's problems—they unlock tomorrow's opportunities.
           </p>
         </CardContent>
-      </Card>
+        </Card>
+      </motion.div>
 
       {/* Career Highlights */}
       <div className="space-y-4">
-        <h2 className="text-2xl font-bold">Career Highlights</h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+        >
+          <h2 className="text-2xl font-bold">Career Highlights</h2>
+        </motion.div>
         <div className="grid gap-4 md:grid-cols-3">
           {achievements.map((achievement, index) => (
-            <Card key={index} className="bg-secondary shadow-md border-border/10">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.6 + (index * 0.1), ease: "easeOut" }}
+            >
+              <Card className="bg-card/50 backdrop-blur-sm bg-secondary/60 shadow-lg border-border/50 hover:bg-card/80 transition-colors">
               <CardContent className="flex flex-col items-center justify-center p-8 text-center">
                 <div className="text-4xl font-bold mb-2">{achievement.value}</div>
                 <div className="text-sm text-muted-foreground">{achievement.label}</div>
               </CardContent>
             </Card>
+          </motion.div>
           ))}
         </div>
       </div>
 
       {/* Testimonials */}
       <div className="space-y-4">
-        <h2 className="text-2xl font-bold">What Others Say</h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 1.5, ease: "easeOut" }}
+        >
+          <h2 className="text-2xl font-bold">What Others Say</h2>
+        </motion.div>
         <div className="grid gap-6 md:grid-cols-2">
           {testimonials.map((testimonial, index) => (
-            <Card key={index}>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 1.7 + (index * 0.1), ease: "easeOut" }}
+            >
+              <Card className="bg-card/50 backdrop-blur-sm bg-secondary/60 shadow-lg border-border/50 hover:bg-card/80 transition-colors">
               <CardContent className="pt-6 px-8 py-2">
                 <div className="flex flex-col gap-4">
                   <p className="text-sm leading-relaxed text-muted-foreground italic">
@@ -141,7 +182,8 @@ export function AboutSection() {
                   </div>
                 </div>
               </CardContent>
-            </Card>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>

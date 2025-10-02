@@ -1,5 +1,7 @@
 "use client"
 
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
@@ -51,18 +53,32 @@ const services = [
 ]
 
 export function ServicesSection() {
+  const containerRef = useRef(null)
+  const isInView = useInView(containerRef, { once: true, amount: 0.1 })
+
   return (
-    <div className="w-full space-y-8">
-      <div className="space-y-4">
+    <div ref={containerRef} className="w-full space-y-8">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="space-y-4"
+      >
         <h2 className="text-3xl lg:text-4xl font-bold">My stack</h2>
         <p className="text-muted-foreground">Here's a snapshot of my expertise:</p>
-      </div>
+      </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {services.map((service, index) => {
           const Icon = service.icon
           return (
-            <Card key={index} className="bg-card/50 backdrop-blur-sm bg-secondary/60 shadow-lg border-border/50 hover:bg-card/80 transition-colors">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.2 + (index * 0.1), ease: "easeOut" }}
+            >
+              <Card className="bg-card/50 backdrop-blur-sm bg-secondary/60 shadow-lg border-border/50 hover:bg-card/80 transition-colors">
               <CardContent className="p-6 space-y-4">
                 <div className={`w-14 h-14 rounded-2xl ${service.color} flex items-center justify-center`}>
                   <Icon className="w-7 h-7 text-primary-foreground" />
@@ -82,7 +98,8 @@ export function ServicesSection() {
                   </div>
                 </div>
               </CardContent>
-            </Card>
+              </Card>
+            </motion.div>
           )
         })}
       </div>

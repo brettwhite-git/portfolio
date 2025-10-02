@@ -1,5 +1,7 @@
 "use client"
 
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
 import { Card } from "@/components/ui/card"
 import {
   IconBrandHtml5,
@@ -50,32 +52,44 @@ const skills: Skill[] = [
 ]
 
 export function SkillsSection() {
+  const containerRef = useRef(null)
+  const isInView = useInView(containerRef, { once: true, amount: 0.1 })
+
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-2">
+    <div ref={containerRef} className="flex flex-col gap-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="flex flex-col gap-2"
+      >
         <h2 className="text-3xl font-bold tracking-tight">Skills</h2>
         <p className="text-muted-foreground">
           Programming languages and technologies
         </p>
-      </div>
+      </motion.div>
 
       <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-        {skills.map((skill) => {
+        {skills.map((skill, index) => {
           const Icon = skill.icon
           return (
-            <Card
+            <motion.div
               key={skill.id}
-              className="flex flex-col items-center justify-center p-6 bg-secondary/50 hover:bg-secondary transition-colors aspect-square"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.2 + (index * 0.1), ease: "easeOut" }}
             >
-              <div className="flex flex-col items-center gap-4">
-                <div className="w-20 h-20 flex items-center justify-center">
+              <Card className="flex flex-col p-4 bg-card/50 backdrop-blur-sm bg-secondary/60 shadow-lg border-border/50 hover:bg-card/80 transition-colors">
+              <div className="flex flex-col flex-1 bg-secondary rounded-xl p-6 mb-4">
+                <div className="flex items-center justify-center aspect-square">
                   <Icon className="w-full h-full text-primary" />
                 </div>
-                <div className="flex flex-col items-center gap-1">
-                  <span className="font-semibold text-sm">{skill.name}</span>
-                </div>
               </div>
-            </Card>
+              <div className="flex flex-col items-center gap-1 px-2">
+                <span className="font-semibold text-base">{skill.name}</span>
+              </div>
+              </Card>
+            </motion.div>
           )
         })}
       </div>

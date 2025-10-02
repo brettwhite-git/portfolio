@@ -1,3 +1,7 @@
+"use client"
+
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
@@ -77,23 +81,37 @@ const experiences = [
 ]
 
 export function ExperienceSection() {
+  const containerRef = useRef(null)
+  const isInView = useInView(containerRef, { once: true, amount: 0.1 })
+
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-2">
+    <div ref={containerRef} className="flex flex-col gap-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="flex flex-col gap-2"
+      >
         <h1 className="text-3xl font-bold tracking-tight">Work Experience</h1>
         <p className="text-muted-foreground">
           My professional journey and key accomplishments
         </p>
-      </div>
+      </motion.div>
 
       <div className="flex flex-col gap-6 px-10 py-6">
-        {experiences.map((experience) => (
-          <Card key={experience.id}>
+        {experiences.map((experience, index) => (
+          <motion.div
+            key={experience.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.5, delay: 0.2 + (index * 0.15), ease: "easeOut" }}
+          >
+            <Card className="bg-card/50 backdrop-blur-sm bg-secondary/60 shadow-lg border-border/50 hover:bg-card/80 transition-colors">
             <CardHeader>
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
                   <CardTitle className="text-xl">{experience.title}</CardTitle>
-                  <CardDescription className="text-base font-medium mt-1">
+                  <CardDescription className="text-base font-medium mt-1 italic">
                     {experience.company}
                   </CardDescription>
                 </div>
@@ -102,7 +120,7 @@ export function ExperienceSection() {
                 </Badge>
               </div>
               {experience.description && (
-                <p className="text-md text-muted-foreground mt-3 leading-relaxed">
+                <p className="text-md text-muted-foreground mt-3 leading-relaxed italic">
                   {experience.description}
                 </p>
               )}
@@ -117,7 +135,8 @@ export function ExperienceSection() {
                 ))}
               </ul>
             </CardContent>
-          </Card>
+            </Card>
+          </motion.div>
         ))}
       </div>
     </div>

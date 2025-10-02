@@ -1,3 +1,7 @@
+"use client"
+
+import { useRef } from "react"
+import { motion, useInView } from "framer-motion"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -34,18 +38,32 @@ const projects = [
 ]
 
 export function ProjectsSection() {
+  const containerRef = useRef(null)
+  const isInView = useInView(containerRef, { once: true, amount: 0.1 })
+
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-2">
+    <div ref={containerRef} className="flex flex-col gap-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="flex flex-col gap-2"
+      >
         <h1 className="text-3xl font-bold tracking-tight">Projects</h1>
         <p className="text-muted-foreground">
           A showcase of my recent work and side projects
         </p>
-      </div>
+      </motion.div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project) => (
-          <Card key={project.id} className="flex flex-col">
+        {projects.map((project, index) => (
+          <motion.div
+            key={project.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.5, delay: 0.2 + (index * 0.1), ease: "easeOut" }}
+          >
+            <Card className="flex flex-col">
             <CardHeader>
               <CardTitle>{project.title}</CardTitle>
               <CardDescription>{project.description}</CardDescription>
@@ -73,7 +91,8 @@ export function ProjectsSection() {
                 </a>
               </Button>
             </CardFooter>
-          </Card>
+            </Card>
+          </motion.div>
         ))}
       </div>
     </div>

@@ -1,6 +1,8 @@
 "use client"
 
 import Image from "next/image"
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -11,10 +13,21 @@ interface HomeSectionProps {
 }
 
 export function HomeSection({ onNavigate }: HomeSectionProps) {
+  const heroRef = useRef(null)
+  const profileRef = useRef(null)
+  const isHeroInView = useInView(heroRef, { once: true, margin: "-100px" })
+  const isProfileInView = useInView(profileRef, { once: true, margin: "-100px" })
+
   return (
     <div className="flex flex-col lg:flex-row gap-8 w-full">
       {/* Hero Content */}
-      <div className="flex-1 flex flex-col justify-center space-y-6 bg-secondary/60 backdrop-blur-sm border border-border/10 rounded-[24px] p-16 h-full shadow-lg">
+      <motion.div
+        ref={heroRef}
+        initial={{ opacity: 0, y: 20 }}
+        animate={isHeroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="flex-1 flex flex-col justify-center space-y-6 bg-secondary/60 backdrop-blur-sm border border-border/10 rounded-[24px] p-16 h-full shadow-lg"
+      >
         <div className="space-y-4">
           <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
             Building solutions that{" "}
@@ -38,10 +51,16 @@ export function HomeSection({ onNavigate }: HomeSectionProps) {
             <IconArrowRight className="h-5 w-5" />
           </Button>
         </div>
-      </div>
-      
+      </motion.div>
+
       {/* Profile Card */}
-      <div className="flex-none w-full lg:w-[280px]">
+      <motion.div
+        ref={profileRef}
+        initial={{ opacity: 0, y: 20 }}
+        animate={isProfileInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        className="flex-none w-full lg:w-[280px]"
+      >
         <div className="bg-card/80 backdrop-blur-sm border bg-secondary/60 border-border/10 rounded-[24px] shadow-lg overflow-hidden">
           {/* Profile Image */}
           <div className="relative w-full aspect-square p-4 pb-0">
@@ -62,7 +81,7 @@ export function HomeSection({ onNavigate }: HomeSectionProps) {
             </p>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }

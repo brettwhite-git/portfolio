@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
+import { motion, useInView } from "framer-motion"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -34,6 +35,9 @@ const formSchema = z.object({
 })
 
 export function ContactSection() {
+  const containerRef = useRef(null)
+  const isInView = useInView(containerRef, { once: true, amount: 0.1 })
+
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(null)
 
@@ -68,17 +72,27 @@ export function ContactSection() {
   }
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-2">
+    <div ref={containerRef} className="flex flex-col gap-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="flex flex-col gap-2"
+      >
         <h1 className="text-3xl font-bold tracking-tight">Get in Touch</h1>
         <p className="text-muted-foreground">
           Have a question or want to work together? Send me a message!
         </p>
-      </div>
+      </motion.div>
 
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Contact Form */}
-        <Card>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        >
+          <Card>
           <CardHeader>
             <CardTitle>Send a Message</CardTitle>
             <CardDescription>
@@ -179,10 +193,16 @@ export function ContactSection() {
               </form>
             </Form>
           </CardContent>
-        </Card>
+          </Card>
+        </motion.div>
 
         {/* Contact Information */}
-        <div className="space-y-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+          className="space-y-6"
+        >
           <Card>
             <CardHeader>
               <CardTitle>Contact Information</CardTitle>
@@ -224,7 +244,7 @@ export function ContactSection() {
               </p>
             </CardContent>
           </Card>
-        </div>
+        </motion.div>
       </div>
     </div>
   )

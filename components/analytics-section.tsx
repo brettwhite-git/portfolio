@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { motion, useInView } from "framer-motion"
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, LabelList, PolarAngleAxis, PolarGrid, Radar, RadarChart, XAxis, YAxis } from "recharts"
 import { IconTrendingDown, IconTrendingUp } from "@tabler/icons-react"
 
@@ -181,6 +182,9 @@ const radarChartConfig = {
 } satisfies ChartConfig
 
 export function AnalyticsSection() {
+  const containerRef = React.useRef(null)
+  const isInView = useInView(containerRef, { once: true, amount: 0.1 })
+
   const isMobile = useIsMobile()
   const [timeRange, setTimeRange] = React.useState("90d")
 
@@ -205,9 +209,27 @@ export function AnalyticsSection() {
   })
 
   return (
-    <div className="flex flex-col gap-6">
+    <div ref={containerRef}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="flex flex-col gap-2 mb-6"
+      >
+        <h1 className="text-3xl font-bold tracking-tight">Analytics</h1>
+        <p className="text-muted-foreground">
+          Performance and insights as an IC Sales Engineer
+        </p>
+      </motion.div>
+
+      <div className="flex flex-col gap-6">
       {/* Stats Cards */}
-      <div className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 gap-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs md:grid-cols-2 lg:grid-cols-4">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 gap-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs md:grid-cols-2 lg:grid-cols-4"
+      >
         <Card className="@container/card">
           <CardHeader>
             <CardDescription>Total Revenue</CardDescription>
@@ -292,7 +314,7 @@ export function AnalyticsSection() {
             <div className="text-muted-foreground">Meets growth projections</div>
           </CardFooter>
         </Card>
-      </div>
+      </motion.div>
 
       {/* Chart Section */}
       <Card className="@container/card">
@@ -527,6 +549,7 @@ export function AnalyticsSection() {
           </CardFooter>
         </Card>
       </div>
+    </div>
     </div>
   )
 }
