@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { motion, useInView } from "framer-motion"
-import { Bar, BarChart, CartesianGrid, Cell, Label, LabelList, Line, LineChart, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, RadialBar, RadialBarChart, Sector, XAxis, YAxis } from "recharts"
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, Label, LabelList, Line, LineChart, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, RadialBar, RadialBarChart, Sector, XAxis, YAxis } from "recharts"
 import { IconTrendingDown, IconTrendingUp } from "@tabler/icons-react"
 
 import { useIsMobile } from "@/hooks/use-mobile"
@@ -35,6 +35,43 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from "@/components/ui/toggle-group"
+
+// Sparkline data for KPI cards
+const arrSparkData = [
+  { year: "2020", value: 3800000 },
+  { year: "2021", value: 2800000 },
+  { year: "2022", value: 3800000 },
+  { year: "2023", value: 2800000 },
+  { year: "2024", value: 3800000 },
+  { year: "2025", value: 2800000 },
+]
+
+const dealSizeSparkData = [
+  { year: "2020", value: 39600 },
+  { year: "2021", value: 37600 },
+  { year: "2022", value: 39600 },
+  { year: "2023", value: 37600 },
+  { year: "2024", value: 39600 },
+  { year: "2025", value: 37600 },
+]
+
+const daysSparkData = [
+  { year: "2020", value: 53 },
+  { year: "2021", value: 32 },
+  { year: "2022", value: 53 },
+  { year: "2023", value: 32 },
+  { year: "2024", value: 53 },
+  { year: "2025", value: 32 },
+]
+
+const oppsWonSparkData = [
+  { year: "2020", value: 500 },
+  { year: "2021", value: 642 },
+  { year: "2022", value: 500 },
+  { year: "2023", value: 642 },
+  { year: "2024", value: 500 },
+  { year: "2025", value: 642 },
+]
 
 // Real sales data from CSV analysis
 const lineChartData = [
@@ -151,10 +188,32 @@ export function AnalyticsSection() {
               $17.5M
             </CardTitle>
             <CardAction>
-              <Badge variant="outline">
-                <IconTrendingUp />
-                +277%
-              </Badge>
+              <ChartContainer
+                config={{
+                  value: {
+                    label: "ARR",
+                    color: "hsl(24 95% 53%)",
+                  },
+                }}
+                className="h-[60px] w-[230px] md:w-[180px] lg:w-[150px]"
+              >
+                <AreaChart data={arrSparkData}>
+                  <defs>
+                    <linearGradient id="arrGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="hsl(24 95% 53%)" stopOpacity={0.3} />
+                      <stop offset="100%" stopColor="hsl(24 95% 53%)" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <Area
+                    dataKey="value"
+                    type="natural"
+                    fill="url(#arrGradient)"
+                    stroke="hsl(24 95% 53%)"
+                    strokeWidth={2}
+                    dot={{ fill: "hsl(24 95% 53%)", r: 2 }}
+                  />
+                </AreaChart>
+              </ChartContainer>
             </CardAction>
           </CardHeader>
           <CardFooter className="flex-col items-start gap-2 text-sm">
@@ -177,10 +236,32 @@ export function AnalyticsSection() {
               $27.3K
             </CardTitle>
             <CardAction>
-              <Badge variant="outline">
-                <IconTrendingDown />
-                -2.5%
-              </Badge>
+              <ChartContainer
+                config={{
+                  value: {
+                    label: "Deal Size",
+                    color: "hsl(24 95% 53%)",
+                  },
+                }}
+                className="h-[60px] w-[230px] md:w-[180px] lg:w-[150px]"
+              >
+                <AreaChart data={dealSizeSparkData}>
+                  <defs>
+                    <linearGradient id="dealSizeGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="hsl(24 95% 53%)" stopOpacity={0.3} />
+                      <stop offset="100%" stopColor="hsl(24 95% 53%)" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <Area
+                    dataKey="value"
+                    type="natural"
+                    fill="url(#dealSizeGradient)"
+                    stroke="hsl(24 95% 53%)"
+                    strokeWidth={2}
+                    dot={{ fill: "hsl(24 95% 53%)", r: 2 }}
+                  />
+                </AreaChart>
+              </ChartContainer>
             </CardAction>
           </CardHeader>
           <CardFooter className="flex-col items-start gap-2 text-sm">
@@ -203,10 +284,32 @@ export function AnalyticsSection() {
               38 days
             </CardTitle>
             <CardAction>
-              <Badge variant="outline">
-                <IconTrendingDown />
-                -18%
-              </Badge>
+              <ChartContainer
+                config={{
+                  value: {
+                    label: "Days",
+                    color: "hsl(24 95% 53%)",
+                  },
+                }}
+                className="h-[60px] w-[230px] md:w-[180px] lg:w-[150px]"
+              >
+                <AreaChart data={daysSparkData}>
+                  <defs>
+                    <linearGradient id="daysGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="hsl(24 95% 53%)" stopOpacity={0.3} />
+                      <stop offset="100%" stopColor="hsl(24 95% 53%)" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <Area
+                    dataKey="value"
+                    type="natural"
+                    fill="url(#daysGradient)"
+                    stroke="hsl(24 95% 53%)"
+                    strokeWidth={2}
+                    dot={{ fill: "hsl(24 95% 53%)", r: 2 }}
+                  />
+                </AreaChart>
+              </ChartContainer>
             </CardAction>
           </CardHeader>
           <CardFooter className="flex-col items-start gap-2 text-sm">
@@ -229,10 +332,32 @@ export function AnalyticsSection() {
               642
             </CardTitle>
             <CardAction>
-              <Badge variant="outline">
-                <IconTrendingUp />
-                +28%
-              </Badge>
+              <ChartContainer
+                config={{
+                  value: {
+                    label: "Opps",
+                    color: "hsl(24 95% 53%)",
+                  },
+                }}
+                className="h-[60px] w-[230px] md:w-[180px] lg:w-[150px]"
+              >
+                <AreaChart data={oppsWonSparkData}>
+                  <defs>
+                    <linearGradient id="oppsWonGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="hsl(24 95% 53%)" stopOpacity={0.3} />
+                      <stop offset="100%" stopColor="hsl(24 95% 53%)" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <Area
+                    dataKey="value"
+                    type="natural"
+                    fill="url(#oppsWonGradient)"
+                    stroke="hsl(24 95% 53%)"
+                    strokeWidth={2}
+                    dot={{ fill: "hsl(24 95% 53%)", r: 2 }}
+                  />
+                </AreaChart>
+              </ChartContainer>
             </CardAction>
           </CardHeader>
           <CardFooter className="flex-col items-start gap-2 text-sm">
