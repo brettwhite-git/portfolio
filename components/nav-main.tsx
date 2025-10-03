@@ -10,6 +10,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar"
 
 import { Section } from "@/lib/types"
@@ -25,6 +26,16 @@ export function NavMain({
   }[]
   onNavigate?: (section: Section) => void
 }) {
+  const { isMobile, setOpenMobile } = useSidebar()
+
+  const handleNavigate = (section: Section) => {
+    onNavigate?.(section)
+    // Close mobile sidebar after navigation
+    if (isMobile) {
+      setOpenMobile(false)
+    }
+  }
+
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2 px-2">
@@ -33,7 +44,7 @@ export function NavMain({
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton
                 tooltip={item.title}
-                onClick={() => onNavigate?.(item.section)}
+                onClick={() => handleNavigate(item.section)}
               >
                 {item.icon && <item.icon />}
                 <span>{item.title}</span>

@@ -68,7 +68,7 @@ interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
 export function AppSidebar({ onNavigate, ...props }: AppSidebarProps) {
   return (
     <Sidebar collapsible="offcanvas" {...props}>
-      <SidebarHeader className="p-0 gap-0 h-(--header-height) shrink-0" />
+      <SidebarHeader className="p-0 gap-0 h-(--header-height) shrink-0 md:h-(--header-height) h-16" />
       <SidebarContent className="px-2">
         <NavMain items={data.navMain} onNavigate={onNavigate} />
       </SidebarContent>

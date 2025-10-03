@@ -231,7 +231,7 @@ export function AnalyticsSection() {
         </Card>
         <Card className="@container/card bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
           <CardHeader>
-            <CardDescription>Average Deal Size</CardDescription>
+            <CardDescription>Avg Deal Size</CardDescription>
             <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
               $27.3K
             </CardTitle>
@@ -376,6 +376,11 @@ export function AnalyticsSection() {
       </motion.div>
 
       {/* Chart Section */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+        transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+      >
       <Card className="@container/card bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
         <CardHeader>
           <CardTitle>ARR and Pipeline by Quarter</CardTitle>
@@ -475,8 +480,14 @@ export function AnalyticsSection() {
           </ChartContainer>
         </CardContent>
       </Card>
+      </motion.div>
 
       {/* Bar Chart */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+        transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+      >
       <Card className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
         <CardHeader>
           <CardTitle>Top 10 Modules</CardTitle>
@@ -527,6 +538,7 @@ export function AnalyticsSection() {
           </ChartContainer>
         </CardContent>
       </Card>
+      </motion.div>
     </div>
     </div>
   )

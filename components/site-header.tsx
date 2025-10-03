@@ -19,7 +19,7 @@ export function SiteHeader() {
           <ThemeToggle />
           <Button variant="ghost" size="icon" asChild>
             <a
-              href="#"
+              href="/brett-white-resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Resume"
