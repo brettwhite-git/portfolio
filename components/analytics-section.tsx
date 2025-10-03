@@ -36,43 +36,6 @@ import {
   ToggleGroupItem,
 } from "@/components/ui/toggle-group"
 
-// Sparkline data for KPI cards (using quarterly ARR data)
-const arrSparklineData = [
-  { quarter: "Q1 '25", value: 1119734 },
-  { quarter: "Q2 '25", value: 1326432 },
-  { quarter: "Q3 '25", value: 351796 },
-]
-
-const dealSizeSparklineData = [
-  { quarter: "Q1 '25", value: 27000 },
-  { quarter: "Q2 '25", value: 28000 },
-  { quarter: "Q3 '25", value: 27284 },
-]
-
-const daysToCloseSparklineData = [
-  { quarter: "Q1 '25", value: 32 },
-  { quarter: "Q2 '25", value: 36 },
-  { quarter: "Q3 '25", value: 18 },
-]
-
-const oppsWonSparklineData = [
-  { quarter: "Q1 '25", value: 400 },
-  { quarter: "Q2 '25", value: 500 },
-  { quarter: "Q3 '25", value: 642 },
-]
-
-const winRateSparklineData = [
-  { quarter: "Q1 '25", value: 45 },
-  { quarter: "Q2 '25", value: 47 },
-  { quarter: "Q3 '25", value: 49 },
-]
-
-const leadSCSparklineData = [
-  { quarter: "Q1 '25", value: 88 },
-  { quarter: "Q2 '25", value: 90 },
-  { quarter: "Q3 '25", value: 92 },
-]
-
 // Real sales data from CSV analysis
 const lineChartData = [
   { quarter: "Q1 '20", arr: 10329, pipeline: 575100 },
@@ -111,17 +74,6 @@ const lineChartConfig = {
   },
 } satisfies ChartConfig
 
-const areaChartConfig = {
-  arr: {
-    label: "ARR\u00A0\u00A0",
-    color: "hsl(24 95% 53%)",
-  },
-  pipeline: {
-    label: "Pipeline\u00A0\u00A0",
-    color: "var(--chart-pipeline)",
-  },
-} satisfies ChartConfig
-
 const barChartData = [
   { module: "Payroll", count: 5 },
   { module: "Planning & Budgeting", count: 9 },
@@ -142,24 +94,6 @@ const barChartConfig = {
   },
   label: {
     color: "hsl(var(--background))",
-  },
-} satisfies ChartConfig
-
-const radarChartData = [
-  { category: "Retention", arr: 6737776 },
-  { category: "Infrastructure", arr: 3374950 },
-  { category: "Platform", arr: 1782644 },
-  { category: "Support", arr: 1700947 },
-  { category: "Subscription", arr: 1360059 },
-  { category: "Commerce", arr: 980249 },
-  { category: "Analytics", arr: 936451 },
-  { category: "Accounting", arr: 632130 },
-]
-
-const radarChartConfig = {
-  arr: {
-    label: "ARR",
-    color: "hsl(var(--chart-1))",
   },
 } satisfies ChartConfig
 
@@ -227,11 +161,11 @@ export function AnalyticsSection() {
             <div className="flex w-full flex-col gap-2">
               <div className="flex items-center justify-between">
                 <div className="text-xs text-muted-foreground">This Year</div>
-                <div className="text-base font-semibold">92%</div>
+                <div className="text-base font-semibold">$2.8M</div>
               </div>
               <div className="flex items-center justify-between">
                 <div className="text-xs text-muted-foreground">Last Year</div>
-                <div className="text-base font-semibold">49%</div>
+                <div className="text-base font-semibold">$3.8M</div>
               </div>
             </div>
           </CardFooter>
@@ -253,11 +187,11 @@ export function AnalyticsSection() {
             <div className="flex w-full flex-col gap-2">
               <div className="flex items-center justify-between">
                 <div className="text-xs text-muted-foreground">This Year</div>
-                <div className="text-base font-semibold">92%</div>
+                <div className="text-base font-semibold">$37.6K</div>
               </div>
               <div className="flex items-center justify-between">
                 <div className="text-xs text-muted-foreground">Last Year</div>
-                <div className="text-base font-semibold">49%</div>
+                <div className="text-base font-semibold">$39.6K</div>
               </div>
             </div>
           </CardFooter>
@@ -279,11 +213,11 @@ export function AnalyticsSection() {
             <div className="flex w-full flex-col gap-2">
               <div className="flex items-center justify-between">
                 <div className="text-xs text-muted-foreground">This Year</div>
-                <div className="text-base font-semibold">92%</div>
+                <div className="text-base font-semibold">32 days</div>
               </div>
               <div className="flex items-center justify-between">
                 <div className="text-xs text-muted-foreground">Last Year</div>
-                <div className="text-base font-semibold">49%</div>
+                <div className="text-base font-semibold">53 days</div>
               </div>
             </div>
           </CardFooter>
