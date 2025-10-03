@@ -106,7 +106,7 @@ export function ExperienceSection() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.2 + (index * 0.15), ease: "easeOut" }}
           >
-            <Card className="bg-card/50 backdrop-blur-sm bg-secondary/60 shadow-lg border-border/50 hover:bg-card/80 transition-colors">
+            <Card className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
             <CardHeader>
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">

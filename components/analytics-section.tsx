@@ -38,39 +38,39 @@ import {
 
 // Sparkline data for KPI cards
 const arrSparkData = [
-  { year: "2020", value: 3800000 },
-  { year: "2021", value: 2800000 },
-  { year: "2022", value: 3800000 },
-  { year: "2023", value: 2800000 },
-  { year: "2024", value: 3800000 },
-  { year: "2025", value: 2800000 },
+  { year: "2020", value: 1753816 },
+  { year: "2021", value: 1980109 },
+  { year: "2022", value: 2589352 },
+  { year: "2023", value: 4593328 },
+  { year: "2024", value: 3801780 },
+  { year: "2025", value: 2797962 },
 ]
 
 const dealSizeSparkData = [
-  { year: "2020", value: 39600 },
-  { year: "2021", value: 37600 },
-  { year: "2022", value: 39600 },
-  { year: "2023", value: 37600 },
-  { year: "2024", value: 39600 },
-  { year: "2025", value: 37600 },
+  { year: "2020", value: 30769 },
+  { year: "2021", value: 15715 },
+  { year: "2022", value: 17148 },
+  { year: "2023", value: 33528 },
+  { year: "2024", value: 39602 },
+  { year: "2025", value: 37306 },
 ]
 
 const daysSparkData = [
-  { year: "2020", value: 53 },
-  { year: "2021", value: 32 },
-  { year: "2022", value: 53 },
-  { year: "2023", value: 32 },
+  { year: "2020", value: 32 },
+  { year: "2021", value: 36 },
+  { year: "2022", value: 31 },
+  { year: "2023", value: 45 },
   { year: "2024", value: 53 },
   { year: "2025", value: 32 },
 ]
 
 const oppsWonSparkData = [
-  { year: "2020", value: 500 },
-  { year: "2021", value: 642 },
-  { year: "2022", value: 500 },
-  { year: "2023", value: 642 },
-  { year: "2024", value: 500 },
-  { year: "2025", value: 642 },
+  { year: "2020", value: 57 },
+  { year: "2021", value: 126 },
+  { year: "2022", value: 151 },
+  { year: "2023", value: 137 },
+  { year: "2024", value: 96 },
+  { year: "2025", value: 75 },
 ]
 
 // Real sales data from CSV analysis
@@ -179,9 +179,9 @@ export function AnalyticsSection() {
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-        className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 gap-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs md:grid-cols-2 lg:grid-cols-4"
+        className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
       >
-        <Card className="@container/card">
+        <Card className="@container/card bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
           <CardHeader>
             <CardDescription>Total ARR Influence</CardDescription>
             <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
@@ -229,7 +229,7 @@ export function AnalyticsSection() {
             </div>
           </CardFooter>
         </Card>
-        <Card className="@container/card">
+        <Card className="@container/card bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
           <CardHeader>
             <CardDescription>Average Deal Size</CardDescription>
             <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
@@ -277,7 +277,7 @@ export function AnalyticsSection() {
             </div>
           </CardFooter>
         </Card>
-        <Card className="@container/card">
+        <Card className="@container/card bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
           <CardHeader>
             <CardDescription>Avg Days to Close</CardDescription>
             <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
@@ -325,7 +325,7 @@ export function AnalyticsSection() {
             </div>
           </CardFooter>
         </Card>
-        <Card className="@container/card">
+        <Card className="@container/card bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
           <CardHeader>
             <CardDescription>Opportunities Won</CardDescription>
             <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
@@ -376,7 +376,7 @@ export function AnalyticsSection() {
       </motion.div>
 
       {/* Chart Section */}
-      <Card className="@container/card">
+      <Card className="@container/card bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
         <CardHeader>
           <CardTitle>ARR and Pipeline by Quarter</CardTitle>
           <CardDescription>
@@ -477,7 +477,7 @@ export function AnalyticsSection() {
       </Card>
 
       {/* Bar Chart */}
-      <Card>
+      <Card className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
         <CardHeader>
           <CardTitle>Top 10 Modules</CardTitle>
           <CardDescription>Most frequently closed modules</CardDescription>

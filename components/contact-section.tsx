@@ -92,7 +92,7 @@ export function ContactSection() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         >
-          <Card>
+          <Card className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
           <CardHeader>
             <CardTitle>Send a Message</CardTitle>
             <CardDescription>
@@ -203,7 +203,7 @@ export function ContactSection() {
           transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
           className="space-y-6"
         >
-          <Card>
+          <Card className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
             <CardHeader>
               <CardTitle>Contact Information</CardTitle>
               <CardDescription>
@@ -225,23 +225,6 @@ export function ContactSection() {
                   </a>
                 </div>
               </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Response Time</CardTitle>
-              <CardDescription>
-                What to expect when you reach out
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <p className="text-sm text-muted-foreground">
-                I typically respond to all inquiries within 24-48 hours during business days.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                For urgent matters, please mention "Urgent" in the subject line.
-              </p>
             </CardContent>
           </Card>
         </motion.div>

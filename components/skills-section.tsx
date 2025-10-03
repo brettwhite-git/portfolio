@@ -91,8 +91,8 @@ export function SkillsSection() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.2 + (index * 0.1), ease: "easeOut" }}
             >
-              <Card className="flex flex-col p-4 bg-card/50 backdrop-blur-sm bg-secondary/60 shadow-lg border-border/50 hover:bg-card/80 transition-colors">
-              <div className="flex flex-col flex-1 bg-secondary rounded-xl p-6 mb-4">
+              <Card className="flex flex-col p-4 bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
+              <div className="flex flex-col flex-1 bg-primary/5 rounded-xl p-6 mb-4">
                 <div className="flex items-center justify-center aspect-square">
                   <Icon className="w-full h-full text-primary" />
                 </div>

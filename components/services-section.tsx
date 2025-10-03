@@ -78,7 +78,7 @@ export function ServicesSection() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.2 + (index * 0.1), ease: "easeOut" }}
             >
-              <Card className="bg-card/50 backdrop-blur-sm bg-secondary/60 shadow-lg border-border/50 hover:bg-card/80 transition-colors">
+              <Card className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
               <CardContent className="p-6 space-y-4">
                 <div className={`w-14 h-14 rounded-2xl ${service.color} flex items-center justify-center`}>
                   <Icon className="w-7 h-7 text-primary-foreground" />

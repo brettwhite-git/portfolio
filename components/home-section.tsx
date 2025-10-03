@@ -26,7 +26,7 @@ export function HomeSection({ onNavigate }: HomeSectionProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={isHeroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex-1 flex flex-col justify-center space-y-6 bg-secondary/60 backdrop-blur-sm border border-border/10 rounded-[24px] p-16 h-full shadow-lg"
+        className="flex-1 flex flex-col justify-center space-y-6 bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow p-16 h-full"
       >
         <div className="space-y-4">
           <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
@@ -61,7 +61,7 @@ export function HomeSection({ onNavigate }: HomeSectionProps) {
         transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         className="flex-none w-full lg:w-[280px]"
       >
-        <div className="bg-card/80 backdrop-blur-sm border bg-secondary/60 border-border/10 rounded-[24px] shadow-lg overflow-hidden">
+        <div className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow overflow-hidden">
           {/* Profile Image */}
           <div className="relative w-full aspect-square p-4 pb-0">
             <Image

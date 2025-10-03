@@ -63,7 +63,7 @@ export function ProjectsSection() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.2 + (index * 0.1), ease: "easeOut" }}
           >
-            <Card className="flex flex-col">
+            <Card className="flex flex-col bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
             <CardHeader>
               <CardTitle>{project.title}</CardTitle>
               <CardDescription>{project.description}</CardDescription>
@@ -71,7 +71,7 @@ export function ProjectsSection() {
             <CardContent className="flex-1">
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
-                  <Badge key={tag} variant="secondary">
+                  <Badge key={tag} variant="outline" className="bg-foreground/10">
                     {tag}
                   </Badge>
                 ))}
@@ -82,12 +82,6 @@ export function ProjectsSection() {
                 <a href={project.github} target="_blank" rel="noopener noreferrer">
                   <IconBrandGithub className="mr-2 h-4 w-4" />
                   Code
-                </a>
-              </Button>
-              <Button size="sm" asChild>
-                <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                  <IconExternalLink className="mr-2 h-4 w-4" />
-                  Demo
                 </a>
               </Button>
             </CardFooter>

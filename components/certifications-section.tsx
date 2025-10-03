@@ -151,8 +151,8 @@ export function CertificationsSection() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.2 + (index * 0.1), ease: "easeOut" }}
             >
-              <Card className="flex flex-col p-4 bg-card">
-              <div className="flex flex-col flex-1 bg-secondary rounded-xl p-6">
+              <Card className="flex flex-col p-4 bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
+              <div className="flex flex-col flex-1 bg-primary/5 rounded-xl p-6">
                 <CardHeader className="p-0 pb-4">
                   <CardTitle className="text-xl">{cert.title}</CardTitle>
                   <CardDescription className="text-base font-medium">
@@ -162,7 +162,7 @@ export function CertificationsSection() {
                 <CardContent className="flex-1 p-0">
                   <div className="flex flex-wrap gap-2">
                     {cert.skills.map((skill) => (
-                      <Badge key={skill} variant="secondary" className="bg-background/80">
+                      <Badge key={skill} variant="outline" className="bg-foreground/10">
                         {skill}
                       </Badge>
                     ))}
@@ -187,14 +187,14 @@ export function CertificationsSection() {
       </div>
 
       <Dialog open={!!selectedCert} onOpenChange={() => setSelectedCert(null)}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-3xl min-w-[600px] min-h-[300px]">
           <DialogHeader>
             <DialogTitle className="text-2xl">{selectedCert?.title}</DialogTitle>
             <DialogDescription className="text-base font-medium pt-1">
               {selectedCert?.subtitle}
             </DialogDescription>
           </DialogHeader>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-6">
             <div className="flex flex-wrap gap-2">
               {selectedCert?.skills.map((skill) => (
                 <Badge key={skill} variant="secondary">
