@@ -10,6 +10,8 @@ import {
   IconBrandReact,
   IconSql,
   IconBrandPython,
+  IconBrandTypescript,
+  IconCode,
 } from "@tabler/icons-react"
 
 interface Skill {
@@ -31,23 +33,33 @@ const skills: Skill[] = [
   },
   {
     id: 3,
+    name: "TypeScript",
+    icon: IconBrandTypescript,
+  },
+  {
+    id: 4,
     name: "Tailwind",
     icon: IconBrandTailwind,
   },
   {
-    id: 4,
+    id: 5,
     name: "React",
     icon: IconBrandReact,
   },
   {
-    id: 5,
+    id: 6,
     name: "SQL",
     icon: IconSql,
   },
   {
-    id: 6,
+    id: 7,
     name: "Python",
     icon: IconBrandPython,
+  },
+  {
+    id: 8,
+    name: "SuiteScript",
+    icon: IconCode,
   },
 ]
 
@@ -69,7 +81,7 @@ export function SkillsSection() {
         </p>
       </motion.div>
 
-      <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+      <div className="grid gap-6 grid-cols-2 md:grid-cols-4 lg:grid-cols-8">
         {skills.map((skill, index) => {
           const Icon = skill.icon
           return (
