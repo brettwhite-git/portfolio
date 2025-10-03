@@ -90,8 +90,8 @@ const lineChartData = [
   { quarter: "Q1 '23", arr: 1039949, pipeline: 3169441 },
   { quarter: "Q2 '23", arr: 2430823, pipeline: 2307579 },
   { quarter: "Q3 '23", arr: 660729, pipeline: 816500 },
-  { quarter: "Q4 '23", arr: 461827, pipeline: 0 },
-  { quarter: "Q1 '24", arr: 786149, pipeline: 0 },
+  { quarter: "Q4 '23", arr: 461827, pipeline: 1392943 },
+  { quarter: "Q1 '24", arr: 786149, pipeline:  1551831},
   { quarter: "Q2 '24", arr: 1179414, pipeline: 1085914 },
   { quarter: "Q3 '24", arr: 1355264, pipeline: 2820500 },
   { quarter: "Q4 '24", arr: 480954, pipeline: 2042500 },
@@ -107,62 +107,18 @@ const lineChartConfig = {
   },
   pipeline: {
     label: "Pipeline\u00A0\u00A0",
-    color: "hsl(0 0% 9%)",
+    color: "var(--chart-pipeline)",
   },
 } satisfies ChartConfig
 
-const sparklineConfig = {
-  value: {
-    label: "Value",
-    color: "hsl(var(--primary))",
+const areaChartConfig = {
+  arr: {
+    label: "ARR\u00A0\u00A0",
+    color: "hsl(24 95% 53%)",
   },
-} satisfies ChartConfig
-
-const radialChartData = [
-  {
-    metric: "winRate",
-    value: 49,
-    fill: "hsl(var(--chart-1))",
-  },
-  {
-    metric: "remaining",
-    value: 51,
-    fill: "hsl(var(--chart-1) / 0.2)",
-  },
-]
-
-const radialChartConfig = {
-  winRate: {
-    label: "Win Rate",
-    color: "hsl(var(--chart-1))",
-  },
-  remaining: {
-    label: "Remaining",
-    color: "hsl(var(--chart-1) / 0.2)",
-  },
-} satisfies ChartConfig
-
-const radialChartDataLeadSC = [
-  {
-    metric: "leadSC",
-    value: 92,
-    fill: "hsl(var(--chart-2))",
-  },
-  {
-    metric: "remaining",
-    value: 8,
-    fill: "hsl(var(--chart-2) / 0.2)",
-  },
-]
-
-const radialChartConfigLeadSC = {
-  leadSC: {
-    label: "Lead SC",
-    color: "hsl(var(--chart-2))",
-  },
-  remaining: {
-    label: "Remaining",
-    color: "hsl(var(--chart-2) / 0.2)",
+  pipeline: {
+    label: "Pipeline\u00A0\u00A0",
+    color: "var(--chart-pipeline)",
   },
 } satisfies ChartConfig
 
@@ -182,7 +138,7 @@ const barChartData = [
 const barChartConfig = {
   count: {
     label: "Count",
-    color: "hsl(var(--chart-2))",
+    color: "var(--chart-modules)",
   },
   label: {
     color: "hsl(var(--background))",
@@ -270,11 +226,11 @@ export function AnalyticsSection() {
           <CardFooter className="flex-col items-start gap-2 text-sm">
             <div className="flex w-full flex-col gap-2">
               <div className="flex items-center justify-between">
-                <div className="text-xs text-muted-foreground">Lead SC</div>
+                <div className="text-xs text-muted-foreground">This Year</div>
                 <div className="text-base font-semibold">92%</div>
               </div>
               <div className="flex items-center justify-between">
-                <div className="text-xs text-muted-foreground">Win Rate</div>
+                <div className="text-xs text-muted-foreground">Last Year</div>
                 <div className="text-base font-semibold">49%</div>
               </div>
             </div>
@@ -296,11 +252,11 @@ export function AnalyticsSection() {
           <CardFooter className="flex-col items-start gap-2 text-sm">
             <div className="flex w-full flex-col gap-2">
               <div className="flex items-center justify-between">
-                <div className="text-xs text-muted-foreground">Lead SC</div>
+                <div className="text-xs text-muted-foreground">This Year</div>
                 <div className="text-base font-semibold">92%</div>
               </div>
               <div className="flex items-center justify-between">
-                <div className="text-xs text-muted-foreground">Win Rate</div>
+                <div className="text-xs text-muted-foreground">Last Year</div>
                 <div className="text-base font-semibold">49%</div>
               </div>
             </div>
@@ -322,11 +278,11 @@ export function AnalyticsSection() {
           <CardFooter className="flex-col items-start gap-2 text-sm">
             <div className="flex w-full flex-col gap-2">
               <div className="flex items-center justify-between">
-                <div className="text-xs text-muted-foreground">Lead SC</div>
+                <div className="text-xs text-muted-foreground">This Year</div>
                 <div className="text-base font-semibold">92%</div>
               </div>
               <div className="flex items-center justify-between">
-                <div className="text-xs text-muted-foreground">Win Rate</div>
+                <div className="text-xs text-muted-foreground">Last Year</div>
                 <div className="text-base font-semibold">49%</div>
               </div>
             </div>
@@ -353,7 +309,7 @@ export function AnalyticsSection() {
               </div>
               <div className="flex items-center justify-between">
                 <div className="text-xs text-muted-foreground">Win Rate</div>
-                <div className="text-base font-semibold">49%</div>
+                <div className="text-base font-semibold">43%</div>
               </div>
             </div>
           </CardFooter>

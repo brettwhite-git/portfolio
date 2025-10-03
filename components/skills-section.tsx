@@ -38,13 +38,13 @@ const skills: Skill[] = [
   },
   {
     id: 4,
-    name: "Tailwind",
-    icon: IconBrandTailwind,
+    name: "React",
+    icon: IconBrandReact,
   },
   {
     id: 5,
-    name: "React",
-    icon: IconBrandReact,
+    name: "Tailwind",
+    icon: IconBrandTailwind,
   },
   {
     id: 6,
