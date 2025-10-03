@@ -2,9 +2,8 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
 
 const testimonials = [
   {
@@ -106,13 +105,13 @@ export function AboutSection() {
         <Card className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
         <CardContent className="space-y-4 text-md leading-relaxed px-12 py-6">
           <p>
-            I'm a seasoned technology professional with a passion for solving complex business challenges through innovative cloud solutions and data-driven insights. My journey began with a BS in Industrial Distribution from Texas A&M University, where I developed a foundation in supply chain and procurement operations. Today, I'm pursuing a Master of Science in Analytics at Georgia Tech, continuously sharpening my ability to turn data into actionable business intelligence.
+            I&apos;m a seasoned technology professional with a passion for solving complex business challenges through innovative cloud solutions and data-driven insights. My journey began with a BS in Industrial Distribution from Texas A&M University, where I developed a foundation in supply chain and procurement operations. Today, I&apos;m pursuing a Master of Science in Analytics at Georgia Tech, continuously sharpening my ability to turn data into actionable business intelligence.
           </p>
           <p>
-            Throughout my career, I've worked with companies both small and large across the products and e-commerce space, specializing in supply chain optimization, procurement operations, and enterprise resource planning. From managing inventory systems and vendor partnerships to architecting cloud solutions, I've seen firsthand how the right technology transforms operational complexity into competitive advantage. I specialize in Oracle NetSuite, cloud infrastructure, and building scalable systems that drive measurable business growth.
+            Throughout my career, I&apos;ve worked with companies both small and large across the products and e-commerce space, specializing in supply chain optimization, procurement operations, and enterprise resource planning. From managing inventory systems and vendor partnerships to architecting cloud solutions, I&apos;ve seen firsthand how the right technology transforms operational complexity into competitive advantage. I specialize in Oracle NetSuite, cloud infrastructure, and building scalable systems that drive measurable business growth.
           </p>
           <p>
-            I'm endlessly curious about technology and driven by the pursuit of excellence. Whether it's generating over $17M in ARR, implementing solutions for 600+ customers, or earning 14+ certifications, I'm always looking for ways to build systems that actually work—not just technically sound solutions, but ones people want to use. I've presented at industry conferences, contributed 60+ hours of pro bono work, and believe that the best solutions don't just solve today's problems—they unlock tomorrow's opportunities.
+            I&apos;m endlessly curious about technology and driven by the pursuit of excellence. Whether it&apos;s generating over $17M in ARR, implementing solutions for 600+ customers, or earning 14+ certifications, I&apos;m always looking for ways to build systems that actually work—not just technically sound solutions, but ones people want to use. I&apos;ve presented at industry conferences, contributed 60+ hours of pro bono work, and believe that the best solutions don&apos;t just solve today&apos;s problems—they unlock tomorrow&apos;s opportunities.
           </p>
         </CardContent>
         </Card>
@@ -167,7 +166,7 @@ export function AboutSection() {
               <CardContent className="pt-6 px-8 py-2">
                 <div className="flex flex-col gap-4">
                   <p className="text-sm leading-relaxed text-muted-foreground italic">
-                    "{testimonial.text}"
+                    &ldquo;{testimonial.text}&rdquo;
                   </p>
                   <div className="flex items-center gap-3">
                     <Avatar>

@@ -5,7 +5,7 @@ import { motion, useInView } from "framer-motion"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { IconBrandGithub, IconExternalLink } from "@tabler/icons-react"
+import { IconBrandGithub } from "@tabler/icons-react"
 
 const projects = [
   {

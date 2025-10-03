@@ -65,7 +65,7 @@ export function ServicesSection() {
         className="space-y-4"
       >
         <h2 className="text-3xl lg:text-4xl font-bold">My stack</h2>
-        <p className="text-muted-foreground">Here's a snapshot of my expertise:</p>
+        <p className="text-muted-foreground">Here&apos;s a snapshot of my expertise:</p>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

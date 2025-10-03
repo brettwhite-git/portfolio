@@ -96,7 +96,7 @@ export function ContactSection() {
           <CardHeader>
             <CardTitle>Send a Message</CardTitle>
             <CardDescription>
-              Fill out the form below and I'll get back to you as soon as possible.
+              Fill out the form below and I&apos;ll get back to you as soon as possible.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -170,7 +170,7 @@ export function ContactSection() {
 
                 {submitStatus === "success" && (
                   <div className="rounded-lg bg-green-50 dark:bg-green-950/20 p-3 text-sm text-green-800 dark:text-green-200">
-                    Message sent successfully! I'll get back to you soon.
+                    Message sent successfully! I&apos;ll get back to you soon.
                   </div>
                 )}
 

@@ -2,11 +2,9 @@
 
 import * as React from "react"
 import { motion, useInView } from "framer-motion"
-import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, Label, LabelList, Line, LineChart, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, RadialBar, RadialBarChart, Sector, XAxis, YAxis } from "recharts"
-import { IconTrendingDown, IconTrendingUp } from "@tabler/icons-react"
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, LabelList, Line, LineChart, XAxis, YAxis } from "recharts"
 
 import { useIsMobile } from "@/hooks/use-mobile"
-import { Badge } from "@/components/ui/badge"
 import {
   Card,
   CardAction,

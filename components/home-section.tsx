@@ -4,8 +4,6 @@ import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { IconArrowRight } from "@tabler/icons-react"
 
 interface HomeSectionProps {
@@ -34,11 +32,11 @@ export function HomeSection({ onNavigate }: HomeSectionProps) {
             <span className="text-primary">scale.</span>
           </h1>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Great technology isn't about complexity — it's about clarity. I transform
+            Great technology isn&apos;t about complexity — it&apos;s about clarity. I transform
             business challenges into elegant solutions that people actually want to use.
             From architecting cloud infrastructure to orchestrating AI workflows, I bridge
-            the gap between what's possible and what's practical. The best solutions don't
-            just solve today's problems — they unlock tomorrow's opportunities.
+            the gap between what&apos;s possible and what&apos;s practical. The best solutions don&apos;t
+            just solve today&apos;s problems — they unlock tomorrow&apos;s opportunities.
           </p>
         </div>
         <div>
@@ -47,7 +45,7 @@ export function HomeSection({ onNavigate }: HomeSectionProps) {
             className="rounded-full px-8 gap-2"
             onClick={() => onNavigate?.("contact")}
           >
-            Let's not just talk, lets build
+            Let&apos;s not just talk, let&apos;s build
             <IconArrowRight className="h-5 w-5" />
           </Button>
         </div>
