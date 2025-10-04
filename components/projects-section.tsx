@@ -45,11 +45,11 @@ export function ProjectsSection() {
     <div ref={containerRef} className="flex flex-col gap-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="flex flex-col gap-2"
       >
-        <h1 className="text-3xl font-bold tracking-tight">Projects</h1>
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Projects</h1>
         <p className="text-muted-foreground">
           A showcase of my recent work and side projects
         </p>
@@ -62,11 +62,12 @@ export function ProjectsSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.2 + (index * 0.1), ease: "easeOut" }}
+            className="h-full"
           >
-            <Card className="flex flex-col bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
+            <Card className="flex flex-col h-full bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
             <CardHeader>
-              <CardTitle>{project.title}</CardTitle>
-              <CardDescription>{project.description}</CardDescription>
+              <CardTitle className="text-lg md:text-xl">{project.title}</CardTitle>
+              <CardDescription className="text-sm md:text-base">{project.description}</CardDescription>
             </CardHeader>
             <CardContent className="flex-1">
               <div className="flex flex-wrap gap-2">

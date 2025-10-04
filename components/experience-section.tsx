@@ -92,7 +92,7 @@ export function ExperienceSection() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="flex flex-col gap-2"
       >
-        <h1 className="text-3xl font-bold tracking-tight">Work Experience</h1>
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Work Experience</h1>
         <p className="text-muted-foreground">
           My professional journey and key accomplishments
         </p>
@@ -108,27 +108,27 @@ export function ExperienceSection() {
           >
             <Card className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
             <CardHeader>
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4">
                 <div className="flex-1">
-                  <CardTitle className="text-xl">{experience.title}</CardTitle>
-                  <CardDescription className="text-base font-medium mt-1 italic">
+                  <CardTitle className="text-lg md:text-xl">{experience.title}</CardTitle>
+                  <CardDescription className="text-sm md:text-base font-medium mt-1 italic">
                     {experience.company}
                   </CardDescription>
                 </div>
-                <Badge variant="default" className="shrink-0 px-4 py-2">
+                <Badge variant="default" className="shrink-0 px-4 py-2 self-start">
                   {experience.period}
                 </Badge>
               </div>
               {experience.description && (
-                <p className="text-md text-muted-foreground mt-3 leading-relaxed italic">
+                <p className="text-sm md:text-base text-muted-foreground mt-3 leading-relaxed italic">
                   {experience.description}
                 </p>
               )}
             </CardHeader>
-            <CardContent className="px-12 py-2">
+            <CardContent className="px-4 md:px-12 py-2">
               <ul className="space-y-2">
                 {experience.responsibilities.map((responsibility, index) => (
-                  <li key={index} className="text-md leading-relaxed flex gap-2">
+                  <li key={index} className="text-sm md:text-base leading-relaxed flex gap-2">
                     <span className="text-muted-foreground shrink-0">•</span>
                     <span>{responsibility}</span>
                   </li>
