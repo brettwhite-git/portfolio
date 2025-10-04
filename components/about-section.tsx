@@ -90,7 +90,7 @@ export function AboutSection() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="flex flex-col gap-2"
       >
-        <h1 className="text-3xl font-bold tracking-tight">Who Am I?</h1>
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Who Am I?</h1>
         <p className="text-muted-foreground">
           A brief introduction to my professional journey
         </p>
@@ -103,7 +103,7 @@ export function AboutSection() {
         transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
       >
         <Card className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
-        <CardContent className="space-y-4 text-md leading-relaxed px-12 py-6">
+        <CardContent className="space-y-4 text-sm md:text-base leading-relaxed px-4 md:px-12 py-6">
           <p>
             I&apos;m a seasoned technology professional with a passion for solving complex business challenges through innovative cloud solutions and data-driven insights. My journey began with a BS in Industrial Distribution from Texas A&M University, where I developed a foundation in supply chain and procurement operations. Today, I&apos;m pursuing a Master of Science in Analytics at Georgia Tech, continuously sharpening my ability to turn data into actionable business intelligence.
           </p>
@@ -124,9 +124,9 @@ export function AboutSection() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
         >
-          <h2 className="text-2xl font-bold">Career Highlights</h2>
+          <h2 className="text-xl md:text-2xl font-bold">Career Highlights</h2>
         </motion.div>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 grid-cols-2 md:grid-cols-3">
           {achievements.map((achievement, index) => (
             <motion.div
               key={index}
@@ -134,10 +134,10 @@ export function AboutSection() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.6 + (index * 0.1), ease: "easeOut" }}
             >
-              <Card className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
-              <CardContent className="flex flex-col items-center justify-center p-8 text-center">
-                <div className="text-4xl font-bold mb-2">{achievement.value}</div>
-                <div className="text-sm text-muted-foreground">{achievement.label}</div>
+              <Card className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow h-full">
+              <CardContent className="flex flex-col items-center justify-center p-8 text-center h-full">
+                <div className="text-3xl md:text-4xl font-bold mb-2">{achievement.value}</div>
+                <div className="text-sm text-muted-foreground min-h-[2.5rem] flex items-center">{achievement.label}</div>
               </CardContent>
             </Card>
           </motion.div>
@@ -152,7 +152,7 @@ export function AboutSection() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 1.5, ease: "easeOut" }}
         >
-          <h2 className="text-2xl font-bold">What Others Say</h2>
+          <h2 className="text-xl md:text-2xl font-bold">What Others Say</h2>
         </motion.div>
         <div className="grid gap-6 md:grid-cols-2">
           {testimonials.map((testimonial, index) => (
@@ -163,7 +163,7 @@ export function AboutSection() {
               transition={{ duration: 0.5, delay: 1.7 + (index * 0.1), ease: "easeOut" }}
             >
               <Card className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
-              <CardContent className="pt-6 px-8 py-2">
+              <CardContent className="pt-6 px-4 md:px-8 py-2">
                 <div className="flex flex-col gap-4">
                   <p className="text-sm leading-relaxed text-muted-foreground italic">
                     &ldquo;{testimonial.text}&rdquo;
