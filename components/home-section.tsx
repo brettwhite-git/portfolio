@@ -27,11 +27,11 @@ export function HomeSection({ onNavigate }: HomeSectionProps) {
         className="flex-1 flex flex-col justify-center space-y-6 bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow p-16 h-full"
       >
         <div className="space-y-4">
-          <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
             Building solutions that{" "}
             <span className="text-primary">scale.</span>
           </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
             Great technology isn&apos;t about complexity — it&apos;s about clarity. I transform
             business challenges into elegant solutions that people actually want to use.
             From architecting cloud infrastructure to orchestrating AI workflows, I bridge
@@ -57,7 +57,7 @@ export function HomeSection({ onNavigate }: HomeSectionProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={isProfileInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-        className="flex-none w-full lg:w-[280px]"
+        className="flex-none w-full sm:w-[320px] md:w-[280px] lg:w-[280px] mx-auto lg:mx-0"
       >
         <div className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow overflow-hidden">
           {/* Profile Image */}
@@ -73,8 +73,8 @@ export function HomeSection({ onNavigate }: HomeSectionProps) {
 
           {/* Content */}
           <div className="px-6 py-6 space-y-2">
-            <h3 className="text-xl font-semibold text-foreground">Brett White</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <h3 className="text-lg md:text-xl font-semibold text-foreground">Brett White</h3>
+            <p className="text-sm md:text-md text-muted-foreground leading-relaxed">
               Solutions Architect who focuses on creating exceptional digital experiences.
             </p>
           </div>

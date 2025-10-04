@@ -98,7 +98,7 @@ export function ExperienceSection() {
         </p>
       </motion.div>
 
-      <div className="flex flex-col gap-6 px-10 py-6">
+      <div className="flex flex-col gap-6 px-4 md:px-10 py-6">
         {experiences.map((experience, index) => (
           <motion.div
             key={experience.id}

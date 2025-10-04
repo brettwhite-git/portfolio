@@ -30,25 +30,25 @@ const services = [
     icon: IconCloud,
     title: "Cloud Architecture",
     color: "bg-primary",
-    tags: ["Oracle Cloud", "SuiteCloud", "Networking", "Infrastructure"]
+    tags: ["Oracle Cloud", "Serverless", "Networking", "Terraform"]
   },
   {
     icon: IconCode,
     title: "Development",
     color: "bg-primary",
-    tags: ["SuiteScript", "JavaScript", "Web Services", "Workflows"]
+    tags: ["Application Development", "Backend Development", "APIs", "Authentication"]
   },
   {
     icon: IconDatabase,
-    title: "Data Management",
+    title: "Data Engineering",
     color: "bg-primary",
-    tags: ["SQL", "Data Hygiene", "Database", "Integration"]
+    tags: ["PostgreSQL", "Data Warehousing", "Data Modeling", "Data Pipelines"]
   },
   {
     icon: IconShieldCheck,
     title: "Security & Compliance",
     color: "bg-primary",
-    tags: ["Access Control", "Disaster Recovery", "Compliance", "Risk"]
+    tags: ["IAM", "Disaster Recovery", "Redundancy", "Risk Management"]
   }
 ]
 
@@ -89,8 +89,8 @@ export function ServicesSection() {
                     {service.tags.map((tag, tagIndex) => (
                       <Badge
                         key={tagIndex}
-                        variant="secondary"
-                        className="bg-secondary/90 text-secondary-foreground text-xs"
+                        variant="outline"
+                        className="bg-foreground/10"
                       >
                         {tag}
                       </Badge>
