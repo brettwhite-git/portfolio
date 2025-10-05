@@ -181,8 +181,8 @@ export function AnalyticsSection() {
       >
         <Card className="@container/card bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
           <CardHeader>
-            <CardDescription>Total ARR Influence</CardDescription>
-            <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl whitespace-nowrap">
+            <CardDescription className="text-xs sm:text-sm">Total ARR Influence</CardDescription>
+            <CardTitle className="text-xl sm:text-2xl font-semibold tabular-nums @[250px]/card:text-3xl whitespace-nowrap">
               $17.5M
             </CardTitle>
             <CardAction>
@@ -193,7 +193,7 @@ export function AnalyticsSection() {
                     color: "hsl(24 95% 53%)",
                   },
                 }}
-                className="h-[60px] w-full max-w-[150px] lg:max-w-[180px]"
+                className="h-[50px] w-full max-w-[90px] sm:max-w-[110px] md:max-w-[130px] lg:max-w-[150px] xl:max-w-[180px]"
               >
                 <AreaChart data={arrSparkData}>
                   <defs>
@@ -229,8 +229,8 @@ export function AnalyticsSection() {
         </Card>
         <Card className="@container/card bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
           <CardHeader>
-            <CardDescription>Avg Deal Size</CardDescription>
-            <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl whitespace-nowrap">
+            <CardDescription className="text-xs sm:text-sm">Avg Deal Size</CardDescription>
+            <CardTitle className="text-xl sm:text-2xl font-semibold tabular-nums @[250px]/card:text-3xl whitespace-nowrap">
               $27.3K
             </CardTitle>
             <CardAction>
@@ -241,7 +241,7 @@ export function AnalyticsSection() {
                     color: "hsl(24 95% 53%)",
                   },
                 }}
-                className="h-[60px] w-full max-w-[150px] lg:max-w-[180px]"
+                className="h-[50px] w-full max-w-[90px] sm:max-w-[110px] md:max-w-[130px] lg:max-w-[150px] xl:max-w-[180px]"
               >
                 <AreaChart data={dealSizeSparkData}>
                   <defs>
@@ -277,8 +277,8 @@ export function AnalyticsSection() {
         </Card>
         <Card className="@container/card bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
           <CardHeader>
-            <CardDescription>Avg Days to Close</CardDescription>
-            <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl whitespace-nowrap">
+            <CardDescription className="text-xs sm:text-sm">Avg Days to Close</CardDescription>
+            <CardTitle className="text-xl sm:text-2xl font-semibold tabular-nums @[250px]/card:text-3xl whitespace-nowrap">
               38 days
             </CardTitle>
             <CardAction>
@@ -289,7 +289,7 @@ export function AnalyticsSection() {
                     color: "hsl(24 95% 53%)",
                   },
                 }}
-                className="h-[60px] w-full max-w-[150px] lg:max-w-[180px]"
+                className="h-[50px] w-full max-w-[90px] sm:max-w-[110px] md:max-w-[130px] lg:max-w-[150px] xl:max-w-[180px]"
               >
                 <AreaChart data={daysSparkData}>
                   <defs>
@@ -325,8 +325,8 @@ export function AnalyticsSection() {
         </Card>
         <Card className="@container/card bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
           <CardHeader>
-            <CardDescription>Opportunities Won</CardDescription>
-            <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl whitespace-nowrap">
+            <CardDescription className="text-xs sm:text-sm">Opportunities Won</CardDescription>
+            <CardTitle className="text-xl sm:text-2xl font-semibold tabular-nums @[250px]/card:text-3xl whitespace-nowrap">
               642
             </CardTitle>
             <CardAction>
@@ -337,7 +337,7 @@ export function AnalyticsSection() {
                     color: "hsl(24 95% 53%)",
                   },
                 }}
-                className="h-[60px] w-full max-w-[150px] lg:max-w-[180px]"
+                className="h-[50px] w-full max-w-[90px] sm:max-w-[110px] md:max-w-[130px] lg:max-w-[150px] xl:max-w-[180px]"
               >
                 <AreaChart data={oppsWonSparkData}>
                   <defs>

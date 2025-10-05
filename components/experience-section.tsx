@@ -29,7 +29,7 @@ const experiences = [
     description: "",
     responsibilities: [
       "Generated over $10.6M in Annual Recurring Revenue as a top-requested consultant on a team of 20.",
-      "Achieved SC of the Year in an organization of 175 SCs, exceeding 250% attainment with an average 41% conversion rate.",
+      "Achieved SC of the Year in an organization of 175 SCs, exceeding 250% attainment with an average 43% conversion rate.",
       "Built technical solutions that reduced customer system bottlenecks by up to 50% through architecture optimization and resource scaling recommendations.",
       "Mastered 22+ add-on applications including NetSuite Analytics Warehouse, Planning & Budgeting, and e-commerce solutions, driving higher upsell rates and customer retention through expanded product demonstrations.",
       "Delivered sales methodology workshops to Account Management teams, training on value selling techniques and product positioning strategies."

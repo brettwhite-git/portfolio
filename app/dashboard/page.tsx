@@ -21,12 +21,20 @@ type Section = "home" | "about" | "experience" | "projects" | "analytics" | "ski
 
 export default function Page() {
   const [activeSection, setActiveSection] = useState<Section>("home")
-  const [sidebarDefaultOpen, setSidebarDefaultOpen] = useState(true)
+  const [sidebarOpen, setSidebarOpen] = useState(true)
 
+  // Auto-collapse sidebar on tablet/mobile (iPad Pro and smaller), expand on desktop
   useEffect(() => {
-    // Check if window width is desktop (lg breakpoint is 1024px)
-    const isDesktop = window.innerWidth >= 1024
-    setSidebarDefaultOpen(isDesktop)
+    const handleResize = () => {
+      const isTabletOrMobile = window.innerWidth <= 1366
+      setSidebarOpen(!isTabletOrMobile)
+    }
+    
+    // Set initial state
+    handleResize()
+    
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   const renderSection = () => {
@@ -67,10 +75,11 @@ export default function Page() {
 
   return (
     <SidebarProvider
-      defaultOpen={sidebarDefaultOpen}
+      open={sidebarOpen}
+      onOpenChange={setSidebarOpen}
       style={
         {
-          "--sidebar-width": "calc(var(--spacing) * 72)",
+          "--sidebar-width": "calc(var(--spacing) * 60)",
           "--header-height": "calc(var(--spacing) * 12)",
         } as React.CSSProperties
       }

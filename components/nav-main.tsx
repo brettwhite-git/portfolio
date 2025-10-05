@@ -26,13 +26,16 @@ export function NavMain({
   }[]
   onNavigate?: (section: Section) => void
 }) {
-  const { isMobile, setOpenMobile } = useSidebar()
+  const { isMobile, setOpenMobile, setOpen } = useSidebar()
 
   const handleNavigate = (section: Section) => {
     onNavigate?.(section)
     // Close mobile sidebar after navigation
     if (isMobile) {
       setOpenMobile(false)
+    } else if (window.innerWidth <= 1366) {
+      // Close desktop sidebar on tablet/iPad Pro sizes
+      setOpen(false)
     }
   }
 
