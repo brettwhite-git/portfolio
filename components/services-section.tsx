@@ -77,20 +77,21 @@ export function ServicesSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.2 + (index * 0.1), ease: "easeOut" }}
+              className="h-full"
             >
-              <Card className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
-              <CardContent className="p-6 space-y-4">
-                <div className={`w-14 h-14 rounded-2xl ${service.color} flex items-center justify-center`}>
+              <Card className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow h-full">
+              <CardContent className="p-6 flex flex-col h-full">
+                <div className={`w-14 h-14 rounded-2xl ${service.color} flex items-center justify-center flex-shrink-0`}>
                   <Icon className="w-7 h-7 text-primary-foreground" />
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-3 mt-4 flex-grow flex flex-col">
                   <h3 className="text-xl font-semibold">{service.title}</h3>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 content-start">
                     {service.tags.map((tag, tagIndex) => (
                       <Badge
                         key={tagIndex}
                         variant="outline"
-                        className="bg-foreground/10"
+                        className="bg-foreground/10 text-xs md:text-sm"
                       >
                         {tag}
                       </Badge>

@@ -180,12 +180,12 @@ export function AnalyticsSection() {
         className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
       >
         <Card className="@container/card bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
-          <CardHeader>
-            <CardDescription className="text-xs sm:text-sm">Total ARR Influence</CardDescription>
-            <CardTitle className="text-xl sm:text-2xl font-semibold tabular-nums @[250px]/card:text-3xl whitespace-nowrap">
+          <CardHeader className="overflow-hidden [&[data-slot=card-header]]:grid-cols-[1fr_minmax(80px,35%)] @[260px]/card:[&[data-slot=card-header]]:grid-cols-[1fr_minmax(100px,38%)] @[320px]/card:[&[data-slot=card-header]]:grid-cols-[1fr_minmax(120px,42%)] @[400px]/card:[&[data-slot=card-header]]:grid-cols-[1fr_minmax(140px,48%)]">
+            <CardDescription className="text-[10px] @[220px]/card:text-xs @[280px]/card:text-sm">Total ARR Influence</CardDescription>
+            <CardTitle className="text-lg font-semibold tabular-nums @[220px]/card:text-xl @[260px]/card:text-2xl @[320px]/card:text-2xl @[380px]/card:text-3xl whitespace-nowrap overflow-hidden text-ellipsis">
               $17.5M
             </CardTitle>
-            <CardAction>
+            <CardAction className="overflow-hidden w-full">
               <ChartContainer
                 config={{
                   value: {
@@ -193,7 +193,7 @@ export function AnalyticsSection() {
                     color: "hsl(24 95% 53%)",
                   },
                 }}
-                className="h-[50px] w-full max-w-[90px] sm:max-w-[110px] md:max-w-[130px] lg:max-w-[150px] xl:max-w-[180px]"
+                className="h-[35px] w-full @[220px]/card:h-[40px] @[260px]/card:h-[45px] @[300px]/card:h-[50px] @[340px]/card:h-[55px] @[400px]/card:h-[60px]"
               >
                 <AreaChart data={arrSparkData}>
                   <defs>
@@ -228,12 +228,12 @@ export function AnalyticsSection() {
           </CardFooter>
         </Card>
         <Card className="@container/card bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
-          <CardHeader>
-            <CardDescription className="text-xs sm:text-sm">Avg Deal Size</CardDescription>
-            <CardTitle className="text-xl sm:text-2xl font-semibold tabular-nums @[250px]/card:text-3xl whitespace-nowrap">
+          <CardHeader className="overflow-hidden [&[data-slot=card-header]]:grid-cols-[1fr_minmax(80px,35%)] @[260px]/card:[&[data-slot=card-header]]:grid-cols-[1fr_minmax(100px,38%)] @[320px]/card:[&[data-slot=card-header]]:grid-cols-[1fr_minmax(120px,42%)] @[400px]/card:[&[data-slot=card-header]]:grid-cols-[1fr_minmax(140px,48%)]">
+            <CardDescription className="text-[10px] @[220px]/card:text-xs @[280px]/card:text-sm">Avg Deal Size</CardDescription>
+            <CardTitle className="text-lg font-semibold tabular-nums @[220px]/card:text-xl @[260px]/card:text-2xl @[320px]/card:text-2xl @[380px]/card:text-3xl whitespace-nowrap overflow-hidden text-ellipsis">
               $27.3K
             </CardTitle>
-            <CardAction>
+            <CardAction className="overflow-hidden w-full">
               <ChartContainer
                 config={{
                   value: {
@@ -241,7 +241,7 @@ export function AnalyticsSection() {
                     color: "hsl(24 95% 53%)",
                   },
                 }}
-                className="h-[50px] w-full max-w-[90px] sm:max-w-[110px] md:max-w-[130px] lg:max-w-[150px] xl:max-w-[180px]"
+                className="h-[35px] w-full @[220px]/card:h-[40px] @[260px]/card:h-[45px] @[300px]/card:h-[50px] @[340px]/card:h-[55px] @[400px]/card:h-[60px]"
               >
                 <AreaChart data={dealSizeSparkData}>
                   <defs>
@@ -276,12 +276,12 @@ export function AnalyticsSection() {
           </CardFooter>
         </Card>
         <Card className="@container/card bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
-          <CardHeader>
-            <CardDescription className="text-xs sm:text-sm">Avg Days to Close</CardDescription>
-            <CardTitle className="text-xl sm:text-2xl font-semibold tabular-nums @[250px]/card:text-3xl whitespace-nowrap">
+          <CardHeader className="overflow-hidden [&[data-slot=card-header]]:grid-cols-[1fr_minmax(80px,35%)] @[260px]/card:[&[data-slot=card-header]]:grid-cols-[1fr_minmax(100px,38%)] @[320px]/card:[&[data-slot=card-header]]:grid-cols-[1fr_minmax(120px,42%)] @[400px]/card:[&[data-slot=card-header]]:grid-cols-[1fr_minmax(140px,48%)]">
+            <CardDescription className="text-[10px] @[220px]/card:text-xs @[280px]/card:text-sm">Avg Days to Close</CardDescription>
+            <CardTitle className="text-lg font-semibold tabular-nums @[220px]/card:text-xl @[260px]/card:text-2xl @[320px]/card:text-2xl @[380px]/card:text-3xl whitespace-nowrap overflow-hidden text-ellipsis">
               38 days
             </CardTitle>
-            <CardAction>
+            <CardAction className="overflow-hidden w-full">
               <ChartContainer
                 config={{
                   value: {
@@ -289,7 +289,7 @@ export function AnalyticsSection() {
                     color: "hsl(24 95% 53%)",
                   },
                 }}
-                className="h-[50px] w-full max-w-[90px] sm:max-w-[110px] md:max-w-[130px] lg:max-w-[150px] xl:max-w-[180px]"
+                className="h-[35px] w-full @[220px]/card:h-[40px] @[260px]/card:h-[45px] @[300px]/card:h-[50px] @[340px]/card:h-[55px] @[400px]/card:h-[60px]"
               >
                 <AreaChart data={daysSparkData}>
                   <defs>
@@ -324,12 +324,12 @@ export function AnalyticsSection() {
           </CardFooter>
         </Card>
         <Card className="@container/card bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
-          <CardHeader>
-            <CardDescription className="text-xs sm:text-sm">Opportunities Won</CardDescription>
-            <CardTitle className="text-xl sm:text-2xl font-semibold tabular-nums @[250px]/card:text-3xl whitespace-nowrap">
+          <CardHeader className="overflow-hidden [&[data-slot=card-header]]:grid-cols-[1fr_minmax(80px,35%)] @[260px]/card:[&[data-slot=card-header]]:grid-cols-[1fr_minmax(100px,38%)] @[320px]/card:[&[data-slot=card-header]]:grid-cols-[1fr_minmax(120px,42%)] @[400px]/card:[&[data-slot=card-header]]:grid-cols-[1fr_minmax(140px,48%)]">
+            <CardDescription className="text-[10px] @[220px]/card:text-xs @[280px]/card:text-sm">Opportunities Won</CardDescription>
+            <CardTitle className="text-lg font-semibold tabular-nums @[220px]/card:text-xl @[260px]/card:text-2xl @[320px]/card:text-2xl @[380px]/card:text-3xl whitespace-nowrap overflow-hidden text-ellipsis">
               642
             </CardTitle>
-            <CardAction>
+            <CardAction className="overflow-hidden w-full">
               <ChartContainer
                 config={{
                   value: {
@@ -337,7 +337,7 @@ export function AnalyticsSection() {
                     color: "hsl(24 95% 53%)",
                   },
                 }}
-                className="h-[50px] w-full max-w-[90px] sm:max-w-[110px] md:max-w-[130px] lg:max-w-[150px] xl:max-w-[180px]"
+                className="h-[35px] w-full @[220px]/card:h-[40px] @[260px]/card:h-[45px] @[300px]/card:h-[50px] @[340px]/card:h-[55px] @[400px]/card:h-[60px]"
               >
                 <AreaChart data={oppsWonSparkData}>
                   <defs>
