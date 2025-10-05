@@ -17,14 +17,14 @@ export function HomeSection({ onNavigate }: HomeSectionProps) {
   const isProfileInView = useInView(profileRef, { once: true, margin: "-100px" })
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 w-full">
+    <div className="flex flex-col md:flex-row gap-6 w-full">
       {/* Hero Content */}
       <motion.div
         ref={heroRef}
         initial={{ opacity: 0, y: 20 }}
         animate={isHeroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex-1 flex flex-col justify-center space-y-6 bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow p-8 md:p-12 lg:p-16 h-full"
+        className="flex-1 flex flex-col justify-center space-y-6 bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow p-8 md:p-10 lg:p-16 h-full"
       >
         <div className="space-y-4">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
@@ -57,7 +57,7 @@ export function HomeSection({ onNavigate }: HomeSectionProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={isProfileInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-        className="flex-none w-full sm:w-[320px] md:w-[300px] lg:w-[320px] mx-auto lg:mx-0 flex items-stretch"
+        className="flex-none w-full sm:w-[320px] md:w-[280px] lg:w-[320px] mx-auto md:mx-0 flex items-stretch"
       >
         <div className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow overflow-hidden flex flex-col w-full">
           {/* Profile Image */}

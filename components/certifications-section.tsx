@@ -150,26 +150,27 @@ export function CertificationsSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.2 + (index * 0.1), ease: "easeOut" }}
+              className="h-full"
             >
-              <Card className="flex flex-col p-4 bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
+              <Card className="flex flex-col h-full p-4 bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
               <div className="flex flex-col flex-1 bg-primary/5 rounded-xl p-6">
-                <CardHeader className="p-0 pb-4">
-                  <CardTitle className="text-xl">{cert.title}</CardTitle>
+                <CardHeader className="p-0 pb-4 flex-shrink-0">
+                  <CardTitle className="text-xl leading-tight">{cert.title}</CardTitle>
                   <CardDescription className="text-base font-medium">
                     {cert.subtitle}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="flex-1 p-0">
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 content-start">
                     {cert.skills.map((skill) => (
-                      <Badge key={skill} variant="outline" className="bg-foreground/10">
+                      <Badge key={skill} variant="outline" className="bg-foreground/10 text-xs md:text-sm">
                         {skill}
                       </Badge>
                     ))}
                   </div>
                 </CardContent>
               </div>
-              <CardFooter className="flex items-center justify-between px-2 pt-4 pb-0">
+              <CardFooter className="flex items-center justify-between px-2 pt-4 pb-0 flex-shrink-0">
                 <span className="text-sm font-medium">Explore</span>
                 <Button
                   variant="ghost"
