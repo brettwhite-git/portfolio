@@ -187,17 +187,17 @@ export function CertificationsSection() {
       </div>
 
       <Dialog open={!!selectedCert} onOpenChange={() => setSelectedCert(null)}>
-        <DialogContent className="max-w-3xl min-w-[600px] min-h-[300px]">
+        <DialogContent className="max-w-3xl w-[95vw] sm:w-full sm:min-w-[500px] md:min-w-[600px]">
           <DialogHeader>
-            <DialogTitle className="text-2xl">{selectedCert?.title}</DialogTitle>
-            <DialogDescription className="text-base font-medium pt-1">
+            <DialogTitle className="text-xl sm:text-2xl">{selectedCert?.title}</DialogTitle>
+            <DialogDescription className="text-sm sm:text-base font-medium pt-1">
               {selectedCert?.subtitle}
             </DialogDescription>
           </DialogHeader>
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4 sm:gap-6">
             <div className="flex flex-wrap gap-2">
               {selectedCert?.skills.map((skill) => (
-                <Badge key={skill} variant="secondary">
+                <Badge key={skill} variant="secondary" className="text-xs sm:text-sm">
                   {skill}
                 </Badge>
               ))}
