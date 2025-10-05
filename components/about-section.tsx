@@ -7,11 +7,19 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 
 const testimonials = [
   {
-    text: "I wanted to take a moment to personally recognize the outstanding support Brett White provided on the recent engagement with my customer. During a critical customer decision point around NetSuite Analytics Warehouse, Brett was simply exceptional. Despite the customer not bringing in the key data users to prior demos he remained cool, calm, and collected—continually redirecting the conversation to the strengths of the platform, especially around historical data utilization. Importantly, he struck the perfect balance between highlighting value and not overpromising—something that really builds long-term trust with customers. It was impressive to witness how well Brett navigated the call and reinforced the value of our solution in a clear and honest way. Collaborating with people like Brett is one of the reasons I stay at NetSuite.",
-    author: "Gary F.",
-    position: "Corporate Account Manager",
-    initials: "GF"
+    text: "The quality of Brett’s work is consistently outstanding. He approaches every task with integrity, diligence, and a positive attitude. Brett’s knowledge and work aptitude is highly respected by peers and supervisors alike for his professionalism and reliability. Brett is compassionate, ethical, and deeply committed professional. He consistently makes a positive impact within his team and to all those he provides his knowledge or time to mentor.",
+    author: "Dan C.",
+    position: "Consulting Manager",
+    initials: "DC"
   },
+
+  {
+    text: "From the outset, Brett distinguished himself through his keen analytical thinking and a deep curiosity about complex systems. Whether working on Oracle – NetSuite Certifications, developing educational items for the team, or uncovering meaningful insights from raw datasets, he combined rigorous technical skills with innovative thinking. His ability to ask the right questions, apply statistical reasoning, and communicate findings effectively to both technical and non-technical audiences has been invaluable to our team.",
+    author: "Ray M.",
+    position: "Senior Consulting Manager",
+    initials: "RM"
+  },
+
   {
     text: "Brett's taught me more about ERP than any of our corporate trainings have, he's always available and never judges me for having a bizarre or simple question, and above all else, he is an absolute pleasure to work with. Brett carries each customer demo/conversation with poise and respect, creating comfortable and inviting environments for all customers he speaks with. I know with 100 percent certainty that my customers are in great hands when Brett is on a call with us. His intelligence and depth of knowledge in the industry is inspiring.",
     author: "Mel B.",
@@ -35,7 +43,14 @@ const testimonials = [
     author: "Johnathan G.",
     position: "Senior Engineer",
     initials: "JG"
-  }
+  },
+  
+  {
+    text: "I wanted to take a moment to personally recognize the outstanding support Brett White provided on the recent engagement with my customer. During a critical customer decision point around NetSuite Analytics Warehouse, Brett was simply exceptional. Despite the customer not bringing in the key data users to prior demos he remained cool, calm, and collected—continually redirecting the conversation to the strengths of the platform, especially around historical data utilization. Importantly, he struck the perfect balance between highlighting value and not overpromising—something that really builds long-term trust with customers. It was impressive to witness how well Brett navigated the call and reinforced the value of our solution in a clear and honest way. Collaborating with people like Brett is one of the reasons I stay at NetSuite.",
+    author: "Gary F.",
+    position: "Corporate Account Manager",
+    initials: "GF"
+  },
 ]
 
 const achievements = [

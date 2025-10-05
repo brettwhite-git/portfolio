@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { AppSidebar } from "@/components/app-sidebar"
 import { HomeSection } from "@/components/home-section"
 import { ServicesSection } from "@/components/services-section"
@@ -21,6 +21,13 @@ type Section = "home" | "about" | "experience" | "projects" | "analytics" | "ski
 
 export default function Page() {
   const [activeSection, setActiveSection] = useState<Section>("home")
+  const [sidebarDefaultOpen, setSidebarDefaultOpen] = useState(true)
+
+  useEffect(() => {
+    // Check if window width is desktop (lg breakpoint is 1024px)
+    const isDesktop = window.innerWidth >= 1024
+    setSidebarDefaultOpen(isDesktop)
+  }, [])
 
   const renderSection = () => {
     switch (activeSection) {
@@ -60,6 +67,7 @@ export default function Page() {
 
   return (
     <SidebarProvider
+      defaultOpen={sidebarDefaultOpen}
       style={
         {
           "--sidebar-width": "calc(var(--spacing) * 72)",
