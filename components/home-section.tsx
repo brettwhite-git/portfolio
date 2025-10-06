@@ -63,7 +63,7 @@ export function HomeSection({ onNavigate }: HomeSectionProps) {
           {/* Profile Image */}
           <div className="relative w-full aspect-square p-4 pb-0">
             <Image
-              src="/profile.jpg"
+              src="/profile.webp"
               alt="Brett White"
               fill
               className="object-cover rounded-[20px]"

@@ -21,7 +21,9 @@ type Section = "home" | "about" | "experience" | "projects" | "analytics" | "ski
 
 export default function Page() {
   const [activeSection, setActiveSection] = useState<Section>("home")
-  const [sidebarOpen, setSidebarOpen] = useState(true)
+  // Initialize sidebar as closed to prevent flash on mobile/tablet
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   // Auto-collapse sidebar on tablet/mobile (iPad Pro and smaller), expand on desktop
   useEffect(() => {
@@ -32,6 +34,7 @@ export default function Page() {
     
     // Set initial state
     handleResize()
+    setMounted(true)
     
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)

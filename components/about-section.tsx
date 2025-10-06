@@ -141,7 +141,7 @@ export function AboutSection() {
         >
           <h2 className="text-xl md:text-2xl font-bold">Career Highlights</h2>
         </motion.div>
-        <div className="grid gap-4 grid-cols-2 md:grid-cols-3">
+        <div className="grid gap-3 md:gap-4 grid-cols-3">
           {achievements.map((achievement, index) => (
             <motion.div
               key={index}
@@ -150,9 +150,9 @@ export function AboutSection() {
               transition={{ duration: 0.5, delay: 0.6 + (index * 0.1), ease: "easeOut" }}
             >
               <Card className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow h-full">
-              <CardContent className="flex flex-col items-center justify-center p-8 text-center h-full">
-                <div className="text-3xl md:text-4xl font-bold mb-2">{achievement.value}</div>
-                <div className="text-sm text-muted-foreground min-h-[2.5rem] flex items-center">{achievement.label}</div>
+              <CardContent className="flex flex-col items-center justify-center p-3 md:p-6 lg:p-8 text-center h-full">
+                <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-1 md:mb-2">{achievement.value}</div>
+                <div className="text-xs sm:text-sm text-muted-foreground min-h-[2rem] md:min-h-[2.5rem] flex items-center leading-tight">{achievement.label}</div>
               </CardContent>
             </Card>
           </motion.div>

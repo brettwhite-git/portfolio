@@ -85,150 +85,115 @@ export function ContactSection() {
         </p>
       </motion.div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        {/* Contact Form */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-        >
-          <Card className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
-          <CardHeader>
-            <CardTitle>Send a Message</CardTitle>
-            <CardDescription>
-              Fill out the form below and I&apos;ll get back to you as soon as possible.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Name</FormLabel>
-                      <FormControl>
-                        <div className="relative">
-                          <IconUser className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                          <Input placeholder="Your name" className="pl-10" {...field} />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <div className="relative">
-                          <IconMail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                          <Input placeholder="your.email@example.com" className="pl-10" {...field} />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="subject"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Subject</FormLabel>
-                      <FormControl>
-                        <div className="relative">
-                          <IconMessageCircle className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                          <Input placeholder="What's this about?" className="pl-10" {...field} />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Message</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          placeholder="Your message..."
-                          className="min-h-[120px] resize-none"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                {submitStatus === "success" && (
-                  <div className="rounded-lg bg-green-50 dark:bg-green-950/20 p-3 text-sm text-green-800 dark:text-green-200">
-                    Message sent successfully! I&apos;ll get back to you soon.
-                  </div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        className="max-w-2xl mx-auto w-full"
+      >
+        <Card className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
+        <CardHeader>
+          <CardTitle>Send a Message</CardTitle>
+          <CardDescription>
+            Fill out the form below and I&apos;ll get back to you as soon as possible.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <IconUser className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                        <Input placeholder="Your name" className="pl-10" {...field} />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
                 )}
-
-                {submitStatus === "error" && (
-                  <div className="rounded-lg bg-red-50 dark:bg-red-950/20 p-3 text-sm text-red-800 dark:text-red-200">
-                    Failed to send message. Please try again or email directly at hello@brettwhite.io
-                  </div>
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <IconMail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                        <Input placeholder="your.email@example.com" className="pl-10" {...field} />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
                 )}
+              />
+              <FormField
+                control={form.control}
+                name="subject"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Subject</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <IconMessageCircle className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                        <Input placeholder="What's this about?" className="pl-10" {...field} />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="message"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Message</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Your message..."
+                        className="min-h-[120px] resize-none"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                <Button type="submit" className="w-full" disabled={isSubmitting}>
-                  {isSubmitting ? (
-                    "Sending..."
-                  ) : (
-                    <>
-                      <IconSend className="mr-2 h-4 w-4" />
-                      Send Message
-                    </>
-                  )}
-                </Button>
-              </form>
-            </Form>
-          </CardContent>
-          </Card>
-        </motion.div>
+              {submitStatus === "success" && (
+                <div className="rounded-lg bg-green-50 dark:bg-green-950/20 p-3 text-sm text-green-800 dark:text-green-200">
+                  Message sent successfully! I&apos;ll get back to you soon.
+                </div>
+              )}
 
-        {/* Contact Information */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-          className="space-y-6"
-        >
-          <Card className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <CardTitle>Contact Information</CardTitle>
-              <CardDescription>
-                You can also reach me through these channels
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-start gap-3">
-                <div className="rounded-lg bg-primary/10 p-2">
-                  <IconMail className="h-5 w-5 text-primary" />
+              {submitStatus === "error" && (
+                <div className="rounded-lg bg-red-50 dark:bg-red-950/20 p-3 text-sm text-red-800 dark:text-red-200">
+                  Failed to send message. Please try again.
                 </div>
-                <div>
-                  <p className="font-medium">Email</p>
-                  <a
-                    href="mailto:hello@brettwhite.io"
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    hello@brettwhite.io
-                  </a>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-      </div>
+              )}
+
+              <Button type="submit" className="w-full" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  "Sending..."
+                ) : (
+                  <>
+                    <IconSend className="mr-2 h-4 w-4" />
+                    Send Message
+                  </>
+                )}
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+        </Card>
+      </motion.div>
     </div>
   )
 }
