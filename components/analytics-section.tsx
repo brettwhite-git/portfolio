@@ -133,7 +133,18 @@ const barChartConfig = {
 } satisfies ChartConfig
 
 // Custom tick component for wrapping text on mobile
-const CustomYAxisTick = ({ x, y, payload, isMobile }: any) => {
+interface CustomYAxisTickProps {
+  x?: number
+  y?: number
+  payload?: { value: string }
+  isMobile?: boolean
+}
+
+const CustomYAxisTick = ({ x, y, payload, isMobile }: CustomYAxisTickProps) => {
+  if (!payload?.value) {
+    return null
+  }
+
   if (!isMobile) {
     return (
       <text x={x} y={y} dy={4} textAnchor="end" fill="currentColor" fontSize={12}>

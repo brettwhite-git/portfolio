@@ -20,5 +20,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return <RootLayoutClient inter={inter.variable}>{children}</RootLayoutClient>
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <RootLayoutClient className={`${inter.variable} antialiased font-normal`}>
+          {children}
+        </RootLayoutClient>
+      </body>
+    </html>
+  )
 }
