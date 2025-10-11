@@ -18,25 +18,25 @@ const services = [
     icon: IconUsers,
     title: "Sales Engineering",
     color: "bg-primary",
-    tags: ["Solution Design", "Discovery", "POC", "Value Engineering"]
+    tags: ["Solution Design", "Discovery", "Proof of Concept", "Value Engineering"]
   },
   {
     icon: IconBrain,
     title: "AI & Analytics",
     color: "bg-primary",
-    tags: ["Generative AI", "Agents", "Orchestration", "Analytics"]
+    tags: ["Generative AI", "Agents", "Context Engineering", "Machine Learning"]
   },
   {
     icon: IconCloud,
     title: "Cloud Architecture",
     color: "bg-primary",
-    tags: ["Oracle Cloud", "Serverless", "Networking", "Terraform"]
+    tags: ["Oracle Cloud", "Autonomous Database", "Serverless", "Networking"]
   },
   {
     icon: IconCode,
     title: "Development",
     color: "bg-primary",
-    tags: ["Application Development", "DevOps", "APIs", "Authentication"]
+    tags: ["Application Development", "System Design", "DevOps", "APIs"]
   },
   {
     icon: IconDatabase,
