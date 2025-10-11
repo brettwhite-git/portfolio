@@ -5,12 +5,12 @@ import { useRef } from "react"
 import { Card } from "@/components/ui/card"
 import {
   IconBrandHtml5,
-  IconBrandJavascript,
   IconBrandTailwind,
   IconBrandReact,
   IconSql,
   IconBrandPython,
   IconBrandTypescript,
+  IconBrandDocker,
 } from "@tabler/icons-react"
 import { BiLogoPostgresql } from "react-icons/bi"
 import { SiOracle } from "react-icons/si"
@@ -29,33 +29,33 @@ const skills: Skill[] = [
   },
   {
     id: 2,
-    name: "JavaScript",
-    icon: IconBrandJavascript,
-  },
-  {
-    id: 3,
     name: "TypeScript",
     icon: IconBrandTypescript,
   },
   {
-    id: 4,
+    id: 3,
     name: "React",
     icon: IconBrandReact,
   },
   {
-    id: 5,
+    id: 4,
     name: "Tailwind",
     icon: IconBrandTailwind,
   },
   {
-    id: 6,
+    id: 5,
     name: "SQL",
     icon: IconSql,
   },
   {
-    id: 7,
+    id: 6,
     name: "PostgreSQL",
     icon: BiLogoPostgresql,
+  },
+  {
+    id: 7,
+    name: "Docker",
+    icon: IconBrandDocker,
   },
   {
     id: 8,

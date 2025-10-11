@@ -110,16 +110,16 @@ const lineChartConfig = {
 } satisfies ChartConfig
 
 const barChartData = [
-  { module: "Payroll", count: 5 },
-  { module: "Planning & Budgeting", count: 9 },
-  { module: "Sandbox", count: 16 },
-  { module: "Ecommerce", count: 17 },
+  { module: "Email Marketing", count: 6 },
+  { module: "New Instance", count: 8 },
+  { module: "FP&A", count: 13 },
+  { module: "Ecommerce", count: 16 },
   { module: "Analytics Warehouse", count: 22 },
   { module: "OneWorld", count: 24 },
-  { module: "Integration", count: 27 },
-  { module: "Database", count: 40 },
+  { module: "Integration Services", count: 27 },
+  { module: "Database Services", count: 66 },
   { module: "CRM", count: 84 },
-  { module: "Connector", count: 93 },
+  { module: "Ecommerce Connector", count: 84 },
 ]
 
 const barChartConfig = {
@@ -131,6 +131,36 @@ const barChartConfig = {
     color: "hsl(var(--background))",
   },
 } satisfies ChartConfig
+
+// Custom tick component for wrapping text on mobile
+const CustomYAxisTick = ({ x, y, payload, isMobile }: any) => {
+  if (!isMobile) {
+    return (
+      <text x={x} y={y} dy={4} textAnchor="end" fill="currentColor" fontSize={12}>
+        {payload.value}
+      </text>
+    )
+  }
+
+  // Split text into words for wrapping on mobile
+  const words = payload.value.split(' ')
+  
+  if (words.length === 1) {
+    return (
+      <text x={x} y={y} dy={4} textAnchor="end" fill="currentColor" fontSize={10}>
+        {payload.value}
+      </text>
+    )
+  }
+
+  // Wrap text on mobile - split into two lines
+  return (
+    <text x={x} y={y} textAnchor="end" fill="currentColor" fontSize={10}>
+      <tspan x={x} dy="-0.6em">{words[0]}</tspan>
+      <tspan x={x} dy="1.2em">{words.slice(1).join(' ')}</tspan>
+    </text>
+  )
+}
 
 export function AnalyticsSection() {
   const containerRef = React.useRef(null)
@@ -512,8 +542,8 @@ export function AnalyticsSection() {
                 tickLine={false}
                 tickMargin={4}
                 axisLine={false}
-                width={isMobile ? 130 : 180}
-                tick={{ fontSize: isMobile ? 10 : 12 }}
+                width={isMobile ? 100 : 180}
+                tick={<CustomYAxisTick isMobile={isMobile} />}
                 reversed
               />
               <ChartTooltip

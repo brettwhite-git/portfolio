@@ -36,7 +36,7 @@ const services = [
     icon: IconCode,
     title: "Development",
     color: "bg-primary",
-    tags: ["Application Development", "Backend Development", "APIs", "Authentication"]
+    tags: ["Application Development", "DevOps", "APIs", "Authentication"]
   },
   {
     icon: IconDatabase,

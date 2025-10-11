@@ -32,11 +32,11 @@ export function HomeSection({ onNavigate }: HomeSectionProps) {
             <span className="text-primary">scale.</span>
           </h1>
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-            Great technology isn&apos;t about complexity — it&apos;s about clarity. I transform
+            Great technology isn&apos;t about complexity but clarity. I transform
             business challenges into elegant solutions that people actually want to use.
             From architecting cloud infrastructure to orchestrating AI workflows, I bridge
-            the gap between what&apos;s possible and what&apos;s practical. The best solutions don&apos;t
-            just solve today&apos;s problems — they unlock tomorrow&apos;s opportunities.
+            the gap between what&apos;s possible and what&apos;s practical. The best solutions not only
+            solve today&apos;s problems but also unlock tomorrow&apos;s opportunities.
           </p>
         </div>
         <div>

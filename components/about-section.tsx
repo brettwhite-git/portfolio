@@ -118,15 +118,15 @@ export function AboutSection() {
         transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
       >
         <Card className="bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
-        <CardContent className="space-y-4 text-sm md:text-base leading-relaxed px-4 md:px-12 py-6">
+        <CardContent className="space-y-4 text-sm md:text-base leading-relaxed px-6 md:px-10 py-2">
           <p>
-            I&apos;m a seasoned technology professional with a passion for solving complex business challenges through innovative cloud solutions and data-driven insights. My journey began with a BS in Industrial Distribution from Texas A&M University, where I developed a foundation in supply chain and procurement operations. Today, I&apos;m pursuing a Master of Science in Analytics at Georgia Tech, continuously sharpening my ability to turn data into actionable business intelligence.
+            I&apos;m a seasoned technology professional with a passion for solving complex business challenges through innovative cloud solutions. My journey began with a BS in Industrial Distribution from Texas A&M University, where I developed a foundation in supply chain and procurement operations. Today, I&apos;m pursuing a Master of Science in Analytics at Georgia Tech, continuously sharpening my ability to turn data into actionable business intelligence.
           </p>
           <p>
             Throughout my career, I&apos;ve worked with companies both small and large across the products and e-commerce space, specializing in supply chain optimization, procurement operations, and enterprise resource planning. From managing inventory systems and vendor partnerships to architecting cloud solutions, I&apos;ve seen firsthand how the right technology transforms operational complexity into competitive advantage. I specialize in Oracle NetSuite, cloud infrastructure, and building scalable systems that drive measurable business growth.
           </p>
           <p>
-            I&apos;m endlessly curious about technology and driven by the pursuit of excellence. Whether it&apos;s generating over $17M in ARR, implementing solutions for 600+ customers, or earning 14+ certifications, I&apos;m always looking for ways to build systems that actually work—not just technically sound solutions, but ones people want to use. I&apos;ve presented at industry conferences, contributed 60+ hours of pro bono work, and believe that the best solutions don&apos;t just solve today&apos;s problems—they unlock tomorrow&apos;s opportunities.
+            I&apos;m endlessly curious about technology and driven by the pursuit of excellence. Whether it&apos;s generating over $17M in ARR, helping implement solutions for 600+ customers, or earning more certifications than I can count on both hands, I&apos;m always looking for ways to build systems that actually work. I help align solutions that are not only technically sound but also ones that people want to use. My passion for sharing knowledge through industry conferences and contributing over 60 hours of pro bono work reflects my belief that technology should empower and elevate everyone it touches.
           </p>
         </CardContent>
         </Card>
