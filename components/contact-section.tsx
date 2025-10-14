@@ -56,11 +56,21 @@ export function ContactSection() {
     setSubmitStatus(null)
 
     try {
-      // TODO: Implement email sending logic here
-      // For now, just simulate a delay
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      })
 
-      console.log("Form submitted:", values)
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message')
+      }
+
+      console.log("Form submitted successfully:", data)
       setSubmitStatus("success")
       form.reset()
     } catch (error) {
