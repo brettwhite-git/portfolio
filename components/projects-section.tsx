@@ -22,7 +22,7 @@ const projects = [
     title: "Portfolio",
     description: "Modern personal portfolio website showcasing professional experience, projects, and technical skills with responsive design.",
     tags: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
-    github: "https://github.com/brettwhite-git/portfolio",
+    github: "https://github.com/brettwhite-git/bitbasis-public",
     demo: "#",
     image: "/placeholder.svg"
   },

@@ -111,7 +111,7 @@ const lineChartConfig = {
 
 const barChartData = [
   { module: "Email Marketing", count: 6 },
-  { module: "New Instance", count: 8 },
+  { module: "Fixed Assets", count: 6 },
   { module: "FP&A", count: 13 },
   { module: "Ecommerce", count: 16 },
   { module: "Analytics Warehouse", count: 22 },
