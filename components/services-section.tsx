@@ -42,7 +42,7 @@ const services = [
     icon: IconDatabase,
     title: "Data Engineering",
     color: "bg-primary",
-    tags: ["PostgreSQL", "Data Warehousing", "Data Modeling", "Data Pipelines"]
+    tags: ["SQL", "Data Warehousing", "Data Modeling", "Data Pipelines"]
   },
   {
     icon: IconShieldCheck,

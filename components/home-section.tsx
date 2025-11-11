@@ -35,8 +35,7 @@ export function HomeSection({ onNavigate }: HomeSectionProps) {
             Great technology isn&apos;t about complexity but clarity. I transform
             business challenges into elegant solutions that people actually want to use.
             From architecting cloud infrastructure to orchestrating AI workflows, I bridge
-            the gap between what&apos;s possible and what&apos;s practical. The best solutions not only
-            solve today&apos;s problems but also unlock tomorrow&apos;s opportunities.
+            the gap between what&apos;s possible and what&apos;s practical.
           </p>
         </div>
         <div>
@@ -45,7 +44,7 @@ export function HomeSection({ onNavigate }: HomeSectionProps) {
             className="rounded-full px-8 gap-2"
             onClick={() => onNavigate?.("contact")}
           >
-            Let&apos;s not just talk, let&apos;s build
+            Let&apos;s build something
             <IconArrowRight className="h-5 w-5" />
           </Button>
         </div>
@@ -75,7 +74,7 @@ export function HomeSection({ onNavigate }: HomeSectionProps) {
           <div className="px-6 py-6 space-y-2 flex-grow flex flex-col justify-center">
             <h3 className="text-lg md:text-xl font-semibold text-foreground">Brett White</h3>
             <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-              Solutions Architect who focuses on creating exceptional digital experiences.
+              Solutions Developer who focuses on creating exceptional digital experiences.
             </p>
           </div>
         </div>

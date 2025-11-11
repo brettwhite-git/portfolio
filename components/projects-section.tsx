@@ -13,7 +13,7 @@ const projects = [
     title: "BitBasis",
     description: "A platform for consolidating bitcoin transactions for cost basis tracking and tax reporting.",
     tags: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
-    github: "https://github.com/brettwhite-git/bitbasis",
+    github: "https://github.com/brettwhite-git/bitbasis-public",
     demo: "#",
     image: "/placeholder.svg"
   },
@@ -22,7 +22,7 @@ const projects = [
     title: "Portfolio",
     description: "Modern personal portfolio website showcasing professional experience, projects, and technical skills with responsive design.",
     tags: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
-    github: "https://github.com/brettwhite-git/bitbasis-public",
+    github: "https://github.com/brettwhite-git/portfolio",
     demo: "#",
     image: "/placeholder.svg"
   },

@@ -39,7 +39,7 @@ export function SiteHeader() {
           </Button>
           <Button variant="ghost" size="icon" asChild>
             <a
-              href="https://x.com/"
+              href="https://x.com/brettposts"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="X (Twitter)"
