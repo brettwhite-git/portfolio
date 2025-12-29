@@ -270,7 +270,7 @@ export function AnalyticsSection() {
         </Card>
         <Card className="@container/card bg-gradient-to-t from-primary/3 to-card rounded-[24px] border-border/30 shadow-md hover:shadow-lg transition-shadow">
           <CardHeader className="overflow-hidden [&[data-slot=card-header]]:grid-cols-[1fr_minmax(80px,35%)] @[260px]/card:[&[data-slot=card-header]]:grid-cols-[1fr_minmax(100px,38%)] @[320px]/card:[&[data-slot=card-header]]:grid-cols-[1fr_minmax(120px,42%)] @[400px]/card:[&[data-slot=card-header]]:grid-cols-[1fr_minmax(140px,48%)]">
-            <CardDescription className="text-[10px] @[220px]/card:text-xs @[280px]/card:text-sm">Avg Deal Value</CardDescription>
+            <CardDescription className="text-[10px] @[220px]/card:text-xs @[280px]/card:text-sm">Avg Deal Closed</CardDescription>
             <CardTitle className="text-lg font-semibold tabular-nums @[220px]/card:text-xl @[260px]/card:text-2xl @[320px]/card:text-2xl @[380px]/card:text-3xl whitespace-nowrap overflow-hidden text-ellipsis">
               $27.3K
             </CardTitle>
