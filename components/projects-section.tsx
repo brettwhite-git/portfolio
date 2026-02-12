@@ -26,6 +26,24 @@ const projects = [
     demo: "#",
     image: "/placeholder.svg"
   },
+  {
+    id: 3,
+    title: "NSAW Schema Explorer",
+    description: "An AI-powered schema exploration tool using D3 force graphs and ReactFlow for interactive visualization of data relationships.",
+    tags: ["React", "Vite", "ReactFlow", "D3", "Gemini API"],
+    github: "https://github.com/brettwhite-git/nsaw-schema-explorer",
+    demo: "#",
+    image: "/placeholder.svg"
+  },
+  {
+    id: 4,
+    title: "SuitePrompt",
+    description: "A marketplace and learning platform for NetSuite prompts, templates, and skills with interactive SuiteCloud development courses.",
+    tags: ["Next.js", "MDX", "Monaco Editor", "Tailwind CSS"],
+    github: "https://github.com/brettwhite-git/suiteprompt",
+    demo: "#",
+    image: "/placeholder.svg"
+  },
 ]
 
 export function ProjectsSection() {

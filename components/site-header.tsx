@@ -1,5 +1,4 @@
 import { Github, Linkedin, FileText } from "lucide-react"
-import { IconBrandX } from "@tabler/icons-react"
 
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
@@ -35,16 +34,6 @@ export function SiteHeader() {
               aria-label="GitHub"
             >
               <Github className="h-4 w-4" />
-            </a>
-          </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <a
-              href="https://x.com/brettposts"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="X (Twitter)"
-            >
-              <IconBrandX className="h-4 w-4" />
             </a>
           </Button>
           <Button variant="ghost" size="icon" asChild>
