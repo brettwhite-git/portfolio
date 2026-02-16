@@ -10,24 +10,15 @@ import { IconBrandGithub } from "@tabler/icons-react"
 const projects = [
   {
     id: 1,
-    title: "BitBasis",
-    description: "A Bitcoin cost basis tracker that enables users to upload CSVs, record transactions, calculate cost basis, track fees, and visualize investment performance with KPIs and charts.",
-    tags: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
-    github: "https://github.com/brettwhite-git/bitbasis-public",
+    title: "Opportunity Kanban",
+    description: "A NetSuite SuiteApp that renders a kanban board portlet on dashboards, giving sales reps a visual pipeline of their opportunities organized by status columns.",
+    tags: ["SuiteScript", "JavaScript", "NetSuite"],
+    github: "https://github.com/brettwhite-git/opportunity-kanban",
     demo: "#",
     image: "/placeholder.svg"
   },
   {
     id: 2,
-    title: "Portfolio",
-    description: "A personal website to showcase solution consultant sales experience. Features a career impact section, work history, certifications, projects, and an analytics dashboard.",
-    tags: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
-    github: "https://github.com/brettwhite-git/portfolio",
-    demo: "#",
-    image: "/placeholder.svg"
-  },
-  {
-    id: 3,
     title: "NSAW Schema Explorer",
     description: "Built an interactive data visualization tool for Oracle NetSuite Analytics Warehouse that maps schema relationships using D3 force-directed graphs and ReactFlow.",
     tags: ["React", "Vite", "ReactFlow", "D3", "Gemini API"],
@@ -36,11 +27,29 @@ const projects = [
     image: "/placeholder.svg"
   },
   {
-    id: 4,
+    id: 3,
     title: "SuitePrompt",
-    description: "Developed a full-stack marketplace and learning platform for NetSuite AI prompts and SuiteCloud development skills. Features interactive coding courses with an embedded Monaco editor, MDX-powered content authoring, and a curated prompt/template library.",
+    description: "A marketplace and learning platform for NetSuite AI prompts and SuiteCloud development skills with interactive coding courses and MDX-powered content.",
     tags: ["Next.js", "MDX", "Monaco Editor", "Tailwind CSS"],
     github: "https://github.com/brettwhite-git/suiteprompt",
+    demo: "#",
+    image: "/placeholder.svg"
+  },
+  {
+    id: 4,
+    title: "BitBasis",
+    description: "A Bitcoin cost basis tracker that enables users to upload CSVs, record transactions, calculate cost basis, track fees, and visualize investment performance with KPIs and charts.",
+    tags: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
+    github: "https://github.com/brettwhite-git/bitbasis-public",
+    demo: "#",
+    image: "/placeholder.svg"
+  },
+  {
+    id: 5,
+    title: "Portfolio",
+    description: "A personal website to showcase solution consultant sales experience. Features a career impact section, work history, certifications, projects, and an analytics dashboard.",
+    tags: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
+    github: "https://github.com/brettwhite-git/portfolio",
     demo: "#",
     image: "/placeholder.svg"
   },

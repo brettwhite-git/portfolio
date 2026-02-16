@@ -65,6 +65,12 @@ Results-driven Solution Consultant with 6+ years of expertise in cloud ERP softw
 
 ## Projects
 
+### Opportunity Kanban
+A NetSuite SuiteApp that renders a kanban board portlet on dashboards, giving sales reps a visual pipeline of their opportunities organized by status columns.
+
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black&style=flat-square)
+![SuiteScript](https://img.shields.io/badge/SuiteScript-1B1F24?style=flat-square)
+
 ### NSAW Schema Explorer
 Built an interactive data visualization tool for Oracle NetSuite Analytics Warehouse that maps schema relationships using D3 force-directed graphs and ReactFlow.
 
@@ -73,7 +79,7 @@ Built an interactive data visualization tool for Oracle NetSuite Analytics Wareh
 ![D3.js](https://img.shields.io/badge/D3.js-F9A03C?logo=d3dotjs&logoColor=white&style=flat-square)
 
 ### SuitePrompt
-Developed a full-stack marketplace and learning platform for NetSuite AI prompts and SuiteCloud development skills. Features interactive coding courses with an embedded Monaco editor, MDX-powered content authoring, and a curated prompt/template library.
+A marketplace and learning platform for NetSuite AI prompts and SuiteCloud development skills with interactive coding courses and MDX-powered content.
 
 ![Next.js](https://img.shields.io/badge/Next.js-black?logo=next.js&style=flat-square)
 ![MDX](https://img.shields.io/badge/MDX-1B1F24?logo=mdx&logoColor=white&style=flat-square)
