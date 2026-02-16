@@ -13,9 +13,9 @@ const experiences = [
     period: "June 2025 - Present",
     description: "Oracle NetSuite is a leading cloud-based Enterprise Resource Planning (ERP) platform that offers a comprehensive suite of applications to manage business operations. It integrates various functions such as financials, CRM, e-commerce, and inventory, providing real-time visibility into financial data.",
     responsibilities: [
-      "Drive product growth strategy across retail, hospitality, commerce, and apparel verticals while continuing to drive ARR through direct sales, creating standardized approaches the entire pre-sales team uses for vertical deals.",
-      "Run two subject matter expert groups that create customer-facing assets and demo materials, cutting prep time by 40% across all consultants while maintaining top individual performance.",
-      "Own the technical sales process for NetSuite Analytics Warehouse, building demonstration methods and training materials for consultants organization-wide use for complex data warehouse deals - achieved highest NSAW sales on the team while scaling methodology.",
+      "Drive product growth strategy across retail, hospitality, ecommerce, and apparel verticals while continuing to drive ARR through direct sales, creating standardized approaches the entire pre-sales team uses for vertical deals.",
+      "Run two subject matter expert groups that enhance customer-facing assets and demo materials, cutting demo prep time by 30% across the account management pre-sales organization.",
+      "Own the technical sales process for NetSuite Analytics Warehouse, building demonstration methods and training materials that support complex data warehouse deals—achieving highest NSAW sales on the team.",
       "Integrate generative AI tools into pre-sales workflows, creating automated dataset generation that lets consultants create advanced demo scenarios 60% faster than doing it manually.",
       "Support onboarding program for new consultants while serving in product advisory capacity, building structured training that covers business fundamentals and internal checkpoints."
     ],
@@ -40,7 +40,7 @@ const experiences = [
     id: 3,
     title: "Staff Solution Consultant",
     company: "Oracle NetSuite",
-    period: "Nov 2019 - Dec 2021",
+    period: "June 2019 – Dec 2021",
     description: "",
     responsibilities: [
       "Drove NetSuite adoption and strategic customer engagement, generating over $3.5M in Annual Recurring Revenue (ARR) by upselling modular solutions, net new ERP instances, and managed services.",
@@ -69,7 +69,7 @@ const experiences = [
     title: "Supply Chain Manager",
     company: "Benedettini Cabinetry",
     period: "Feb 2013 - Jul 2016",
-    description: "Benedettini Cabinetry is a distinguished provider of custom cabinetry, known for their craftsmanship and dedication to quality. Specializing in unique designs tailored to individual specifications, they blend traditional woodworking techniques with modern aesthetics to create functional and stylish cabinetry for residential spaces.",
+    description: "Benedettini Cabinetry is a distinguished provider of custom cabinetry, known for its craftsmanship and dedication to quality. Specializing in unique designs created to individual specifications, they blend traditional woodworking techniques with modern aesthetics to create cabinetry for residential spaces.",
     responsibilities: [
       "Cultivated robust supplier partnerships, guaranteeing consistent material supply and effectively navigating lumbar market changes to maintain supply chain integrity.",
       "Pioneered the creation of a mobile inventory scanning app, cutting error rates and delivery discrepancy-related back-charges by 80%, enhancing operational accuracy.",

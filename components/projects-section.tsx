@@ -11,7 +11,7 @@ const projects = [
   {
     id: 1,
     title: "BitBasis",
-    description: "A platform for consolidating bitcoin transactions for cost basis tracking and tax reporting.",
+    description: "A Bitcoin cost basis tracker that enables users to upload CSVs, record transactions, calculate cost basis, track fees, and visualize investment performance with KPIs and charts.",
     tags: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
     github: "https://github.com/brettwhite-git/bitbasis-public",
     demo: "#",
@@ -20,7 +20,7 @@ const projects = [
   {
     id: 2,
     title: "Portfolio",
-    description: "Modern personal portfolio website showcasing professional experience, projects, and technical skills with responsive design.",
+    description: "A personal website to showcase solution consultant sales experience. Features a career impact section, work history, certifications, projects, and an analytics dashboard.",
     tags: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
     github: "https://github.com/brettwhite-git/portfolio",
     demo: "#",
@@ -29,7 +29,7 @@ const projects = [
   {
     id: 3,
     title: "NSAW Schema Explorer",
-    description: "An AI-powered schema exploration tool using D3 force graphs and ReactFlow for interactive visualization of data relationships.",
+    description: "Built an interactive data visualization tool for Oracle NetSuite Analytics Warehouse that maps schema relationships using D3 force-directed graphs and ReactFlow.",
     tags: ["React", "Vite", "ReactFlow", "D3", "Gemini API"],
     github: "https://github.com/brettwhite-git/nsaw-schema-explorer",
     demo: "#",
@@ -38,7 +38,7 @@ const projects = [
   {
     id: 4,
     title: "SuitePrompt",
-    description: "A marketplace and learning platform for NetSuite prompts, templates, and skills with interactive SuiteCloud development courses.",
+    description: "Developed a full-stack marketplace and learning platform for NetSuite AI prompts and SuiteCloud development skills. Features interactive coding courses with an embedded Monaco editor, MDX-powered content authoring, and a curated prompt/template library.",
     tags: ["Next.js", "MDX", "Monaco Editor", "Tailwind CSS"],
     github: "https://github.com/brettwhite-git/suiteprompt",
     demo: "#",
