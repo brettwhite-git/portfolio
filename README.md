@@ -7,7 +7,7 @@
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-12-E910E3?logo=framer&logoColor=white)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-**Houston, TX** | hello@brettwhite.io | [brettwhite.io](https://brettwhite.io) | [LinkedIn](https://linkedin.com/in/brettwhite)
+**Houston, TX** | hello@brettwhite.io | [brettwhite.io](https://brettwhite.io) | [LinkedIn](https://www.linkedin.com/in/bwhite90/)
 
 ---
 
