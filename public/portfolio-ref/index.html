@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="/portfolio-ref/">
+<title>Brett White · Solutions Developer</title>
+<link rel="stylesheet" href="portfolio.css">
+<style>
+  /* Editorial loads fullscreen — no canvas chrome needed */
+  body { background: var(--parchment); }
+  body.tweaks-on .tweaks-only { display: block; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<!-- Editmode anchor — the host rewrites this block when the user changes a Tweak -->
+<script>
+window.__TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "theme": "light",
+  "accent": "#1B365D",
+  "density": "comfortable"
+}/*EDITMODE-END*/;
+</script>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="data.js"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="components.jsx"></script>
+<script type="text/babel" src="variant-editorial.jsx"></script>
+
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+function App() {
+  const [t, setTweak] = useTweaks(window.__TWEAK_DEFAULTS);
+
+  // Apply theme + accent + density to <body> + :root
+  useEffect(() => {
+    document.body.classList.toggle("theme-dark", t.theme === "dark");
+    document.documentElement.style.setProperty("--brand", t.accent);
+    document.documentElement.style.setProperty("--brand-light", lighten(t.accent, 0.18));
+    document.documentElement.style.setProperty("--brand-tint", tint(t.accent, 0.92));
+    const d = { compact: 0.85, comfortable: 1, airy: 1.18 }[t.density] || 1;
+    document.documentElement.style.setProperty("--density", d);
+  }, [t.theme, t.accent, t.density]);
+
+  return (
+    <>
+      <VariantEditorial />
+
+      <TweaksPanel title="Tweaks">
+        <TweakSection label="Theme">
+          <TweakRadio
+            label="Mode"
+            value={t.theme}
+            onChange={(v) => setTweak("theme", v)}
+            options={[{ value: "light", label: "Light" }, { value: "dark", label: "Dark" }]}
+          />
+        </TweakSection>
+        <TweakSection label="Accent">
+          <TweakColor
+            label="Brand color"
+            value={t.accent}
+            onChange={(v) => setTweak("accent", v)}
+          />
+          <div style={{ display: "flex", gap: "6px", padding: "0 14px 10px", flexWrap: "wrap" }}>
+            {["#1B365D", "#2E5E3A", "#7A3B2E", "#4A3C7A", "#8C6A1F", "#141413"].map(c => (
+              <button key={c} onClick={() => setTweak("accent", c)} style={{
+                width: "24px", height: "24px", borderRadius: "50%", background: c,
+                border: t.accent === c ? "2px solid #fff" : "1px solid rgba(0,0,0,0.2)",
+                boxShadow: t.accent === c ? "0 0 0 1.5px " + c : "none",
+                cursor: "pointer", padding: 0
+              }}/>
+            ))}
+          </div>
+        </TweakSection>
+        <TweakSection label="Density">
+          <TweakRadio
+            label="Spacing"
+            value={t.density}
+            onChange={(v) => setTweak("density", v)}
+            options={[
+              { value: "compact",     label: "Compact" },
+              { value: "comfortable", label: "Comfy" },
+              { value: "airy",        label: "Airy" }
+            ]}
+          />
+        </TweakSection>
+      </TweaksPanel>
+    </>
+  );
+}
+
+// crude color helpers — keep accent picker self-contained
+function lighten(hex, amt) {
+  const { r, g, b } = hexToRgb(hex);
+  return rgbToHex(
+    Math.min(255, Math.round(r + (255 - r) * amt)),
+    Math.min(255, Math.round(g + (255 - g) * amt)),
+    Math.min(255, Math.round(b + (255 - b) * amt))
+  );
+}
+function tint(hex, amt) {
+  const { r, g, b } = hexToRgb(hex);
+  return rgbToHex(
+    Math.round(r + (255 - r) * amt),
+    Math.round(g + (255 - g) * amt),
+    Math.round(b + (255 - b) * amt)
+  );
+}
+function hexToRgb(hex) {
+  const h = hex.replace("#", "");
+  return { r: parseInt(h.substr(0,2), 16), g: parseInt(h.substr(2,2), 16), b: parseInt(h.substr(4,2), 16) };
+}
+function rgbToHex(r, g, b) {
+  const to = (n) => n.toString(16).padStart(2, "0");
+  return "#" + to(r) + to(g) + to(b);
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
