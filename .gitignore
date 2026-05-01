@@ -43,3 +43,6 @@ CLAUDE.md
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local-only legacy archive (dashboard SPA — kept on disk for reference, not in repo)
+/archive/
