@@ -74,7 +74,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Dark mode */
+/* Dark mode — warm parchment swaps to warm dark; ink-blue accent swaps to amber. */
 body.theme-dark {
   --parchment:    #141413;
   --parchment-2:  #1c1b18;
@@ -86,7 +86,9 @@ body.theme-dark {
   --stone:        #87867f;
   --border:       #2a2825;
   --border-soft:  #2f2d29;
-  --brand-tint:   #1c2738;
+  --brand:        #E07B3F;
+  --brand-light:  #F0985E;
+  --brand-tint:   #2A1F15;
 }
 
 /* ---------- Type primitives ---------- */
