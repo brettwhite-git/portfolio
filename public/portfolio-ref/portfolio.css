@@ -381,3 +381,120 @@ ul.dash li::before {
   white-space: nowrap;
 }
 body.theme-dark .portrait-frame__inner { background: var(--warm-sand); }
+
+/* ================================================================
+   Responsive overrides
+   variant-editorial.jsx uses inline style props heavily, so most
+   rules below use !important to win against inline style="..."
+   attributes. Three breakpoints: tablet ≤1024 · phone ≤820 · small ≤480.
+   ================================================================ */
+
+/* ---------- Tablet down (≤1024px) ---------- */
+@media (max-width: 1024px) {
+  .container { padding: 0 32px; }
+  .topnav { padding: 14px 32px; }
+
+  /* Skills metrics: 4-col → 2-col */
+  [style*="repeat(4, 1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 32px 24px !important;
+  }
+
+  /* Skills L+R split (1.1fr 0.9fr) → stack */
+  [style*="1.1fr 0.9fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* Skills matrix inner 2-col → 1-col */
+  #skills [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ---------- Phone (≤820px) ---------- */
+@media (max-width: 820px) {
+  :root { --section-pad-y: 64px; }
+  .container { padding: 0 20px; }
+
+  /* Top nav: hide center links, brand + icons only */
+  .topnav { padding: 12px 20px !important; }
+  .topnav nav { display: none !important; }
+  /* Trim brand mark to just "Brett White" — drop " · Solutions Developer" */
+  .topnav .brand-mark > span:nth-child(2),
+  .topnav .brand-mark > span:nth-child(3) { display: none; }
+
+  /* Intro: portrait above hero text */
+  [style*="minmax(220px, 320px) 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  /* Constrain portrait width when stacked so it doesn't dominate */
+  #intro [style*="minmax(220px, 320px) 1fr"] > div:first-child {
+    max-width: 280px;
+  }
+
+  /* About + Contact: 1fr 1fr → stack */
+  #about > .container > div,
+  #contact > .container > div {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* Projects: 2-col → 1-col */
+  #projects [style*="repeat(2, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Metrics: 2-col → 1-col on phones */
+  [style*="repeat(4, 1fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  /* History timeline: stack date above role; hide spine + dots */
+  #history [style*="120px 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+    padding: 20px 0 !important;
+  }
+  #history [style*="120px 1fr"] > div:first-child { padding-top: 0 !important; }
+  #history [style*="120px 1fr"] > div:last-child { padding-left: 0 !important; }
+  /* The decorative spine — first child of #history's outer wrapper */
+  #history > .container > div > div:first-child { display: none !important; }
+  /* The per-row dot — absolute-positioned at left:115px */
+  #history [style*="left: 115px"] { display: none !important; }
+
+  /* Type sizing — override inline fontSize: "Xpx" props */
+  [style*="font-size: 36px"] { font-size: 26px !important; }
+  [style*="font-size: 64px"] { font-size: 44px !important; }
+  #history h3[style*="font-size: 26px"] { font-size: 22px !important; }
+  #projects h3[style*="font-size: 22px"] { font-size: 20px !important; }
+  #contact h2.display[style*="font-size: 56px"] { font-size: 40px !important; }
+  #contact .lede[style*="font-size: 19px"] { font-size: 17px !important; }
+  #intro .lede[style*="font-size: 22px"] { font-size: 18px !important; }
+
+  /* Footer */
+  .site-footer {
+    padding: 32px 20px 40px !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    text-align: left;
+  }
+}
+
+/* ---------- Small phone (≤480px) ---------- */
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  [style*="font-size: 64px"] { font-size: 36px !important; }
+  [style*="font-size: 36px"] { font-size: 22px !important; }
+  .section-title { font-size: 22px !important; }
+  .card { padding: 18px; }
+
+  /* Education row: degree + year stack instead of inline */
+  #skills div[style*="justify-content: space-between"][style*="align-items: baseline"] {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+  }
+}
