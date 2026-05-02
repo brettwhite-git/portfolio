@@ -386,13 +386,41 @@ body.theme-dark .portrait-frame__inner { background: var(--warm-sand); }
    Responsive overrides
    variant-editorial.jsx uses inline style props heavily, so most
    rules below use !important to win against inline style="..."
-   attributes. Three breakpoints: tablet ≤1024 · phone ≤820 · small ≤480.
+   attributes.
+
+   Breakpoints tuned for Apple devices:
+   ≤1100px  large tablet (iPad Pro/Air 13" portrait 1032,
+                         iPad 11" landscape 1180+ stays desktop)
+   ≤1024px  small tablet (iPad Pro/Air 11" portrait 820–834,
+                         iPhone Pro Max landscape 956)
+   ≤768px   phone (iPhone 16 Pro Max 440, iPhone 16 Pro 402,
+                  iPad mini portrait 744)
+   ≤480px   small phone (iPhone 16 Pro 402)
    ================================================================ */
 
-/* ---------- Tablet down (≤1024px) ---------- */
+/* ---------- Large tablet (≤1100px) ---------- */
+/* Light padding adjustment so iPad Pro/Air 13" portrait (1032)
+   doesn't feel edge-to-edge. Layout itself stays desktop. */
+@media (max-width: 1100px) {
+  .container { padding: 0 40px; }
+  .topnav { padding: 14px 40px; }
+  .site-footer { padding: 44px 40px 56px; }
+}
+
+/* ---------- Small tablet (≤1024px) ---------- */
+/* Catches iPad Pro/Air 11" portrait (820–834) and iPhone landscape.
+   Collapses the wider grids; nav + brand mark stay visible but tighten. */
 @media (max-width: 1024px) {
   .container { padding: 0 32px; }
   .topnav { padding: 14px 32px; }
+  .site-footer { padding: 40px 32px 48px; }
+
+  /* Trim brand mark to just "Brett White" so 6-link nav fits beside icons */
+  .topnav .brand-mark > span:nth-child(2),
+  .topnav .brand-mark > span:nth-child(3) { display: none; }
+  /* Tighten nav so 6 links fit comfortably alongside brand + icons */
+  .topnav nav { gap: 20px; }
+  .topnav nav a { font-size: 12px; }
 
   /* Skills metrics: 4-col → 2-col */
   [style*="repeat(4, 1fr)"] {
@@ -412,8 +440,10 @@ body.theme-dark .portrait-frame__inner { background: var(--warm-sand); }
   }
 }
 
-/* ---------- Phone (≤820px) ---------- */
-@media (max-width: 820px) {
+/* ---------- Phone (≤768px) ---------- */
+/* iPhone portrait + iPad mini portrait. Hide center nav, stack everything,
+   drop type sizes for narrow reading. */
+@media (max-width: 768px) {
   :root { --section-pad-y: 64px; }
   .container { padding: 0 20px; }
 
