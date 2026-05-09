@@ -72,7 +72,9 @@ function VariantEditorial() {
             <div className="reveal">
               <h1 className="display" style={{ marginTop: "20px", marginBottom: "20px" }}>
                 {D.name}.<br/>
-                Pre-sales engineer, sometimes <em>shipping</em> code.
+                Pre-sales engineer,<br/>
+                part consultant,<br/>
+                part <em>builder</em>.
               </h1>
               <div style={{
                 width: "60px", height: "2px", background: "var(--brand)",
@@ -268,6 +270,28 @@ function VariantEditorial() {
                 {p.stack.map(s => <span key={s} className="tag">{s}</span>)}
               </div>
             </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* REVIEWS ================================================== */}
+      <Section id="reviews">
+        <span className="eyebrow">Reviews</span>
+        <h2 className="section-title" style={{ fontSize: "36px", marginTop: "20px", marginBottom: "20px" }}>
+          What others say.
+        </h2>
+        <p className="lede" style={{ fontSize: "18px", maxWidth: "56ch", marginBottom: "32px" }}>
+          A few notes from teammates and partners who have seen the technical work meet real customer pressure.
+        </p>
+        <div className="reviews-grid">
+          {D.reviews.map((r, i) => (
+            <article key={i} className="review-card card reveal">
+              <p className="review-card__quote">&ldquo;{r.text}&rdquo;</p>
+              <div className="review-card__meta">
+                <span>{r.author}</span>
+                <span>{r.role}</span>
+              </div>
+            </article>
           ))}
         </div>
       </Section>

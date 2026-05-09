@@ -129,7 +129,6 @@ window.PORTFOLIO = {
         { name: "React",   level: 4 },
         { name: "Next.js", level: 4 },
         { name: "Node.js", level: 4 },
-        { name: "D3",      level: 3, note: "force-directed schema viz" },
         { name: "ReactFlow", level: 3 },
         { name: "Tailwind", level: 4 }
       ]
@@ -139,10 +138,8 @@ window.PORTFOLIO = {
       items: [
         { name: "NetSuite (full stack)", level: 5 },
         { name: "Analytics Warehouse",   level: 5 },
-        { name: "Planning & Budgeting",  level: 4 },
         { name: "OCI",                   level: 4 },
-        { name: "Supabase",              level: 3 },
-        { name: "Twilio Voice / CI",     level: 4 }
+        { name: "Supabase",              level: 3 }
       ]
     },
     {
@@ -151,8 +148,7 @@ window.PORTFOLIO = {
         { name: "SuiteAgent",       level: 5 },
         { name: "CustomTool / MCP", level: 5 },
         { name: "N/llm",            level: 4 },
-        { name: "Agentic IDE flows",level: 4 },
-        { name: "Quarto / renv",    level: 4 }
+        { name: "Agentic IDE flows",level: 4 }
       ]
     }
   ],
@@ -160,7 +156,7 @@ window.PORTFOLIO = {
   /* Certifications */
   certs: [
     { issuer: "NetSuite", name: "All 7 NetSuite Certifications",            note: "Technical + functional, complete suite" },
-    { issuer: "Oracle",   name: "OCI Foundations Associate" },
+    { issuer: "Oracle",   name: "OCI Autonomous AI Database Professional" },
     { issuer: "Oracle",   name: "OCI Generative AI Professional" },
     { issuer: "Oracle",   name: "OCI Architect Associate" },
     { issuer: "Oracle",   name: "Oracle Analytics Professional" }
@@ -168,6 +164,20 @@ window.PORTFOLIO = {
 
   /* Selected projects — for case-study-style sections */
   projects: [
+    {
+      name: "NetSuite Developer Starter Pack",
+      kind: "Enablement series",
+      summary: "Video and illustration series helping non-technical NetSuite users adopt agentic coding workflows to ship SuiteScript.",
+      stack: ["Next.js", "TypeScript", "NetSuite", "SuiteScript"],
+      outcome: "Turns IDE setup, SuiteCloud tooling, and AI-assisted build patterns into a practical path for first-time NetSuite builders."
+    },
+    {
+      name: "Analytics Modeling From Scratch",
+      kind: "Educational platform",
+      summary: "Formula-centric R/Quarto site covering classification (SVM, KNN), time series (ARIMA, GARCH), and regression.",
+      stack: ["R", "Quarto", "renv", "GitHub Actions"],
+      outcome: "Pairs mathematical theory with practical R code and judgment calls. Reproducible builds via renv."
+    },
     {
       name: "NetSuite Twilio Click-to-Call",
       kind: "SuiteApp",
@@ -190,18 +200,49 @@ window.PORTFOLIO = {
       outcome: "Sales reps gain a visual pipeline view inside the system they already work in."
     },
     {
-      name: "Analytics Modeling From Scratch",
-      kind: "Educational platform",
-      summary: "Formula-centric R/Quarto site covering classification (SVM, KNN), time series (ARIMA, GARCH), and regression.",
-      stack: ["R", "Quarto", "renv", "GitHub Actions"],
-      outcome: "Pairs mathematical theory with practical R code and judgment calls. Reproducible builds via renv."
-    },
-    {
       name: "BitBasis",
       kind: "Web app · in progress",
       summary: "Bitcoin cost-basis tracker — CSV upload, transaction recording, fee tracking, performance charts.",
       stack: ["Next.js", "TypeScript", "Supabase", "Stripe", "Chart.js", "CMC API"],
       outcome: "In active development."
+    }
+  ],
+
+  reviews: [
+    {
+      text: "The quality of Brett's work is consistently outstanding. He approaches every task with integrity, diligence, and a positive attitude. His knowledge and work aptitude is highly respected by peers and supervisors alike for his professionalism and reliability.",
+      author: "Dan",
+      role: "Consulting Manager"
+    },
+    {
+      text: "From the outset, Brett distinguished himself through keen analytical thinking and a deep curiosity about complex systems. He combined rigorous technical skills with innovative thinking and communicates findings effectively to both technical and non-technical audiences.",
+      author: "Ray",
+      role: "Senior Consulting Manager"
+    },
+    {
+      text: "Brett taught me more about ERP than any corporate training. He is always available, never judges a bizarre or simple question, and carries customer conversations with poise, respect, and deep knowledge.",
+      author: "Mel",
+      role: "Senior Account Manager"
+    },
+    {
+      text: "Brett brought tremendous NetSuite knowledge and credibility to my customer reviews. He answered every niche question, ran the show, and set me up for success as an Account Manager.",
+      author: "Alexa",
+      role: "Account Manager"
+    },
+    {
+      text: "Brett is unbelievably knowledgeable about all things NetSuite and fantastic with customers. He shines when building rapport, advising on growth plans, and helping drive deals across the finish line.",
+      author: "Alex",
+      role: "Regional Director"
+    },
+    {
+      text: "I could always rely on Brett to find the best vendor for anything I could dream up. Tell Brett what you need and you know it will be taken care of, with clear communication along the way.",
+      author: "Johnathan",
+      role: "Senior Engineer"
+    },
+    {
+      text: "During a critical NetSuite Analytics Warehouse decision point, Brett was exceptional. He stayed cool, redirected the conversation to platform strengths, and balanced value with honesty in a way that builds long-term trust.",
+      author: "Gary",
+      role: "Corporate Account Manager"
     }
   ],
 
@@ -218,6 +259,7 @@ window.PORTFOLIO = {
     { id: "skills",    label: "Skills" },
     { id: "history",   label: "History" },
     { id: "projects",  label: "Projects" },
+    { id: "reviews",   label: "Reviews" },
     { id: "contact",   label: "Contact" }
   ]
 };

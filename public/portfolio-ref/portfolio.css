@@ -166,6 +166,7 @@ code {
 section.band {
   padding: var(--section-pad-y) 0;
   border-top: 1px solid var(--border);
+  scroll-margin-top: 62px;
 }
 section.band.alt { background: var(--parchment-2); }
 section.band:first-of-type { border-top: 0; }
@@ -248,6 +249,47 @@ section.band:first-of-type { border-top: 0; }
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.05); }
+
+/* ---------- Reviews ---------- */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap-md);
+}
+.review-card {
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+}
+.review-card__quote {
+  margin: 0;
+  color: var(--dark-warm);
+  font-size: 16px;
+  line-height: 1.62;
+}
+.review-card__meta {
+  padding-top: 16px;
+  border-top: 1px dotted var(--border);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+.review-card__meta span:first-child {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--brand);
+}
+.review-card__meta span:last-child {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--brand);
+  text-align: right;
+}
 
 /* ---------- Tags ---------- */
 .tag {
@@ -466,7 +508,7 @@ body.theme-dark .portrait-frame__inner { background: var(--warm-sand); }
     max-width: 280px;
   }
 
-  /* About + Contact: 1fr 1fr → stack */
+  /* About + Contact: wide grids → stack */
   #about > .container > div,
   #contact > .container > div {
     grid-template-columns: 1fr !important;
@@ -505,6 +547,7 @@ body.theme-dark .portrait-frame__inner { background: var(--warm-sand); }
   #contact h2.display[style*="font-size: 56px"] { font-size: 40px !important; }
   #contact .lede[style*="font-size: 19px"] { font-size: 17px !important; }
   #intro .lede[style*="font-size: 22px"] { font-size: 18px !important; }
+  #reviews .lede[style*="font-size: 18px"] { font-size: 17px !important; }
 
   /* Footer */
   .site-footer {
@@ -522,6 +565,15 @@ body.theme-dark .portrait-frame__inner { background: var(--warm-sand); }
   [style*="font-size: 36px"] { font-size: 22px !important; }
   .section-title { font-size: 22px !important; }
   .card { padding: 18px; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .review-card { min-height: 0; }
+  .review-card__quote { font-size: 15px; }
+  .review-card__meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .review-card__meta span:last-child { text-align: left; }
 
   /* Education row: degree + year stack instead of inline */
   #skills div[style*="justify-content: space-between"][style*="align-items: baseline"] {
