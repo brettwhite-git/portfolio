@@ -18,10 +18,17 @@
 <!-- Editmode anchor — the host rewrites this block when the user changes a Tweak -->
 <script>
 window.__TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "theme": "light",
+  "theme": "system",
   "accent": "#1B365D",
   "density": "comfortable"
 }/*EDITMODE-END*/;
+</script>
+<script>
+(function applyInitialTheme() {
+  var setting = (window.__TWEAK_DEFAULTS && window.__TWEAK_DEFAULTS.theme) || "system";
+  var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  document.body.classList.toggle("theme-dark", setting === "dark" || (setting === "system" && prefersDark));
+})();
 </script>
 
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
@@ -41,12 +48,26 @@ function App() {
 
   // Apply theme + accent + density to <body> + :root
   useEffect(() => {
-    document.body.classList.toggle("theme-dark", t.theme === "dark");
+    const getSystemTheme = () =>
+      window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    const applyTheme = () => {
+      const resolvedTheme = t.theme === "system" ? getSystemTheme() : t.theme;
+      document.body.classList.toggle("theme-dark", resolvedTheme === "dark");
+    };
+
+    applyTheme();
     document.documentElement.style.setProperty("--brand", t.accent);
     document.documentElement.style.setProperty("--brand-light", lighten(t.accent, 0.18));
     document.documentElement.style.setProperty("--brand-tint", tint(t.accent, 0.92));
     const d = { compact: 0.85, comfortable: 1, airy: 1.18 }[t.density] || 1;
     document.documentElement.style.setProperty("--density", d);
+
+    if (t.theme !== "system" || !window.matchMedia) return;
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    media.addEventListener?.("change", applyTheme);
+    return () => media.removeEventListener?.("change", applyTheme);
   }, [t.theme, t.accent, t.density]);
 
   return (
@@ -59,7 +80,11 @@ function App() {
             label="Mode"
             value={t.theme}
             onChange={(v) => setTweak("theme", v)}
-            options={[{ value: "light", label: "Light" }, { value: "dark", label: "Dark" }]}
+            options={[
+              { value: "system", label: "System" },
+              { value: "light", label: "Light" },
+              { value: "dark", label: "Dark" }
+            ]}
           />
         </TweakSection>
         <TweakSection label="Accent">

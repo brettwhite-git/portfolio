@@ -58,11 +58,13 @@ function useReveal(rootRef) {
 function TopNav({ name, mark, items, extraClass, leftSlot, rightSlot, layout }) {
   const ids = items.map(i => i.id);
   const active = useScrollSpy(ids);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const handleClick = (e, id) => {
+  const handleClick = (e, id, closeMenu = false) => {
     e.preventDefault();
     const target = document.getElementById(id);
     if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (closeMenu) setMobileMenuOpen(false);
   };
 
   const isCentered = layout === "centered";
@@ -85,7 +87,36 @@ function TopNav({ name, mark, items, extraClass, leftSlot, rightSlot, layout }) 
           </a>
         ))}
       </nav>
-      <div className="topnav-right">{rightSlot}</div>
+      <div className="topnav-right">
+        {rightSlot}
+        <div className="mobile-nav">
+          <button
+            type="button"
+            className={"icon-btn mobile-nav__trigger" + (mobileMenuOpen ? " is-open" : "")}
+            aria-label="Menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav-menu"
+            title="Menu"
+            onClick={() => setMobileMenuOpen(open => !open)}
+          >
+            <MenuIcon size={17} />
+          </button>
+          {mobileMenuOpen && (
+            <nav id="mobile-nav-menu" className="mobile-nav__menu" aria-label="Mobile navigation">
+              {items.map(it => (
+                <a
+                  key={it.id}
+                  href={"#" + it.id}
+                  onClick={(e) => handleClick(e, it.id, true)}
+                  className={active === it.id ? "is-current" : ""}
+                >
+                  {it.label}
+                </a>
+              ))}
+            </nav>
+          )}
+        </div>
+      </div>
     </header>
   );
 }
@@ -129,6 +160,11 @@ const ResumeIcon = ({ size = 16 }) => (
     <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
     <path d="M14 3v6h6"/>
     <path d="M8 13h8M8 17h6"/>
+  </svg>
+);
+const MenuIcon = ({ size = 16 }) => (
+  <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+    <path d="M4 7h16M4 12h16M4 17h16"/>
   </svg>
 );
 
@@ -280,7 +316,7 @@ function SkillBar({ name, level, note, animate = true }) {
    ------------------------------------------------------------ */
 function ContactRow({ label, value, href, kind }) {
   return (
-    <div style={{
+    <div className="contact-row" style={{
       display: "grid",
       gridTemplateColumns: "120px 1fr auto",
       alignItems: "baseline",
@@ -289,8 +325,8 @@ function ContactRow({ label, value, href, kind }) {
       gap: "20px"
     }}>
       <div className="mono-label">{label}</div>
-      <a href={href} style={{ fontFamily: "var(--serif)", fontSize: "20px", borderBottom: "0", color: "var(--near-black)" }}>{value}</a>
-      <div style={{ fontFamily: "var(--mono)", fontSize: "11px", color: "var(--stone)", letterSpacing: "1px" }}>
+      <a className="contact-row__value" href={href} style={{ fontFamily: "var(--serif)", fontSize: "20px", borderBottom: "0", color: "var(--near-black)" }}>{value}</a>
+      <div className="contact-row__kind" style={{ fontFamily: "var(--mono)", fontSize: "11px", color: "var(--stone)", letterSpacing: "1px" }}>
         {kind}
       </div>
     </div>

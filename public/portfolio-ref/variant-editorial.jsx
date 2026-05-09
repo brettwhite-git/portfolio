@@ -39,7 +39,7 @@ function VariantEditorial() {
           </IconButton>
           <IconButton href={D.github} label="GitHub"><GitHubIcon size={15} /></IconButton>
           <IconButton href={D.linkedin} label="LinkedIn"><LinkedInIcon size={15} /></IconButton>
-          <IconButton href="#" label="Resume (PDF)"><ResumeIcon size={16} /></IconButton>
+          <IconButton href={D.resume} label="Resume (PDF)"><ResumeIcon size={16} /></IconButton>
         </>}
       />
 
@@ -107,19 +107,19 @@ function VariantEditorial() {
             <div className="card">
               <div className="mono-label" style={{ marginBottom: "10px" }}>Now</div>
               <p style={{ margin: 0, fontSize: "16px", color: "var(--dark-warm)" }}>
-                Principal SC at Oracle NetSuite. Building enablement for agentic coding workflows and integrating GenAI into pre-sales.
+                Principal SC at Oracle NetSuite, building enablement for agentic coding workflows and bringing classic AI and GenAI into practical pre-sales work.
               </p>
             </div>
             <div className="card">
-              <div className="mono-label" style={{ marginBottom: "10px" }}>Studying</div>
+              <div className="mono-label" style={{ marginBottom: "10px" }}>Exploring</div>
               <p style={{ margin: 0, fontSize: "16px", color: "var(--dark-warm)" }}>
-                M.S. Analytics at Georgia Tech, online — wrapping spring 2026.
+                Building second brains, tinkering with AI orchestration, and studying compound engineering: how small tools, notes, and workflows stack into real leverage.
               </p>
             </div>
             <div className="card">
               <div className="mono-label" style={{ marginBottom: "10px" }}>Off the clock</div>
               <p style={{ margin: 0, fontSize: "16px", color: "var(--dark-warm)" }}>
-                Building <em>BitBasis</em> — a Bitcoin cost-basis tracker — and writing analytics tutorials in Quarto.
+                Building a family, tending a homelab, and keeping one eye on Bitcoin.
               </p>
             </div>
           </div>
@@ -133,7 +133,7 @@ function VariantEditorial() {
           What the numbers say.
         </h2>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "var(--gap-lg)", padding: "16px 0 36px", borderBottom: "1px dotted var(--border)", marginBottom: "44px" }}>
+        <div className="metrics-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: "var(--gap-lg)", padding: "16px 0 36px", borderBottom: "1px dotted var(--border)", marginBottom: "44px" }}>
           {D.metrics.map((m, i) => (
             <div key={i} className="reveal">
               <div style={{
@@ -216,9 +216,10 @@ function VariantEditorial() {
               position: "relative"
             }}>
               <div style={{ paddingTop: "4px" }}>
-                <div style={{ fontFamily: "var(--mono)", fontSize: "12px", color: "var(--stone)", letterSpacing: "1px", lineHeight: 1.4 }}>
-                  {h.start}<br/>
-                  <span style={{ color: "var(--olive)" }}>↓ {h.end}</span>
+                <div className="history-date" style={{ fontFamily: "var(--mono)", fontSize: "12px", color: "var(--stone)", letterSpacing: "1px", lineHeight: 1.4 }}>
+                  <span className="history-date__start">{h.start}</span>
+                  <span className="history-date__arrow">↓</span>
+                  <span className="history-date__end" style={{ color: "var(--olive)" }}>{h.end}</span>
                 </div>
               </div>
               {/* dot */}

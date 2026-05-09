@@ -10,15 +10,16 @@ window.PORTFOLIO = {
   email: "hello@brettwhite.io",
   github: "https://github.com/brettwhite-git",
   linkedin: "https://www.linkedin.com/in/bwhite90/",
+  resume: "/portfolio-ref/assets/Brett%20White%20Resume.pdf",
 
-  tagline: "I help platform teams turn ERP into something a developer would actually want to build on.",
+  tagline: "I help teams turn NetSuite complexity into developer-ready workflows, practical AI tools, and customer-facing systems that earn trust.",
 
   about: {
     short: "Pre-sales engineer turned solutions developer. Seven years at Oracle NetSuite — $17M+ ARR influenced, President's Club, and the SC of the Year on a 175-person team. Now I spend most of my days writing SuiteScript, wiring up SuiteAgent and CustomTool MCP servers, and figuring out how generative AI fits into the actual pre-sales workflow rather than the demo of it.",
     long: [
-      "I came to software the long way around — supply chain manager out of Texas A&M, then sourcing and procurement, then a left turn into NetSuite consulting in 2019.",
-      "What stuck is the seam between the customer's actual problem and the platform's actual capabilities. Most ERP demos optimize for one of the two; the good ones honor both. I try to build for the second kind.",
-      "These days I'm working on integrating generative AI into pre-sales, building enablement for solution consultants on agentic coding workflows, and shipping side projects that scratch real itches — a Twilio click-to-call SuiteApp, a kanban portlet, an NSAW schema explorer in D3."
+      "I took the long route into software: supply chain first, then sourcing and procurement, then NetSuite consulting in 2019. It gave me a useful bias: software only matters when it survives contact with the actual business process.",
+      "The work I enjoy most sits between customer pain, platform capability, and developer execution. I like making complex ERP problems feel understandable, then building the tools, scripts, demos, and workflows that move them forward.",
+      "Lately that means NetSuite development, Analytics Warehouse enablement, AI-assisted pre-sales workflows, SuiteAgent and CustomTool experiments, and small products that solve real operating pain."
     ]
   },
 
@@ -115,29 +116,28 @@ window.PORTFOLIO = {
     {
       group: "Languages",
       items: [
-        { name: "SQL",        level: 5, note: "NSAW, schema design, perf" },
+        { name: "SQL and SuiteQL", level: 5, note: "NSAW, schema design" },
         { name: "SuiteScript",level: 5, note: "2.1, SuiteApps, CustomTool" },
-        { name: "TypeScript", level: 4 },
-        { name: "Python",     level: 4 },
-        { name: "R",          level: 4, note: "Quarto, time series, classification" },
-        { name: "JavaScript", level: 5 }
+        { name: "TypeScript", level: 4, note: "React, APIs, UI tooling" },
+        { name: "Python",     level: 3, note: "pandas, scikit-learn" },
+        { name: "R",          level: 3, note: "Quarto, time series, classification" }
       ]
     },
     {
       group: "Frameworks",
       items: [
-        { name: "React",   level: 4 },
-        { name: "Next.js", level: 4 },
-        { name: "Node.js", level: 4 },
-        { name: "ReactFlow", level: 3 },
-        { name: "Tailwind", level: 4 }
+        { name: "React",   level: 3 },
+        { name: "Next.js", level: 3 },
+        { name: "Node.js", level: 3 },
+        { name: "Tailwind", level: 3 }
       ]
     },
     {
       group: "Platforms",
       items: [
-        { name: "NetSuite (full stack)", level: 5 },
-        { name: "Analytics Warehouse",   level: 5 },
+        { name: "NetSuite", level: 5 },
+        { name: "Autonomous AI Datalakehouse", level: 4 },
+        { name: "Oracle Analytics",      level: 4 },
         { name: "OCI",                   level: 4 },
         { name: "Supabase",              level: 3 }
       ]
@@ -147,8 +147,10 @@ window.PORTFOLIO = {
       items: [
         { name: "SuiteAgent",       level: 5 },
         { name: "CustomTool / MCP", level: 5 },
-        { name: "N/llm",            level: 4 },
-        { name: "Agentic IDE flows",level: 4 }
+        { name: "Claude Code",      level: 4 },
+        { name: "n8n",              level: 3 },
+        { name: "Skill Engineering", level: 3 },
+        { name: "Context Engineering", level: 3 }
       ]
     }
   ],
@@ -235,6 +237,11 @@ window.PORTFOLIO = {
       role: "Regional Director"
     },
     {
+      text: "Brett brings meticulous attention to detail and a patient command of complex NetSuite concepts. He makes customers feel heard, earns trust throughout evaluation, and pairs technical depth with a calm, thorough approach.",
+      author: "Brittany",
+      role: "Senior Account Manager"
+    },
+    {
       text: "I could always rely on Brett to find the best vendor for anything I could dream up. Tell Brett what you need and you know it will be taken care of, with clear communication along the way.",
       author: "Johnathan",
       role: "Senior Engineer"
@@ -248,7 +255,7 @@ window.PORTFOLIO = {
 
   /* Education */
   education: [
-    { school: "Georgia Tech", degree: "M.S. Analytics", year: "Spring 2026", note: "Online" },
+    { school: "AI orchestration, second brains, compound engineering, homelabs, and Bitcoin", degree: "Self-Directed Study", year: "Ongoing" },
     { school: "Texas A&M",    degree: "B.S. Industrial Distribution", year: "Dec 2012" }
   ],
 
