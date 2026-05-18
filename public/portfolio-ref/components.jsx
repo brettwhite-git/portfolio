@@ -365,6 +365,7 @@ function ScribbleFrame({ children }) {
   const wrapRef = React.useRef(null);
   const svgRef  = React.useRef(null);
   const playedRef = React.useRef(false);
+  const animatingRef = React.useRef(false);
 
   React.useEffect(() => {
     const wrap = wrapRef.current;
@@ -450,6 +451,7 @@ function ScribbleFrame({ children }) {
     };
 
     const play = () => {
+      animatingRef.current = true;
       const bySide = { top: [], bottom: [], left: [], right: [] };
       svg.querySelectorAll("[data-side]").forEach((g) => {
         const side = g.dataset.side;
@@ -469,9 +471,17 @@ function ScribbleFrame({ children }) {
       t = drawStroke(bySide.bottom, t) + liftPause;
       t = drawStroke(bySide.left,   t) + liftPause;
       t = drawStroke(bySide.right,  t);
+      setTimeout(() => { animatingRef.current = false; }, t + 400);
     };
 
     generate();
+
+    // Seed prev size from the actual initial rect so the spurious initial RO
+    // callback is a no-op — otherwise it races the IO and rewrites paths at
+    // their terminal dashoffset (visible as a static border in prod).
+    const initialRect = wrap.getBoundingClientRect();
+    let prevW = initialRect.width;
+    let prevH = initialRect.height;
 
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
@@ -484,11 +494,9 @@ function ScribbleFrame({ children }) {
     }, { threshold: 0.08 });
     io.observe(wrap);
 
-    // Only regenerate on real size changes — RO often fires a spurious callback
-    // shortly after observation, which would race the IO and overwrite the
-    // animating paths at their final dashoffset (visible as a static border in prod).
-    let prevW = 0, prevH = 0;
     const ro = new ResizeObserver(() => {
+      // Belt-and-suspenders: never regenerate while the play animation is in flight.
+      if (animatingRef.current) return;
       const rect = wrap.getBoundingClientRect();
       if (Math.abs(rect.width - prevW) < 1 && Math.abs(rect.height - prevH) < 1) return;
       prevW = rect.width;
@@ -515,6 +523,7 @@ function ScribbleUnderline({ children, period = true }) {
   const wrapRef = React.useRef(null);
   const svgRef  = React.useRef(null);
   const playedRef = React.useRef(false);
+  const animatingRef = React.useRef(false);
 
   React.useEffect(() => {
     const wrap = wrapRef.current;
@@ -609,6 +618,7 @@ function ScribbleUnderline({ children, period = true }) {
     };
 
     const play = () => {
+      animatingRef.current = true;
       const underlines = svg.querySelectorAll('[data-group="underline"]');
       const periodNode = svg.querySelector('[data-group="period"]');
       const passStep = 180;
@@ -630,12 +640,18 @@ function ScribbleUnderline({ children, period = true }) {
           setTimeout(() => {
             inner.style.transition = "stroke-dashoffset 0.6s cubic-bezier(.5,0,.5,1)";
             inner.style.strokeDashoffset = 0;
+            setTimeout(() => { animatingRef.current = false; }, 800);
           }, totalDur);
         }
+      } else {
+        setTimeout(() => { animatingRef.current = false; }, startDelay + (underlines.length - 1) * passStep + edgeDur * 1000 + 400);
       }
     };
 
     generate();
+    const initialRect = wrap.getBoundingClientRect();
+    let prevW = initialRect.width;
+    let prevH = initialRect.height;
 
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
@@ -648,9 +664,8 @@ function ScribbleUnderline({ children, period = true }) {
     }, { threshold: 0.4 });
     io.observe(wrap);
 
-    // Only regenerate on real size changes (see note in ScribbleFrame above).
-    let prevW = 0, prevH = 0;
     const ro = new ResizeObserver(() => {
+      if (animatingRef.current) return;
       const rect = wrap.getBoundingClientRect();
       if (Math.abs(rect.width - prevW) < 1 && Math.abs(rect.height - prevH) < 1) return;
       prevW = rect.width;
