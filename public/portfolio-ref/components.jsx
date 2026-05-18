@@ -484,7 +484,17 @@ function ScribbleFrame({ children }) {
     }, { threshold: 0.08 });
     io.observe(wrap);
 
-    const ro = new ResizeObserver(() => generate());
+    // Only regenerate on real size changes — RO often fires a spurious callback
+    // shortly after observation, which would race the IO and overwrite the
+    // animating paths at their final dashoffset (visible as a static border in prod).
+    let prevW = 0, prevH = 0;
+    const ro = new ResizeObserver(() => {
+      const rect = wrap.getBoundingClientRect();
+      if (Math.abs(rect.width - prevW) < 1 && Math.abs(rect.height - prevH) < 1) return;
+      prevW = rect.width;
+      prevH = rect.height;
+      generate();
+    });
     ro.observe(wrap);
 
     return () => { io.disconnect(); ro.disconnect(); };
@@ -638,7 +648,15 @@ function ScribbleUnderline({ children, period = true }) {
     }, { threshold: 0.4 });
     io.observe(wrap);
 
-    const ro = new ResizeObserver(() => generate());
+    // Only regenerate on real size changes (see note in ScribbleFrame above).
+    let prevW = 0, prevH = 0;
+    const ro = new ResizeObserver(() => {
+      const rect = wrap.getBoundingClientRect();
+      if (Math.abs(rect.width - prevW) < 1 && Math.abs(rect.height - prevH) < 1) return;
+      prevW = rect.width;
+      prevH = rect.height;
+      generate();
+    });
     ro.observe(wrap);
 
     return () => { io.disconnect(); ro.disconnect(); };
