@@ -48,38 +48,28 @@ function VariantEditorial() {
         <div className="container">
           <div style={{
             display: "grid",
-            gridTemplateColumns: "minmax(220px, 320px) 1fr",
+            gridTemplateColumns: "minmax(280px, 400px) 1fr",
             gap: "var(--gap-xl)",
             alignItems: "center"
           }}>
             {/* portrait */}
             <div className="reveal" style={{ position: "relative" }}>
-              <div style={{
-                background: "var(--ivory)",
-                border: "1px solid var(--border)",
-                borderRadius: "8px",
-                padding: "14px",
-                position: "relative"
-              }}>
+              <ScribbleFrame>
                 <img src="assets/portrait.png" alt={D.name} style={{
                   width: "100%", display: "block", borderRadius: "4px",
                   filter: "saturate(0.9)"
                 }}/>
-              </div>
+              </ScribbleFrame>
             </div>
 
             {/* lead */}
             <div className="reveal">
-              <h1 className="display" style={{ marginTop: "20px", marginBottom: "20px" }}>
+              <h1 className="display" style={{ marginTop: "20px", marginBottom: "50px" }}>
                 {D.name}.<br/>
                 Pre-sales engineer,<br/>
                 part consultant,<br/>
-                part <em>builder</em>.
+                part <ScribbleUnderline><em>builder</em></ScribbleUnderline>
               </h1>
-              <div style={{
-                width: "60px", height: "2px", background: "var(--brand)",
-                margin: "16px 0 22px"
-              }}/>
               <p className="lede" style={{ fontSize: "22px", maxWidth: "44ch" }}>{D.tagline}</p>
               <div style={{ marginTop: "32px", display: "flex", gap: "12px", flexWrap: "wrap" }}>
                 <a className="btn" href="#contact" onClick={(e) => { e.preventDefault(); document.getElementById("contact").scrollIntoView({ behavior: "smooth" }); }}>
@@ -208,39 +198,7 @@ function VariantEditorial() {
             background: "var(--border)"
           }}/>
           {D.history.map((h, i) => (
-            <div key={i} className="reveal" style={{
-              display: "grid",
-              gridTemplateColumns: "120px 1fr",
-              gap: "32px",
-              padding: "28px 0",
-              position: "relative"
-            }}>
-              <div style={{ paddingTop: "4px" }}>
-                <div className="history-date" style={{ fontFamily: "var(--mono)", fontSize: "12px", color: "var(--stone)", letterSpacing: "1px", lineHeight: 1.4 }}>
-                  <span className="history-date__start">{h.start}</span>
-                  <span className="history-date__arrow">↓</span>
-                  <span className="history-date__end" style={{ color: "var(--olive)" }}>{h.end}</span>
-                </div>
-              </div>
-              {/* dot */}
-              <div style={{
-                position: "absolute", left: "115px", top: "32px",
-                width: "11px", height: "11px",
-                background: i === 0 ? "var(--brand)" : "var(--ivory)",
-                border: "1.5px solid var(--brand)",
-                borderRadius: "50%",
-                zIndex: 1
-              }}/>
-              <div style={{ paddingLeft: "28px" }}>
-                <div className="mono-label" style={{ marginBottom: "6px" }}>{h.company} · {h.location}</div>
-                <h3 style={{ fontSize: "26px", fontWeight: 500, margin: "0 0 12px", lineHeight: 1.2 }}>{h.role}</h3>
-                <p style={{ fontSize: "16px", color: "var(--olive)", margin: "0 0 14px", maxWidth: "62ch", lineHeight: 1.55 }}>{h.blurb}</p>
-                <ul className="dash" style={{ marginBottom: "14px" }}>
-                  {h.bullets.map((b, j) => <li key={j} style={{ fontSize: "15px" }}>{b}</li>)}
-                </ul>
-                <div>{h.stack.map(s => <span key={s} className="tag">{s}</span>)}</div>
-              </div>
-            </div>
+            <JobEntry key={i} h={h} index={i} />
           ))}
         </div>
       </Section>

@@ -418,6 +418,142 @@ ul.dash li::before {
 }
 .reveal.is-in { opacity: 1; transform: translateY(0); }
 
+/* ---------- ScribbleFrame (rough.js hand-drawn portrait border) ---------- */
+.scribble-frame {
+  position: relative;
+  display: block;
+  line-height: 0; /* removes the baseline gap under <img> */
+  color: var(--brand); /* currentColor on stroked paths inherits this — auto-updates on theme switch */
+  transition: color 0.25s ease-out;
+  max-width: 100%;
+}
+.scribble-frame > img {
+  display: block;
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+.scribble-svg {
+  position: absolute;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+}
+.scribble-underline {
+  position: relative;
+  display: inline-block;
+  color: var(--brand);
+  transition: color 0.25s ease-out;
+}
+.scribble-svg-underline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+}
+
+/* ---------- History marginalia (hand-written notes in the right margin) ---------- */
+.job-entry { position: relative; }
+.job-body  { min-width: 0; }
+.job-notes {
+  position: relative;
+  min-height: 1px;
+  color: var(--brand);
+  transition: color 0.25s ease-out;
+}
+
+/* One handwritten margin note — absolutely positioned to align with its anchor */
+.margin-note {
+  position: absolute;
+  left: 0;
+  display: grid;
+  grid-template-columns: 14px max-content;
+  column-gap: 14px;
+  align-items: stretch;
+  pointer-events: none;
+}
+.margin-note__bracket {
+  width: 14px;
+  overflow: visible;
+  display: block;
+}
+.margin-note__bracket path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-dasharray: var(--len, 100);
+  stroke-dashoffset: var(--len, 100);
+  transition: stroke-dashoffset 0.5s cubic-bezier(.4,0,.4,1);
+}
+.margin-note.is-playing .margin-note__bracket path { stroke-dashoffset: 0; }
+
+.margin-note__lines {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+.note-line {
+  font-family: "Caveat", "Comic Sans MS", cursive;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--brand);
+  transform: rotateZ(var(--line-tilt, 0deg)) translateY(2px);
+  transition: transform 1.8s cubic-bezier(.42,.05,.4,1);
+  transition-delay: var(--line-delay, 0ms);
+  white-space: nowrap;
+}
+.note-line .ink {
+  display: inline-block;
+  clip-path: inset(-6px 100% -6px 0);
+  -webkit-clip-path: inset(-6px 100% -6px 0);
+  transition: clip-path 1.8s cubic-bezier(.42,.05,.4,1),
+              -webkit-clip-path 1.8s cubic-bezier(.42,.05,.4,1);
+  transition-delay: var(--line-delay, 0ms);
+}
+.margin-note.is-playing .note-line {
+  transform: rotateZ(var(--line-tilt, 0deg)) translateY(0);
+}
+.margin-note.is-playing .note-line .ink {
+  clip-path: inset(-6px -2% -6px 0);
+  -webkit-clip-path: inset(-6px -2% -6px 0);
+}
+
+/* Inline body ink mark (rough underline under a phrase) */
+.ink-mark {
+  position: relative;
+  display: inline-block;
+  color: var(--brand);
+}
+.ink-mark__svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 0;
+}
+.ink-mark__svg path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-dasharray: var(--len, 100);
+  stroke-dashoffset: var(--len, 100);
+  transition: stroke-dashoffset 0.55s cubic-bezier(.4,0,.4,1);
+}
+.ink-mark.is-playing .ink-mark__svg path { stroke-dashoffset: 0; }
+
+/* Reset state — snap transitions off during scroll-out reset so they don't play backwards */
+.job-entry.is-resetting,
+.job-entry.is-resetting * {
+  transition: none !important;
+}
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;
@@ -564,15 +700,16 @@ body.theme-dark .portrait-frame__inner { background: var(--warm-sand); }
   }
 
   /* Intro: stack and center the hero as a composed object */
-  #intro [style*="minmax(220px, 320px) 1fr"] {
+  #intro [style*="minmax(280px, 400px) 1fr"] {
     grid-template-columns: 1fr !important;
     gap: 32px !important;
   }
-  #intro [style*="minmax(220px, 320px) 1fr"] > div:first-child {
-    max-width: 320px;
+  #intro [style*="minmax(280px, 400px) 1fr"] > div:first-child {
+    max-width: 360px;
+    width: 100%;
     justify-self: center;
   }
-  #intro [style*="minmax(220px, 320px) 1fr"] > div:last-child {
+  #intro [style*="minmax(280px, 400px) 1fr"] > div:last-child {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -590,6 +727,11 @@ body.theme-dark .portrait-frame__inner { background: var(--warm-sand); }
   #intro [style*="margin-top: 32px"][style*="display: flex"] {
     justify-content: flex-start !important;
   }
+
+  /* History: hide marginalia and collapse back to the original 2-col grid */
+  #history .job-entry { grid-template-columns: 120px 1fr !important; }
+  #history .job-notes { display: none !important; }
+  #history .job-body  { max-width: none !important; }
 }
 
 /* ---------- Phone (≤768px) ---------- */
@@ -599,21 +741,22 @@ body.theme-dark .portrait-frame__inner { background: var(--warm-sand); }
   :root { --section-pad-y: 64px; }
   .container { padding: 0 20px; }
 
-  /* Top nav: hide center links, brand + icons only */
+  /* Top nav: hide center links + brand, icons on right, hamburger on the left */
   .topnav { padding: 12px 20px !important; }
   .topnav nav { display: none !important; }
+  .topnav .brand-mark { display: none !important; }
   .topnav .topnav-right .mobile-nav {
     display: block;
     position: absolute;
     top: 12px;
-    right: 20px;
+    left: 20px;
     z-index: 70;
   }
   .topnav .topnav-right .mobile-nav__menu {
     display: block !important;
-  }
-  .topnav .topnav-right {
-    padding-right: 40px;
+    left: 0;
+    right: auto;
+    transform-origin: top left;
   }
   .mobile-nav__trigger.is-open,
   .mobile-nav__trigger:focus-visible {
@@ -622,12 +765,17 @@ body.theme-dark .portrait-frame__inner { background: var(--warm-sand); }
     border-color: var(--border);
     outline: none;
   }
-  /* Trim brand mark to just "Brett White" — drop " · Solutions Developer" */
-  .topnav .brand-mark > span:nth-child(2),
-  .topnav .brand-mark > span:nth-child(3) { display: none; }
+
+  /* Bump h1 size + breathing room between lines on phone */
+  #intro h1.display {
+    font-size: 48px !important;
+    line-height: 1.15 !important;
+    letter-spacing: -1px !important;
+  }
+  #intro .lede { font-size: 19px !important; line-height: 1.55 !important; }
 
   /* Constrain portrait width when stacked so it doesn't dominate */
-  #intro [style*="minmax(220px, 320px) 1fr"] > div:first-child {
+  #intro [style*="minmax(280px, 400px) 1fr"] > div:first-child {
     max-width: 280px;
   }
 

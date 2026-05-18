@@ -49,12 +49,34 @@ window.PORTFOLIO = {
       start: "Jun 2025", end: "Present",
       blurb: "Drives product growth across retail, hospitality, e-commerce, and apparel verticals. Owns the technical sales process for NetSuite Analytics Warehouse and integrates generative AI into pre-sales workflows.",
       bullets: [
-        "Standardized vertical-deal motions the entire pre-sales team now uses; continued direct ARR contribution.",
-        "Owns NetSuite Analytics Warehouse technical sales — built the demo methodology and training that drove the highest NSAW sales on the team.",
+        "Go-to technical SC for the largest, most complex deals across the region.",
+        "Expanded the team's AI demo capabilities (SuiteAgent, CustomTool/MCP, NetSuite Next), scaling the art of the possible for customers.",
         "Shipped automated dataset generation tooling, letting consultants build advanced demo scenarios 60% faster.",
-        "Authored internal developer enablement on agentic coding for Solution Consultants — IDE/SDF, CustomTool (MCP), SuiteAgent with NetSuite Next."
+        "Authored internal developer enablement on agentic coding for Solution Consultants: IDE/SDF, CustomTool, SuiteAgent."
       ],
-      stack: ["NetSuite", "SuiteScript", "SuiteAgent", "MCP", "GenAI"]
+      stack: ["NetSuite", "SuiteScript", "SuiteAgent", "MCP", "GenAI"],
+      highlights: [
+        { phrase: "generative AI", kind: "underline" }
+      ],
+      marginalia: [
+        {
+          anchor: "blurb",
+          lines: [
+            "still selling.",
+            "biggest rooms,",
+            "biggest bets."
+          ]
+        },
+        {
+          anchor: "bullets",
+          lines: [
+            "thought leadership",
+            "for the team.",
+            "art of the possible",
+            "for the customer."
+          ]
+        }
+      ]
     },
     {
       company: "Oracle NetSuite", location: "Austin, TX",
@@ -65,10 +87,30 @@ window.PORTFOLIO = {
         "Generated $10.6M+ ARR across the tenure.",
         "Hit 250%+ attainment with a 43% POC conversion rate the year SC of the Year was awarded.",
         "Reduced customer system bottlenecks up to 50% via architecture and resource-scaling recommendations.",
-        "Mastered 22+ add-on applications — Analytics Warehouse, Planning & Budgeting, e-commerce — driving upsell and retention.",
+        "Mastered 22+ add-on applications (Analytics Warehouse, Planning & Budgeting, e-commerce), driving upsell and retention.",
         "Trained Account Management on value selling and product positioning."
       ],
-      stack: ["NetSuite", "Analytics Warehouse", "Planning & Budgeting", "Pre-sales"]
+      stack: ["NetSuite", "Analytics Warehouse", "Planning & Budgeting", "Pre-sales"],
+      highlights: [
+        { phrase: "SC of the Year", kind: "underline" }
+      ],
+      marginalia: [
+        {
+          anchor: "blurb",
+          lines: [
+            "the year",
+            "everything",
+            "clicked."
+          ]
+        },
+        {
+          anchor: "bullets",
+          lines: [
+            "the platform became",
+            "a second language."
+          ]
+        }
+      ]
     },
     {
       company: "Oracle NetSuite", location: "Austin, TX",
@@ -81,7 +123,20 @@ window.PORTFOLIO = {
         "Scoped and delivered 10–15h Suite Pro Bono engagements for the non-profit segment.",
         "Built and maintained sales pipelines in lockstep with account managers."
       ],
-      stack: ["NetSuite", "ERP", "Pre-sales", "Pipeline"]
+      stack: ["NetSuite", "ERP", "Pre-sales", "Pipeline"],
+      highlights: [
+        { phrase: "MVP of the Quarter", kind: "underline" }
+      ],
+      marginalia: [
+        {
+          anchor: "all",
+          lines: [
+            "the rookie years.",
+            "trophies on the wall,",
+            "ARR on the board."
+          ]
+        }
+      ]
     },
     {
       company: "Screen Innovations", location: "Austin, TX",
@@ -94,20 +149,46 @@ window.PORTFOLIO = {
         "Bridged GTM, engineering, and operations to keep BOMs in sync with launch timelines.",
         "Managed a 5-person inventory and fulfillment team; lean strategies improved replenishment metrics ~30%."
       ],
-      stack: ["Sourcing", "Supplier mgmt", "BOM", "Lean"]
+      stack: ["Sourcing", "Supplier mgmt", "BOM", "Lean"],
+      highlights: [
+        { phrase: "$2M+ in cost savings", kind: "underline" }
+      ],
+      marginalia: [
+        {
+          anchor: "all",
+          lines: [
+            "streamlined the buys.",
+            "built the supplier bench.",
+            "GTM scaled on it."
+          ]
+        }
+      ]
     },
     {
       company: "Benedettini Cabinetry", location: "Rosenberg, TX",
       role: "Supply Chain Manager",
       start: "Feb 2013", end: "Jun 2016",
-      blurb: "Custom-cabinetry supply chain — top-tier homebuilder accounts (Toll Brothers, Perry, Highland).",
+      blurb: "Custom-cabinetry supply chain for top-tier homebuilder accounts (Toll Brothers, Perry, Highland).",
       bullets: [
         "Built a mobile inventory scanning app that cut delivery-discrepancy back-charges by 80%.",
         "Directed a 20-person inventory and logistics team servicing hundreds of cabinets daily.",
         "Engineered route optimization and capacity planning, reducing mileage and trip counts.",
         "Cultivated supplier partnerships through volatile lumber market cycles."
       ],
-      stack: ["Supply chain", "Logistics", "Inventory", "Mobile app"]
+      stack: ["Supply chain", "Logistics", "Inventory", "Mobile app"],
+      highlights: [
+        { phrase: "mobile inventory scanning app", kind: "underline" }
+      ],
+      marginalia: [
+        {
+          anchor: "all",
+          lines: [
+            "cabinets, crews,",
+            "and the first app",
+            "I ever shipped."
+          ]
+        }
+      ]
     }
   ],
 
@@ -116,9 +197,9 @@ window.PORTFOLIO = {
     {
       group: "Languages",
       items: [
-        { name: "SQL and SuiteQL", level: 5, note: "NSAW, schema design" },
-        { name: "SuiteScript",level: 5, note: "2.1, SuiteApps, CustomTool" },
-        { name: "TypeScript", level: 4, note: "React, APIs, UI tooling" },
+        { name: "SQL and SuiteQL", level: 4, note: "NSAW, schema design" },
+        { name: "SuiteScript",level: 4, note: "2.1, SuiteApps, CustomTool" },
+        { name: "TypeScript", level: 3, note: "React, APIs, UI tooling" },
         { name: "Python",     level: 3, note: "pandas, scikit-learn" },
         { name: "R",          level: 3, note: "Quarto, time series, classification" }
       ]
@@ -139,7 +220,9 @@ window.PORTFOLIO = {
         { name: "Autonomous AI Datalakehouse", level: 4 },
         { name: "Oracle Analytics",      level: 4 },
         { name: "OCI",                   level: 4 },
-        { name: "Supabase",              level: 3 }
+        { name: "Supabase",              level: 3 },
+        { name: "Vercel",                level: 3 },
+        { name: "GitHub",                level: 3 }
       ]
     },
     {
@@ -148,9 +231,7 @@ window.PORTFOLIO = {
         { name: "SuiteAgent",       level: 5 },
         { name: "CustomTool / MCP", level: 5 },
         { name: "Claude Code",      level: 4 },
-        { name: "n8n",              level: 3 },
-        { name: "Skill Engineering", level: 3 },
-        { name: "Context Engineering", level: 3 }
+        { name: "n8n",              level: 3 }
       ]
     }
   ],

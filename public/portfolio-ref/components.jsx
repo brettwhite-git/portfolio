@@ -358,9 +358,618 @@ function Section({ id, alt, children, className }) {
   );
 }
 
+/* ----------------------- ScribbleFrame ------------------------ */
+/* Animated rough.js border that scrubs in as four edges (top → bottom → left → right),
+   each composed of three direction-alternating passes. Plays once on first reveal. */
+function ScribbleFrame({ children }) {
+  const wrapRef = React.useRef(null);
+  const svgRef  = React.useRef(null);
+  const playedRef = React.useRef(false);
+
+  React.useEffect(() => {
+    const wrap = wrapRef.current;
+    const svg  = svgRef.current;
+    if (!wrap || !svg || !window.rough) return;
+
+    const SVG_NS = "http://www.w3.org/2000/svg";
+    const OVERSHOOT = 14;
+    const rc = window.rough.svg(svg);
+    const rand = (s) => { const x = Math.sin(s * 9999) * 10000; return x - Math.floor(x); };
+
+    const generate = () => {
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+      const { width: w, height: h } = wrap.getBoundingClientRect();
+      if (!w || !h) return;
+      svg.setAttribute("viewBox", `${-OVERSHOOT} ${-OVERSHOOT} ${w + OVERSHOOT * 2} ${h + OVERSHOOT * 2}`);
+      svg.setAttribute("width",  w + OVERSHOOT * 2);
+      svg.setAttribute("height", h + OVERSHOOT * 2);
+      svg.style.left = `-${OVERSHOOT}px`;
+      svg.style.top  = `-${OVERSHOOT}px`;
+
+      const stroke = "currentColor"; // resolves via wrap's color: var(--brand) — auto-tracks theme
+      const fx = 0, fy = 0, fw = w, fh = h;
+
+      const sidePass = (seed, opts) => {
+        const jit = (n, amp) => (rand(seed + n) - 0.5) * amp;
+        // Looser corners — strokes overshoot and miss the corners on purpose.
+        const ovExt = 12;
+        const cj    = 9; // corner jitter amplitude
+        const TL  = [fx - ovExt + jit(1,  cj),      fy + jit(2,  cj)];
+        const TR  = [fx + fw + ovExt + jit(3,  cj), fy + jit(4,  cj)];
+        const BR  = [fx + fw + ovExt + jit(5,  cj), fy + fh + jit(6,  cj)];
+        const BL  = [fx - ovExt + jit(7,  cj),      fy + fh + jit(8,  cj)];
+        const TLv = [fx + jit(11, cj),              fy - ovExt + jit(12, cj)];
+        const TRv = [fx + fw + jit(13, cj),         fy - ovExt + jit(14, cj)];
+        const BRv = [fx + fw + jit(15, cj),         fy + fh + ovExt + jit(16, cj)];
+        const BLv = [fx + jit(17, cj),              fy + fh + ovExt + jit(18, cj)];
+        const midTop    = [fx + fw * 0.5 + jit(9, 14),   fy - 4 + jit(10, 6)];
+        const midBottom = [fx + fw * 0.5 + jit(19, 14),  fy + fh + 4 + jit(20, 6)];
+        const midLeft   = [fx - 4 + jit(21, 6),          fy + fh * 0.5 + jit(22, 14)];
+        const midRight  = [fx + fw + 4 + jit(23, 6),     fy + fh * 0.5 + jit(24, 14)];
+        const Q = (s, c, e) => `M ${s[0]} ${s[1]} Q ${c[0]} ${c[1]}, ${e[0]} ${e[1]}`;
+        const off = opts.offset || 0; // perpendicular drift, outward from the frame
+        const sh  = (p, dx, dy) => [p[0] + dx, p[1] + dy];
+        const rev = !!opts.reverse;
+        // Forward direction (top/bot: L→R, left/right: T→B); reverse flips start/end.
+        const sides = {
+          top:    rev ? Q(sh(TR,  0, -off), sh(midTop,    0, -off), sh(TL,  0, -off))
+                      : Q(sh(TL,  0, -off), sh(midTop,    0, -off), sh(TR,  0, -off)),
+          bottom: rev ? Q(sh(BR,  0,  off), sh(midBottom, 0,  off), sh(BL,  0,  off))
+                      : Q(sh(BL,  0,  off), sh(midBottom, 0,  off), sh(BR,  0,  off)),
+          left:   rev ? Q(sh(BLv, -off, 0), sh(midLeft,  -off, 0),  sh(TLv, -off, 0))
+                      : Q(sh(TLv, -off, 0), sh(midLeft,  -off, 0),  sh(BLv, -off, 0)),
+          right:  rev ? Q(sh(BRv,  off, 0), sh(midRight,  off, 0),  sh(TRv,  off, 0))
+                      : Q(sh(TRv,  off, 0), sh(midRight,  off, 0),  sh(BRv,  off, 0)),
+        };
+        Object.entries(sides).forEach(([side, d]) => {
+          const node = rc.path(d, {
+            stroke,
+            strokeWidth: opts.strokeWidth,
+            roughness:   opts.roughness,
+            bowing:      opts.bowing,
+            disableMultiStroke: true,
+          });
+          svg.appendChild(node);
+          node.dataset.side = side;
+          const inner = node.tagName === "g" ? node.querySelector("path") : node;
+          if (!inner) return;
+          inner.setAttribute("stroke-linecap",  "round");
+          inner.setAttribute("stroke-linejoin", "round");
+          if (opts.opacity != null) inner.style.opacity = opts.opacity;
+          const len = inner.getTotalLength();
+          inner.style.strokeDasharray  = len;
+          inner.style.strokeDashoffset = playedRef.current ? 0 : len;
+        });
+      };
+
+      // Three passes per edge — sketchier roughness + more bowing so the lines
+      // wobble like a real pen finding the rectangle.
+      sidePass(1.7, { strokeWidth: 2.1, roughness: 2.0, bowing: 0.9, offset: 0,  reverse: false });
+      sidePass(4.2, { strokeWidth: 1.9, roughness: 2.4, bowing: 1.2, offset: 5,  reverse: true,  opacity: 0.7 });
+      sidePass(8.9, { strokeWidth: 1.7, roughness: 2.8, bowing: 1.6, offset: 10, reverse: false, opacity: 0.5 });
+    };
+
+    const play = () => {
+      const bySide = { top: [], bottom: [], left: [], right: [] };
+      svg.querySelectorAll("[data-side]").forEach((g) => {
+        const side = g.dataset.side;
+        const inner = g.tagName === "g" ? g.querySelector("path") : g;
+        if (bySide[side] && inner) bySide[side].push(inner);
+      });
+      const drawStroke = (paths, startAt, edgeDur = 0.38, passStep = 98) => {
+        paths.forEach((p, i) => setTimeout(() => {
+          p.style.transition = `stroke-dashoffset ${edgeDur}s ease-out`;
+          p.style.strokeDashoffset = 0;
+        }, startAt + i * passStep));
+        return startAt + (paths.length - 1) * passStep + edgeDur * 1000;
+      };
+      const liftPause = 165;
+      let t = 60;
+      t = drawStroke(bySide.top,    t) + liftPause;
+      t = drawStroke(bySide.bottom, t) + liftPause;
+      t = drawStroke(bySide.left,   t) + liftPause;
+      t = drawStroke(bySide.right,  t);
+    };
+
+    generate();
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting && !playedRef.current) {
+          playedRef.current = true;
+          play();
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.08 });
+    io.observe(wrap);
+
+    const ro = new ResizeObserver(() => generate());
+    ro.observe(wrap);
+
+    return () => { io.disconnect(); ro.disconnect(); };
+  }, []);
+
+  return (
+    <div ref={wrapRef} className="scribble-frame">
+      {children}
+      <svg ref={svgRef} className="scribble-svg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" />
+    </div>
+  );
+}
+
+/* ----------------------- ScribbleUnderline ------------------------ */
+/* Inline wrapper: hand-drawn underline below the word + a scribbled period to the right.
+   Used to replace e.g. `<em>builder</em>.` with `<ScribbleUnderline><em>builder</em></ScribbleUnderline>` */
+function ScribbleUnderline({ children, period = true }) {
+  const wrapRef = React.useRef(null);
+  const svgRef  = React.useRef(null);
+  const playedRef = React.useRef(false);
+
+  React.useEffect(() => {
+    const wrap = wrapRef.current;
+    const svg  = svgRef.current;
+    if (!wrap || !svg || !window.rough) return;
+
+    const rc = window.rough.svg(svg);
+    const rand = (s) => { const x = Math.sin(s * 9999) * 10000; return x - Math.floor(x); };
+    const jit = (n, amp) => (rand(n) - 0.5) * amp;
+
+    const generate = () => {
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+      const { width: w, height: h } = wrap.getBoundingClientRect();
+      if (!w || !h) return;
+
+      const PAD_RIGHT  = period ? 34 : 8;
+      const PAD_BOTTOM = 24;
+      const totalW = w + PAD_RIGHT;
+      const totalH = h + PAD_BOTTOM;
+
+      svg.setAttribute("viewBox", `0 0 ${totalW} ${totalH}`);
+      svg.setAttribute("width",  totalW);
+      svg.setAttribute("height", totalH);
+      svg.style.left = "0";
+      svg.style.top  = "0";
+
+      const underlineY = h + 2; // sits just below the descender
+
+      // Both underline passes draw left-to-right; cross-weave via opposing slopes
+      // (`tilt` is the y-delta added at the end of the stroke).
+      const drawUnderline = (seed, opts) => {
+        const startX = -4 + jit(seed + 1, 8);
+        const endX   = w + PAD_RIGHT - 6 + jit(seed + 2, 8);
+        const baseY  = underlineY + (opts.offset || 0);
+        const tilt   = opts.tilt || 0;
+        const startY = baseY + jit(seed + 3, 2);
+        const endY   = baseY + tilt + jit(seed + 4, 2);
+        const midX   = (startX + endX) / 2 + jit(seed + 5, 14);
+        const midY   = (startY + endY) / 2 + jit(seed + 6, 4) - 1;
+        const d = `M ${startX} ${startY} Q ${midX} ${midY}, ${endX} ${endY}`;
+        const node = rc.path(d, {
+          stroke: "currentColor",
+          strokeWidth: opts.strokeWidth,
+          roughness:   opts.roughness,
+          bowing:      opts.bowing,
+          disableMultiStroke: true,
+        });
+        node.dataset.group = "underline";
+        svg.appendChild(node);
+        const inner = node.tagName === "g" ? node.querySelector("path") : node;
+        if (!inner) return;
+        const len = inner.getTotalLength();
+        inner.style.strokeDasharray  = len;
+        inner.style.strokeDashoffset = playedRef.current ? 0 : len;
+      };
+
+      drawUnderline(11.7, { strokeWidth: 1.6, roughness: 1.4, bowing: 0.9, offset: 0, tilt:  4 });
+      drawUnderline(14.2, { strokeWidth: 1.3, roughness: 1.9, bowing: 0.7, offset: 6, tilt: -4 });
+
+      // Scribbled period to the right of the word — drawn as a small hand-traced
+      // circular path so it reveals like a pen looping around, not a popped dot.
+      if (period) {
+        const cx = w + 10 + jit(31, 2);
+        const cy = h * 0.78 + jit(32, 2);
+        const r  = 2.3 + jit(33, 0.4);
+        // Single circle expressed as 4 cubic-bezier arcs (kappa = 0.5522847498)
+        const k = 0.5522847498 * r;
+        const d =
+          `M ${cx - r} ${cy} ` +
+          `C ${cx - r} ${cy - k}, ${cx - k} ${cy - r}, ${cx} ${cy - r} ` +
+          `S ${cx + r} ${cy - k}, ${cx + r} ${cy} ` +
+          `S ${cx + k} ${cy + r}, ${cx} ${cy + r} ` +
+          `S ${cx - r} ${cy + k}, ${cx - r} ${cy}`;
+        const node = rc.path(d, {
+          stroke: "currentColor",
+          strokeWidth: 3.6, // thick enough to read as a filled dot once drawn
+          roughness: 1.2,
+          bowing: 0.6,
+          disableMultiStroke: true,
+        });
+        node.dataset.group = "period";
+        svg.appendChild(node);
+        const inner = node.tagName === "g" ? node.querySelector("path") : node;
+        if (inner) {
+          inner.setAttribute("stroke-linecap", "round");
+          inner.setAttribute("stroke-linejoin", "round");
+          const len = inner.getTotalLength();
+          inner.style.strokeDasharray  = len;
+          inner.style.strokeDashoffset = playedRef.current ? 0 : len;
+        }
+      }
+    };
+
+    const play = () => {
+      const underlines = svg.querySelectorAll('[data-group="underline"]');
+      const periodNode = svg.querySelector('[data-group="period"]');
+      const passStep = 180;
+      const edgeDur  = 0.7;
+      // Border animation finishes around 2.86s; start underline a touch after that
+      // so it reads as the deliberate final flourish, then the period caps it off.
+      const startDelay = 2800;
+      underlines.forEach((g, i) => {
+        const p = g.tagName === "g" ? g.querySelector("path") : g;
+        setTimeout(() => {
+          p.style.transition = `stroke-dashoffset ${edgeDur}s ease-out`;
+          p.style.strokeDashoffset = 0;
+        }, startDelay + i * passStep);
+      });
+      if (periodNode) {
+        const inner = periodNode.tagName === "g" ? periodNode.querySelector("path") : periodNode;
+        if (inner) {
+          const totalDur = startDelay + (underlines.length - 1) * passStep + edgeDur * 1000 + 120;
+          setTimeout(() => {
+            inner.style.transition = "stroke-dashoffset 0.6s cubic-bezier(.5,0,.5,1)";
+            inner.style.strokeDashoffset = 0;
+          }, totalDur);
+        }
+      }
+    };
+
+    generate();
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting && !playedRef.current) {
+          playedRef.current = true;
+          play();
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    io.observe(wrap);
+
+    const ro = new ResizeObserver(() => generate());
+    ro.observe(wrap);
+
+    return () => { io.disconnect(); ro.disconnect(); };
+  }, [period]);
+
+  return (
+    <span ref={wrapRef} className="scribble-underline">
+      {children}
+      <svg ref={svgRef} className="scribble-svg-underline" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" />
+    </span>
+  );
+}
+
+/* ----------------------- JobEntry / MarginNote / BodyHighlight ------------------------ */
+/* Hand-written marginalia on a job entry: rough.js brackets + handwritten lines that
+   "write" in via clip-path, plus inline ink underlines in the body. Replays each time
+   the entry scrolls into view. */
+
+function BodyHighlight({ children, kind = "underline" }) {
+  const wrapRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap || !window.rough) return;
+    const svg = wrap.querySelector(".ink-mark__svg");
+    if (!svg) return;
+
+    const rand = (s) => { const x = Math.sin(s * 9999) * 10000; return x - Math.floor(x); };
+    const jit  = (n, amp) => (rand(n) - 0.5) * amp;
+
+    const generate = () => {
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+      const { width: w, height: h } = wrap.getBoundingClientRect();
+      if (!w || !h) return;
+      const totalH = h + 10;
+      svg.setAttribute("viewBox", `0 0 ${w} ${totalH}`);
+      svg.setAttribute("width",  w);
+      svg.setAttribute("height", totalH);
+
+      const rc = window.rough.svg(svg);
+      if (kind === "underline") {
+        const y  = h + 1;
+        const d  = `M ${-2 + jit(1, 4)} ${y + jit(2, 2)} Q ${w / 2 + jit(3, 10)} ${y + 3 + jit(4, 2)}, ${w + 2 + jit(5, 4)} ${y + jit(6, 2)}`;
+        const node = rc.path(d, {
+          stroke: "currentColor",
+          strokeWidth: 1.8,
+          roughness: 1.5,
+          bowing: 0.9,
+          disableMultiStroke: true,
+        });
+        svg.appendChild(node);
+        const inner = node.tagName === "g" ? node.querySelector("path") : node;
+        if (inner) {
+          inner.setAttribute("stroke-linecap", "round");
+          const len = inner.getTotalLength();
+          inner.style.setProperty("--len", len);
+        }
+      }
+    };
+
+    generate();
+    const ro = new ResizeObserver(generate);
+    ro.observe(wrap);
+    return () => ro.disconnect();
+  }, [children, kind]);
+
+  return (
+    <span ref={wrapRef} className="ink-mark" data-kind={kind}>
+      {children}
+      <svg ref={null} className="ink-mark__svg" aria-hidden="true" />
+    </span>
+  );
+}
+
+function MarginNote({ note, noteIndex }) {
+  const rand = (s) => { const x = Math.sin(s * 9999) * 10000; return x - Math.floor(x); };
+  return (
+    <div className="margin-note" data-anchor={note.anchor}>
+      <svg className="margin-note__bracket" aria-hidden="true" />
+      <div className="margin-note__lines">
+        {(note.lines || []).map((line, i) => {
+          const lineDelay = 260 + i * 900 + (i % 2 ? 110 : 0);
+          const tilt = (rand(noteIndex * 13 + i + 1) - 0.5) * 1.6;
+          return (
+            <div
+              key={i}
+              className="note-line"
+              style={{ "--line-delay": `${lineDelay}ms`, "--line-tilt": `${tilt}deg` }}
+            >
+              <span className="ink">{line}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function JobEntry({ h, index }) {
+  const entryRef   = React.useRef(null);
+  const bodyRef    = React.useRef(null);
+  const notesRef   = React.useRef(null);
+  const anchorsRef = React.useRef({ blurb: null, bullets: null, stack: null });
+  const timeoutsRef = React.useRef([]);
+
+  React.useEffect(() => {
+    const entry = entryRef.current;
+    const notes = notesRef.current;
+    const body  = bodyRef.current;
+    if (!entry || !notes || !body || !window.rough) return;
+
+    // ---------- Bracket rendering ----------
+    // Single left-side bracket whose serifs face the body content (i.e., point left).
+    const renderBracket = (svg, height) => {
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+      const w = 14;
+      svg.setAttribute("viewBox", `0 0 ${w} ${height}`);
+      svg.setAttribute("width",   w);
+      svg.setAttribute("height",  height);
+      const rc = window.rough.svg(svg);
+      const serif = 9;
+      // Serifs point LEFT toward the body: `]` shape (start top-left, go right, down, back left).
+      const d = `M 0 0 L ${serif} 0 L ${serif} ${height} L 0 ${height}`;
+      const node = rc.path(d, {
+        stroke: "currentColor",
+        strokeWidth: 1.8,
+        roughness: 1.3,
+        bowing: 0.4,
+        disableMultiStroke: true,
+      });
+      svg.appendChild(node);
+      const inner = node.tagName === "g" ? node.querySelector("path") : node;
+      if (inner) {
+        inner.setAttribute("stroke-linecap",  "round");
+        inner.setAttribute("stroke-linejoin", "round");
+        const len = inner.getTotalLength();
+        inner.style.setProperty("--len", len);
+      }
+    };
+
+    // ---------- Positioning + bracket sizing ----------
+    const positionNotes = () => {
+      const noteEls = notes.querySelectorAll(".margin-note");
+      const notesRect = notes.getBoundingClientRect();
+      noteEls.forEach((noteEl) => {
+        const anchorName = noteEl.dataset.anchor;
+        let top, height;
+        if (anchorName === "all") {
+          // Spans from the blurb (subtitle) top down through the end of the bullets.
+          const blurb   = anchorsRef.current.blurb;
+          const bullets = anchorsRef.current.bullets;
+          if (!blurb || !bullets) return;
+          const blurbRect   = blurb.getBoundingClientRect();
+          const bulletsRect = bullets.getBoundingClientRect();
+          top    = blurbRect.top - notesRect.top;
+          height = bulletsRect.bottom - blurbRect.top;
+        } else {
+          const anchor = anchorsRef.current[anchorName];
+          if (!anchor) return;
+          const r = anchor.getBoundingClientRect();
+          top    = r.top - notesRect.top;
+          height = Math.max(r.height, 24);
+        }
+        noteEl.style.top    = `${top}px`;
+        noteEl.style.height = `${height}px`;
+        renderBracket(noteEl.querySelector(".margin-note__bracket"), height);
+      });
+    };
+
+    // Initial layout — defer one frame so fonts/grid settle.
+    requestAnimationFrame(positionNotes);
+
+    const ro = new ResizeObserver(positionNotes);
+    ro.observe(entry);
+
+    // ---------- Animation orchestration ----------
+    const clearTimers = () => {
+      timeoutsRef.current.forEach(clearTimeout);
+      timeoutsRef.current = [];
+    };
+
+    const revealJob = () => {
+      clearTimers();
+      const noteEls  = Array.from(notes.querySelectorAll(".margin-note"));
+      const inkMarks = Array.from(entry.querySelectorAll(".ink-mark"));
+      const startBeat = 80; // tiny opening beat
+      // Inline ink underlines fire on the same beat as the first margin note (in sync with the annotation).
+      const hid = setTimeout(() => {
+        inkMarks.forEach((el) => el.classList.add("is-playing"));
+      }, startBeat);
+      timeoutsRef.current.push(hid);
+      let t = startBeat;
+      noteEls.forEach((noteEl) => {
+        const tid = setTimeout(() => noteEl.classList.add("is-playing"), t);
+        timeoutsRef.current.push(tid);
+        const lineCount = noteEl.querySelectorAll(".note-line").length;
+        const lastLineStart = t + 260 + Math.max(0, lineCount - 1) * 900 + ((lineCount - 1) % 2 ? 110 : 0);
+        t = lastLineStart + 1100;
+      });
+    };
+
+    const resetJob = () => {
+      clearTimers();
+      entry.classList.add("is-resetting");
+      notes.querySelectorAll(".margin-note").forEach((el) => el.classList.remove("is-playing"));
+      entry.querySelectorAll(".ink-mark").forEach((el) => el.classList.remove("is-playing"));
+      // Force two frames to flush the transition-disabling reset, then re-enable.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => entry.classList.remove("is-resetting"));
+      });
+    };
+
+    // Play once per page load. No reset/replay on scroll out + back in.
+    let hasPlayed = false;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting && !hasPlayed) {
+          hasPlayed = true;
+          entry.classList.add("is-in");
+          revealJob();
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.25, rootMargin: "0px 0px -80px 0px" });
+    io.observe(body);
+
+    return () => {
+      io.disconnect();
+      ro.disconnect();
+      clearTimers();
+    };
+  }, [h]);
+
+  // Inline highlight splicer: rebuilds blurb + bullet text with <BodyHighlight>
+  // wrappers around the first matched phrase per highlight (one underline per entry).
+  // Reset each render so the wrap is preserved across re-renders.
+  const firedHighlights = new Set();
+  const renderWithHighlights = (text) => {
+    const highlights = (h && h.highlights) || [];
+    if (!highlights.length || !text) return text;
+    let parts = [text];
+    highlights.forEach((hl, hi) => {
+      if (firedHighlights.has(hi)) return;
+      const next = [];
+      parts.forEach((part, pi) => {
+        if (typeof part !== "string" || firedHighlights.has(hi)) { next.push(part); return; }
+        const idx = part.indexOf(hl.phrase);
+        if (idx === -1) { next.push(part); return; }
+        if (idx > 0) next.push(part.slice(0, idx));
+        next.push(
+          <BodyHighlight key={`hl-${hi}-${pi}`} kind={hl.kind}>
+            {hl.phrase}
+          </BodyHighlight>
+        );
+        const rest = part.slice(idx + hl.phrase.length);
+        if (rest) next.push(rest);
+        firedHighlights.add(hi);
+      });
+      parts = next;
+    });
+    return parts;
+  };
+
+  const marginalia = (h && h.marginalia) || [];
+
+  return (
+    <div ref={entryRef} className="reveal job-entry" style={{
+      display: "grid",
+      gridTemplateColumns: "120px minmax(0, 620px) 1fr",
+      gap: "32px",
+      padding: "28px 0",
+      position: "relative",
+    }}>
+      {/* spine dot */}
+      <div style={{
+        position: "absolute", left: "115px", top: "32px",
+        width: "11px", height: "11px",
+        background: index === 0 ? "var(--brand)" : "var(--ivory)",
+        border: "1.5px solid var(--brand)",
+        borderRadius: "50%",
+        zIndex: 1,
+      }}/>
+
+      {/* dates */}
+      <div style={{ paddingTop: "4px" }}>
+        <div className="history-date" style={{ fontFamily: "var(--mono)", fontSize: "12px", color: "var(--stone)", letterSpacing: "1px", lineHeight: 1.4 }}>
+          <span className="history-date__start">{h.start}</span>
+          <span className="history-date__arrow">↓</span>
+          <span className="history-date__end" style={{ color: "var(--olive)" }}>{h.end}</span>
+        </div>
+      </div>
+
+      {/* body */}
+      <div ref={bodyRef} className="job-body" style={{ paddingLeft: "28px" }}>
+        <div className="mono-label" style={{ marginBottom: "6px" }}>{h.company} · {h.location}</div>
+        <h3 style={{ fontSize: "26px", fontWeight: 500, margin: "0 0 12px", lineHeight: 1.2 }}>{h.role}</h3>
+        <p
+          ref={(el) => { anchorsRef.current.blurb = el; }}
+          data-margin-anchor="blurb"
+          style={{ fontSize: "16px", color: "var(--olive)", margin: "0 0 14px", lineHeight: 1.55 }}
+        >
+          {renderWithHighlights(h.blurb)}
+        </p>
+        <ul
+          ref={(el) => { anchorsRef.current.bullets = el; }}
+          data-margin-anchor="bullets"
+          className="dash"
+          style={{ marginBottom: "14px" }}
+        >
+          {h.bullets.map((b, j) => <li key={j} style={{ fontSize: "15px" }}>{renderWithHighlights(b)}</li>)}
+        </ul>
+        <div ref={(el) => { anchorsRef.current.stack = el; }} data-margin-anchor="stack">
+          {h.stack.map((s) => <span key={s} className="tag">{s}</span>)}
+        </div>
+      </div>
+
+      {/* notes overlay */}
+      <div ref={notesRef} className="job-notes">
+        {marginalia.map((note, ni) => (
+          <MarginNote key={ni} note={note} noteIndex={ni} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* expose globally */
 Object.assign(window, {
   useScrollSpy, useReveal,
   TopNav, IconButton, AnimatedNumber, ArrChart, SkillBar, ContactRow, Section,
+  ScribbleFrame, ScribbleUnderline,
+  JobEntry, MarginNote, BodyHighlight,
   GitHubIcon, LinkedInIcon, SunIcon, MoonIcon, ResumeIcon
 });

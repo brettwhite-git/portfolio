@@ -95,12 +95,4 @@ Bitcoin cost-basis tracker with CSV upload, transaction recording, fee tracking,
 - Self-Directed Study, AI orchestration, second brains, compound engineering, homelabs, and Bitcoin, Ongoing
 - Texas A&M University, B.S. Industrial Distribution, Dec 2012
 
-## Local Development
 
-```bash
-npm install
-npm run dev
-npm run build
-```
-
-The live portfolio shell serves the editorial site from `public/portfolio-ref`.
