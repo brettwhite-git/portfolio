@@ -364,7 +364,8 @@ function Section({ id, alt, children, className }) {
 function ScribbleFrame({ children }) {
   const wrapRef = React.useRef(null);
   const svgRef  = React.useRef(null);
-  const playedRef = React.useRef(false);
+  const wantsPlayRef = React.useRef(false); // IO has fired
+  const hasPlayedRef = React.useRef(false); // play() has actually run on real paths
   const animatingRef = React.useRef(false);
 
   React.useEffect(() => {
@@ -439,7 +440,10 @@ function ScribbleFrame({ children }) {
           if (opts.opacity != null) inner.style.opacity = opts.opacity;
           const len = inner.getTotalLength();
           inner.style.strokeDasharray  = len;
-          inner.style.strokeDashoffset = playedRef.current ? 0 : len;
+          // Only stamp terminal state when play() has actually animated. If IO
+          // fired before paths existed, hasPlayedRef stays false here so the
+          // brand-new paths start hidden and the deferred play() can animate them.
+          inner.style.strokeDashoffset = hasPlayedRef.current ? 0 : len;
         });
       };
 
@@ -448,6 +452,12 @@ function ScribbleFrame({ children }) {
       sidePass(1.7, { strokeWidth: 2.1, roughness: 2.0, bowing: 0.9, offset: 0,  reverse: false });
       sidePass(4.2, { strokeWidth: 1.9, roughness: 2.4, bowing: 1.2, offset: 5,  reverse: true,  opacity: 0.7 });
       sidePass(8.9, { strokeWidth: 1.7, roughness: 2.8, bowing: 1.6, offset: 10, reverse: false, opacity: 0.5 });
+
+      // If IO already fired while we had no paths, kick off play() now.
+      if (wantsPlayRef.current && !hasPlayedRef.current && svg.querySelector("[data-side]")) {
+        hasPlayedRef.current = true;
+        play();
+      }
     };
 
     const play = () => {
@@ -485,17 +495,21 @@ function ScribbleFrame({ children }) {
 
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
-        if (e.isIntersecting && !playedRef.current) {
-          playedRef.current = true;
-          play();
+        if (e.isIntersecting && !wantsPlayRef.current) {
+          wantsPlayRef.current = true;
           io.disconnect();
+          // If paths exist now, play immediately. Otherwise generate() will
+          // pick this up once the image-driven resize creates the paths.
+          if (!hasPlayedRef.current && svg.querySelector("[data-side]")) {
+            hasPlayedRef.current = true;
+            play();
+          }
         }
       });
     }, { threshold: 0.08 });
     io.observe(wrap);
 
     const ro = new ResizeObserver(() => {
-      // Belt-and-suspenders: never regenerate while the play animation is in flight.
       if (animatingRef.current) return;
       const rect = wrap.getBoundingClientRect();
       if (Math.abs(rect.width - prevW) < 1 && Math.abs(rect.height - prevH) < 1) return;
