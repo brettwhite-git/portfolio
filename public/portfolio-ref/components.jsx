@@ -970,7 +970,7 @@ function JobEntry({ h, index }) {
       }}/>
 
       {/* dates */}
-      <div style={{ paddingTop: "4px" }}>
+      <div className="job-dates" style={{ paddingTop: "4px" }}>
         <div className="history-date" style={{ fontFamily: "var(--mono)", fontSize: "12px", color: "var(--stone)", letterSpacing: "1px", lineHeight: 1.4 }}>
           <span className="history-date__start">{h.start}</span>
           <span className="history-date__arrow">↓</span>
