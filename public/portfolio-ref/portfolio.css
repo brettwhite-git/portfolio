@@ -236,9 +236,13 @@ section.band:first-of-type { border-top: 0; }
   -webkit-backdrop-filter: blur(10px);
   transform-origin: top right;
   animation: mobile-menu-in 0.18s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  /* Stack items, size to text so underlines align with text bounds */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .mobile-nav__menu a {
-  display: block;
+  display: inline-block;
   position: relative;
   padding: 12px 18px;
   border-bottom: 0;
@@ -835,20 +839,36 @@ body.theme-dark .portrait-frame__inner { background: var(--warm-sand); }
     gap: 28px 20px !important;
   }
 
-  /* History timeline: stack date above role; hide spine + dots; keep dates vertical */
+  /* History timeline: stack date above role; hide spine + dots */
   #history .job-entry {
     grid-template-columns: 1fr !important;
     gap: 8px !important;
     padding: 20px 0 !important;
   }
   #history .job-dates { padding-top: 0 !important; justify-self: start !important; }
+  /* Dates render horizontally on mobile: Jun 2025 → Present */
   #history .history-date {
-    display: inline-grid !important;
-    grid-auto-flow: row !important;
-    justify-items: start !important;
-    text-align: left !important;
-    row-gap: 4px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
     width: auto !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+  }
+  #history .history-date__arrow {
+    position: relative;
+    display: inline-block;
+    width: 14px;
+    overflow: hidden;
+    color: transparent;
+  }
+  #history .history-date__arrow::after {
+    content: "\2192"; /* → */
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--olive);
   }
   #history .job-body { padding-left: 0 !important; }
   /* The decorative spine — first child of #history's outer wrapper */
